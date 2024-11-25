@@ -28,6 +28,9 @@ public class Doctor {
 	
 	@Column(name = "ChuyenKhoa")
 	private int ChuyenKhoa;
+	
+	@Column(name = "Img")
+	private String Img;
 
 	public String getMaBs() {
 		return MaBs;
@@ -45,7 +48,7 @@ public class Doctor {
 		HoTen = hoTen;
 	}
 
-	public String isGioiTinh() {
+	public String getGioiTinh() {
 		return GioiTinh;
 	}
 
@@ -77,16 +80,36 @@ public class Doctor {
 		DiaChi = diaChi;
 	}
 
-	public int getChuyenKhoa() {
-		return ChuyenKhoa;
+	public String getChuyenKhoa() {
+		switch (this.ChuyenKhoa) {
+			case 1: {
+				return "Răng";
+			}
+			case 2:{
+				return "Hàm";
+			}
+			case 3:{
+				return "Mặt";
+			}
+		}
+		
+		return this.ChuyenKhoa + "";
 	}
 
 	public void setChuyenKhoa(int chuyenKhoa) {
 		ChuyenKhoa = chuyenKhoa;
 	}
 
+	public String getImg() {
+		return Img;
+	}
+
+	public void setImg(String img) {
+		Img = img;
+	}
+
 	public Doctor(String maBs, String hoTen, String gioiTinh, String ngaySinh, String sdt, String diaChi,
-			int chuyenKhoa) {
+			int chuyenKhoa, String img) {
 		super();
 		MaBs = maBs;
 		HoTen = hoTen;
@@ -95,6 +118,7 @@ public class Doctor {
 		this.sdt = sdt;
 		DiaChi = diaChi;
 		ChuyenKhoa = chuyenKhoa;
+		Img = img;
 	}
 
 	public Doctor() {
@@ -105,8 +129,9 @@ public class Doctor {
 	@Override
 	public String toString() {
 		return "Doctor [MaBs=" + MaBs + ", HoTen=" + HoTen + ", GioiTinh=" + GioiTinh + ", NgaySinh=" + NgaySinh
-				+ ", sdt=" + sdt + ", DiaChi=" + DiaChi + ", ChuyenKhoa=" + ChuyenKhoa + "]";
+				+ ", sdt=" + sdt + ", DiaChi=" + DiaChi + ", ChuyenKhoa=" + ChuyenKhoa + ", Img=" + Img + "]";
 	}
+
 
 	
 }

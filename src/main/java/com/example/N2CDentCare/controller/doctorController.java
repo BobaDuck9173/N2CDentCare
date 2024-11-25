@@ -22,12 +22,7 @@ public class doctorController {
 	public String getDoctors(Model model){
 		List<Doctor> list = doctorRepository.findAll();
 		
-		model.addAttribute("firstDr", list.get(0).getHoTen());
-		model.addAttribute("secondDr", "cuong");
-		model.addAttribute("thirdDr", "cong");
-		model.addAttribute("fourthDr", list.get(1).getHoTen());
-		model.addAttribute("fifthDr", "bs thu 5");
-		
+		model.addAttribute("doctors", list);
 		return "team";
 	}
 }

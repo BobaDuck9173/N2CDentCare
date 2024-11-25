@@ -30,10 +30,10 @@ public class pageController {
 		return "service";
 	}
 	
-	@GetMapping("/team.html")
-	public String teamPage() {
-		return "team";
-	}
+//	@GetMapping("/team.html")
+//	public String teamPage() {
+//		return "team";
+//	}
 	
 	@GetMapping("/appointment.html")
 	public String appointmentPage() {

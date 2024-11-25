@@ -9,7 +9,7 @@ public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MaBs")
-	private Integer MaBs;
+	private String MaBs;
 	
 	@Column(name = "HoTen")
 	private String HoTen;
@@ -29,11 +29,11 @@ public class Doctor {
 	@Column(name = "ChuyenKhoa")
 	private int ChuyenKhoa;
 
-	public Integer getMaBs() {
+	public String getMaBs() {
 		return MaBs;
 	}
 
-	public void setMaBs(Integer maBs) {
+	public void setMaBs(String maBs) {
 		MaBs = maBs;
 	}
 
@@ -85,7 +85,7 @@ public class Doctor {
 		ChuyenKhoa = chuyenKhoa;
 	}
 
-	public Doctor(Integer maBs, String hoTen, String gioiTinh, String ngaySinh, String sdt, String diaChi,
+	public Doctor(String maBs, String hoTen, String gioiTinh, String ngaySinh, String sdt, String diaChi,
 			int chuyenKhoa) {
 		super();
 		MaBs = maBs;

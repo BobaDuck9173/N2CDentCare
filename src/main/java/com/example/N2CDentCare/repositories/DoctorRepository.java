@@ -6,7 +6,7 @@ import com.example.N2CDentCare.model.Doctor;
 import java.util.List;
 
 
-public interface DoctorRepository extends JpaRepository<Doctor, Integer>{
+public interface DoctorRepository extends JpaRepository<Doctor, String>{
 	
 	@Override
 	List<Doctor> findAll();

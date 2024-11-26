@@ -268,8 +268,6 @@
                                     <select class="form-select bg-light border-0" style="height: 55px;" >
                                         <option selected>Lựa chọn dịch vụ</option>
                                         <option th:each="dichvu, stat : ${dichvus}" th:value="${dichvu.MaDv}" th:text="${dichvu.TenDv}">Service 1</option>
-<!--                                         <option value="2">Service 2</option> -->
-<!--                                         <option value="3">Service 3</option> -->
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
@@ -292,11 +290,10 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <div class="time" id="time1" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control bg-light border-0 datetimepicker-input"
-                                            placeholder="Appointment Time" data-target="#time1" data-toggle="datetimepicker" style="height: 55px;">
-                                    </div>
+                                    <select class="form-select bg-light border-0" style="height: 55px;">
+                                        <option selected>Chọn khung giờ</option>
+                                        <option  th:each="giolamviec, stat : ${glvlist}" th:value="${giolamviec.MaGio}" th:text="${giolamviec.KhungGio}">Doctor 1</option>
+                                    </select>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-dark w-100 py-3" type="submit">Nhận tư vấn</button>
@@ -477,6 +474,8 @@
 
 
     <!-- Team Start -->
+    
+   <!-- Team Start -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row g-5">
@@ -487,10 +486,10 @@
                         <a href="appointment.html" class="btn btn-primary py-3 px-5">Đặt lịch khám</a>
                     </div>
                 </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                <div class="col-lg-4 wow slideInUp" th:data-wow-delay="0.3s" th:each="doctor, stat : ${doctors}">
                     <div class="team-item">
                         <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid rounded-top w-100" th:src="@{${doctor.Img}}" alt="">
                             <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
@@ -499,79 +498,11 @@
                             </div>
                         </div>
                         <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
-                            <h4 class="mb-2">PGS. TS. BS Lâm Việt Trung </h4>
-                            <p class="text-primary mb-0">Implant Surgeon</p>
+                            <h4 class="mb-2" th:text="${doctor.HoTen}"  >PGS. TS. BS Lâm Việt Trung </h4>
+                            <p class="text-primary mb-0" th:text="${doctor.ChuyenKhoa}">Implant Surgeon</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="team-item">
-                        <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-2.jpg" alt="">
-                            <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
-                            <h4 class="mb-2">BS. CK2 Võ Đức Hiếu </h4>
-                            <p class="text-primary mb-0">Implant Surgeon</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.1s">
-                    <div class="team-item">
-                        <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-3.jpg" alt="">
-                            <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
-                            <h4 class="mb-2">TS. BS Nguyễn Bá Thắng</h4>
-                            <p class="text-primary mb-0">Implant Surgeon</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="team-item">
-                        <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-4.jpg" alt="">
-                            <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
-                            <h4 class="mb-2">TS. BS Trần Anh Tuấn</h4>
-                            <p class="text-primary mb-0">Implant Surgeon</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="team-item">
-                        <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-5.jpg" alt="">
-                            <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
-                            <h4 class="mb-2">TS. BS Trần Anh Kiệt</h4>
-                            <p class="text-primary mb-0">Implant Surgeon</p>
-                        </div>
-                    </div>
-                </div>
+                </div> 
             </div>
         </div>
     </div>

@@ -267,7 +267,7 @@
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select bg-light border-0" style="height: 55px;" >
                                         <option selected>Lựa chọn dịch vụ</option>
-                                        <option th:each="dichvu, stat : ${dichvus}" th:text="${dichvu.TenDv}">Service 1</option>
+                                        <option th:each="dichvu, stat : ${dichvus}" th:value="${dichvu.TenDv}">Service 1</option>
 <!--                                         <option value="2">Service 2</option> -->
 <!--                                         <option value="3">Service 3</option> -->
                                     </select>
@@ -275,7 +275,7 @@
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select bg-light border-0" style="height: 55px;">
                                         <option selected>Chọn Bác sĩ</option>
-                                        <option  <!-- th:each="doctor, stat : ${doctors}" th:text="${doctor.HoTen}" -->>Doctor 1</option>
+                                        <option  th:each="doctor, stat : ${doctors}" th:value="${doctor.HoTen}">Doctor 1</option>
                                         <option value="2">Doctor 2</option>
                                         <option value="3">Doctor 3</option>
                                     </select>

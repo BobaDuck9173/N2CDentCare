@@ -14,15 +14,21 @@ import com.example.N2CDentCare.repositories.DoctorRepository;
 
 @Controller
 public class indexController {
+	
 	@Autowired
 	DichvuRepository dichvuRepository;	
+	
+	@Autowired
 	DoctorRepository doctorRepository;
+	
+	
 	@GetMapping("/index.html")
 	public String getDichvu(Model model){
 		List<Dichvu> list = dichvuRepository.findAll();
-//		List<Doctor> dt=doctorRepository.findAll();
 		model.addAttribute("dichvus", list);
-//		model.addAttribute("doctors",dt);
+		
+		List<Doctor> dList = doctorRepository.findAll();
+		model.addAttribute("doctors", dList);
 		return "index";
 	}
 }

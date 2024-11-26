@@ -17,7 +17,7 @@ public class doctorController {
 	@Autowired
 	DoctorRepository doctorRepository;
 	@GetMapping("/team.html")
-	public String getTeamDoctors(Model model){
+	public String getDoctors(Model model){
 		List<Doctor> list = doctorRepository.findAll();
 		model.addAttribute("doctors", list);
 		return "team";

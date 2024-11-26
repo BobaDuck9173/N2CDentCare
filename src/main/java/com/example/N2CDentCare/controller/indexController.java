@@ -21,7 +21,6 @@ public class indexController {
 	@Autowired
 	DoctorRepository doctorRepository;
 	
-	
 	@GetMapping("/index.html")
 	public String getDichvu(Model model){
 		List<Dichvu> list = dichvuRepository.findAll();

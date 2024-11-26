@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class pageController {
-	@GetMapping("/index.html")
-	public String homePage() {
-		return "index";
-	}
+//	@GetMapping("/index.html")
+//	public String homePage() {
+//		return "index";
+//	}
 	
 	@GetMapping("/about.html")
 	public String aboutPage() {

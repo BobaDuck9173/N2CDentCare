@@ -25,10 +25,10 @@ public class pageController {
 		return "price";
 	}
 	
-	@GetMapping("/service.html")
-	public String servicePage() {
-		return "service";
-	}
+//	@GetMapping("/service.html")
+//	public String servicePage() {
+//		return "service";
+//	}
 	
 //	@GetMapping("/team.html")
 //	public String teamPage() {

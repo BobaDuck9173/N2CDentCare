@@ -136,7 +136,7 @@
 
 
      <!-- Service Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" >
         <div class="container">
             <div class="row g-5 mb-5">
                 <div class="col-lg-5 wow zoomIn" data-wow-delay="0.3s" style="min-height: 400px;">
@@ -150,23 +150,23 @@
                         <h5 class="position-relative d-inline-block text-primary text-uppercase">Các dịch vụ</h5>
                         <h1 class="display-5 mb-0">Thiết bị hiện đại, chất lượng dịch vụ luôn hài lòng khách hàng</h1>
                     </div>
-                    <div class="row g-5">
+                    <div class="row g-5" th:if="${stat.index >= 1} and ${stat.index <= 2}"  th:each="dichvu, stat : ${dichvus}">
                         <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
                             <div class="rounded-top overflow-hidden">
                                 <img class="img-fluid" src="img/service-1.jpg" alt="">
                             </div>
                             <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Nha khoa thẩm mỹ</h5>
+                                <h5 class="m-0" th:if="${stat.index >= 1} and ${stat.index <= 2}"  th:text="${dichvu.TenDv}">Nha khoa thẩm mỹ</h5>
                             </div>
-                        </div>
-                        <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.9s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-2.jpg" alt="">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Cấy ghép răng</h5>
-                            </div>
-                        </div>
+<!--                         </div> -->
+<!--                         <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.9s"> -->
+<!--                             <div class="rounded-top overflow-hidden"> -->
+<!--                                 <img class="img-fluid" src="img/service-2.jpg" alt=""> -->
+<!--                             </div> -->
+<!--                             <div class="position-relative bg-light rounded-bottom text-center p-4"> -->
+<!--                                 <h5 class="m-0" >Cấy ghép răng</h5> -->
+<!--                             </div> -->
+<!--                         </div> -->
                     </div>
                 </div>
             </div>

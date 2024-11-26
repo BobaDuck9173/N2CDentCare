@@ -150,54 +150,54 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="owl-carousel price-carousel wow zoomIn" data-wow-delay="0.9s">
-                        <div class="price-item pb-4">
+                        <div class="price-item pb-4" th:each="dichvu, stat : ${dichvus}">
                             <div class="position-relative">
-                                <img class="img-fluid rounded-top" src="img/price-1.jpg" alt="">
+                                <img class="img-fluid rounded-top" th:src="@{${dichvu.Img}}" alt="">
                                 <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
-                                    <h2 class="text-primary m-0">$35</h2>
+                                    <h2 class="text-primary m-0" th:text="${dichvu.DonGia}">$35</h2>
                                 </div>
                             </div>
                             <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4">
-                                <h4>Làm trắng răng</h4>
+                                <h4 th:text="${dichvu.TenDv}">Làm trắng răng</h4>
                                 <hr class="text-primary w-50 mx-auto mt-0">
                                 <div class="d-flex justify-content-between mb-3"><span>Thiết bị hiện đại</span><i class="fa fa-check text-primary pt-1"></i></div>
                                 <div class="d-flex justify-content-between mb-3"><span>Bác sĩ chuyên nghiệp</span><i class="fa fa-check text-primary pt-1"></i></div>
-                                <div class="d-flex justify-content-between mb-2"><span>Hỗ trợ 24/7</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-2"><span th:text="${dichvu.MoTa}">Hỗ trợ 24/7</span><i class="fa fa-check text-primary pt-1"></i></div>
                                 <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Đặt hẹn</a>
                             </div>
                         </div>
-                        <div class="price-item pb-4">
-                            <div class="position-relative">
-                                <img class="img-fluid rounded-top" src="img/price-2.jpg" alt="">
-                                <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
-                                    <h2 class="text-primary m-0">$49</h2>
-                                </div>
-                            </div>
-                            <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4">
-                                <h4>Cấy ghép răng</h4>
-                                <hr class="text-primary w-50 mx-auto mt-0">
-                                <div class="d-flex justify-content-between mb-3"><span>Thiết bị hiện đại</span><i class="fa fa-check text-primary pt-1"></i></div>
-                                <div class="d-flex justify-content-between mb-3"><span>Bác sĩ chuyên nghiệp</span><i class="fa fa-check text-primary pt-1"></i></div>
-                                <div class="d-flex justify-content-between mb-2"><span>Hỗ trợ 24/7</span><i class="fa fa-check text-primary pt-1"></i></div>
-                                <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Đặt hẹn</a>
-                            </div>
-                        </div>
-                        <div class="price-item pb-4">
-                            <div class="position-relative">
-                                <img class="img-fluid rounded-top" src="img/price-3.jpg" alt="">
-                                <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
-                                    <h2 class="text-primary m-0">$99</h2>
-                                </div>
-                            </div>
-                            <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4">
-                                <h4>Điều trị tủy răng</h4>
-                                <hr class="text-primary w-50 mx-auto mt-0">
-                                <div class="d-flex justify-content-between mb-3"><span>Thiết bị hiện đại</span><i class="fa fa-check text-primary pt-1"></i></div>
-                                <div class="d-flex justify-content-between mb-3"><span>Bác sĩ chuyên nghiệp</span><i class="fa fa-check text-primary pt-1"></i></div>
-                                <div class="d-flex justify-content-between mb-2"><span>Hỗ trợ 24/7</span><i class="fa fa-check text-primary pt-1"></i></div>
-                                <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Đặt hẹn</a>
-                            </div>
-                        </div>
+<!--                         <div class="price-item pb-4"> -->
+<!--                             <div class="position-relative"> -->
+<!--                                 <img class="img-fluid rounded-top" src="img/price-2.jpg" alt=""> -->
+<!--                                 <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;"> -->
+<!--                                     <h2 class="text-primary m-0">$49</h2> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4"> -->
+<!--                                 <h4>Cấy ghép răng</h4> -->
+<!--                                 <hr class="text-primary w-50 mx-auto mt-0"> -->
+<!--                                 <div class="d-flex justify-content-between mb-3"><span>Thiết bị hiện đại</span><i class="fa fa-check text-primary pt-1"></i></div> -->
+<!--                                 <div class="d-flex justify-content-between mb-3"><span>Bác sĩ chuyên nghiệp</span><i class="fa fa-check text-primary pt-1"></i></div> -->
+<!--                                 <div class="d-flex justify-content-between mb-2"><span>Hỗ trợ 24/7</span><i class="fa fa-check text-primary pt-1"></i></div> -->
+<!--                                 <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Đặt hẹn</a> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="price-item pb-4"> -->
+<!--                             <div class="position-relative"> -->
+<!--                                 <img class="img-fluid rounded-top" src="img/price-3.jpg" alt=""> -->
+<!--                                 <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;"> -->
+<!--                                     <h2 class="text-primary m-0">$99</h2> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4"> -->
+<!--                                 <h4>Điều trị tủy răng</h4> -->
+<!--                                 <hr class="text-primary w-50 mx-auto mt-0"> -->
+<!--                                 <div class="d-flex justify-content-between mb-3"><span>Thiết bị hiện đại</span><i class="fa fa-check text-primary pt-1"></i></div> -->
+<!--                                 <div class="d-flex justify-content-between mb-3"><span>Bác sĩ chuyên nghiệp</span><i class="fa fa-check text-primary pt-1"></i></div> -->
+<!--                                 <div class="d-flex justify-content-between mb-2"><span>Hỗ trợ 24/7</span><i class="fa fa-check text-primary pt-1"></i></div> -->
+<!--                                 <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Đặt hẹn</a> -->
+<!--                             </div> -->
+<!--                         </div> -->
                     </div>
                 </div>
             </div>

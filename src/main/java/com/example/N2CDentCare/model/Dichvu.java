@@ -15,13 +15,8 @@ public class Dichvu {
 	@Column(name = "MaDv")
 	private String MaDv;
 	
-	public Dichvu(String maDv, String tenDv, String donGia, String moTa) {
-		super();
-		MaDv = maDv;
-		TenDv = tenDv;
-		DonGia = donGia;
-		MoTa = moTa;
-	}
+	@Column(name = "Img")
+	private String Img;
 
 	public String getMaDv() {
 		return MaDv;
@@ -31,6 +26,15 @@ public class Dichvu {
 		MaDv = maDv;
 	}
 
+	@Column(name = "TenDv")
+	private String TenDv;
+	
+	@Column(name = "DonGia")
+	private String DonGia;
+	
+	@Column(name = "MoTa")
+	private String MoTa;
+	
 	public String getTenDv() {
 		return TenDv;
 	}
@@ -39,7 +43,7 @@ public class Dichvu {
 		TenDv = tenDv;
 	}
 
-	public String getDonGia() {
+	public String getDonGia() {		
 		return DonGia;
 	}
 
@@ -54,23 +58,31 @@ public class Dichvu {
 	public void setMoTa(String moTa) {
 		MoTa = moTa;
 	}
+	
+	public String getImg() {
+		return Img;
+	}
 
-	@Column(name = "TenDv")
-	private String TenDv;
-	
-	@Column(name = "DonGia")
-	private String DonGia;
-	
-	@Column(name = "MoTa")
-	private String MoTa;
+	public void setImg(String img) {
+		Img = img;
+	}
 
 	public Dichvu() {
 		super();
 	}
+	
+	public Dichvu(String maDv, String tenDv, String donGia, String moTa, String img) {
+		super();
+		MaDv = maDv;
+		TenDv = tenDv;
+		DonGia = donGia;
+		MoTa = moTa;
+		Img = img;
+	}
 
 	@Override
 	public String toString() {
-		return "Dichvu [MaDv=" + MaDv + ", TenDv=" + TenDv + ", DonGia=" + DonGia + ", MoTa=" + MoTa + "]";
+		return "Dichvu [MaDv=" + MaDv + ", TenDv=" + TenDv + ", DonGia=" + DonGia + ", MoTa=" + MoTa + "Img=" + Img + "]";
 	}
 	
 	

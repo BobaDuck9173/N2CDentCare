@@ -151,19 +151,15 @@
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
+                                    <select class="form-select bg-light border-0" style="height: 55px;" >
                                         <option selected>Lựa chọn dịch vụ</option>
-                                        <option value="1">Service 1</option>
-                                        <option value="2">Service 2</option>
-                                        <option value="3">Service 3</option>
+                                        <option th:each="dichvu, stat : ${dichvus}" th:value="${dichvu.MaDv}" th:text="${dichvu.TenDv}">Service 1</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select bg-light border-0" style="height: 55px;">
                                         <option selected>Chọn Bác sĩ</option>
-                                        <option value="1">Doctor 1</option>
-                                        <option value="2">Doctor 2</option>
-                                        <option value="3">Doctor 3</option>
+                                        <option  th:each="doctor, stat : ${doctors}" th:value="${doctor.MaBs}" th:text="${doctor.HoTen}">Doctor 1</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
@@ -180,11 +176,10 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <div class="time" id="time1" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control bg-light border-0 datetimepicker-input"
-                                            placeholder="Appointment Time" data-target="#time1" data-toggle="datetimepicker" style="height: 55px;">
-                                    </div>
+                                    <select class="form-select bg-light border-0" style="height: 55px;">
+                                        <option selected>Chọn khung giờ</option>
+                                        <option  th:each="giolamviec, stat : ${glvlist}" th:value="${giolamviec.MaGio}" th:text="${giolamviec.KhungGio}">Doctor 1</option>
+                                    </select>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-dark w-100 py-3" type="submit">Nhận tư vấn</button>
@@ -197,7 +192,6 @@
         </div>
     </div>
     <!-- Appointment End -->
-
     <!-- Newsletter Start -->
     <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
         <div class="container">

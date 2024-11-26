@@ -22,4 +22,12 @@ public class dichvuController {
 		model.addAttribute("dichvus", list);
 		return "service";
 	}
+	
+	@GetMapping("/price.html")
+	public String getPrice(Model model) {
+		List<Dichvu> list = dichvuRepository.findAll();
+		
+		model.addAttribute("dichvus", list);
+		return "price";
+	}
 }

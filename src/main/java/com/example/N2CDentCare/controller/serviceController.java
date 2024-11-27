@@ -19,19 +19,43 @@ public class serviceController {
 	@Autowired
 	DichvuRepository dichvuRepository;
 	
-	@GetMapping("/service.html")
-	public String getDichvu(Model model){
-		List<Dichvu> list = dichvuRepository.findAll();
-		
-		model.addAttribute("dichvus", list);
-		return "service";
+	@GetMapping("/dich-vu/boc-rang-su")
+	public String bocRangSu(Model model) {
+
+		return "/dich-vu/boc-rang-su";
 	}
 	
-	@GetMapping("/price.html")
-	public String getPrice(Model model) {
-		List<Dichvu> list = dichvuRepository.findAll();
-		
-		model.addAttribute("dichvus", list);
-		return "price";
+	@GetMapping("/dich-vu/bang-gia-boc-rang-su")
+	public String bangGiaBocRangSu(Model model) {
+
+		return "/dich-vu/bang-gia-boc-rang-su";
 	}
+	
+	@GetMapping("/dich-vu/dan-su-venner")
+	public String danSuVenner(Model model) {
+
+		return "/dich-vu/dan-su-venner";
+	}
+	
+	@GetMapping("/dich-vu/nieng-rang-tham-my")
+	public String niengRangThamMy(Model model) {
+		String dv = "Niềng răng thẩm mỹ";
+		model.addAttribute("title", dv);
+		return "/dich-vu/dich-vu-khac";
+	}
+	
+	@GetMapping("/dich-vu/tram-rang-tham-my")
+	public String tramRangThamMy(Model model) {
+		String dv = "Trám răng thẩm mỹ";
+		model.addAttribute("title", dv);
+		return "/dich-vu/dich-vu-khac";
+	}
+	
+	@GetMapping("/dich-vu/cao-voi-rang")
+	public String caoVoiRang(Model model) {
+		String dv = "Cạo vôi răng";
+		model.addAttribute("title", dv);
+		return "/dich-vu/dich-vu-khac";
+	}
+	
 }

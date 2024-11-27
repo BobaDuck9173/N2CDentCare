@@ -18,7 +18,7 @@ import com.example.N2CDentCare.repositories.GioLamViecRepository;
 @Controller
 public class contactController {
 	
-	@GetMapping("/contact.html")
+	@GetMapping("/lien-he")
 	public String getContact(Model model){
 		return "contact";
 	}

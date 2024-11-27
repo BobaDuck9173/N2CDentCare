@@ -18,8 +18,8 @@ import com.example.N2CDentCare.repositories.GioLamViecRepository;
 @Controller
 public class aboutController {
 	
-	@GetMapping("/about.html")
+	@GetMapping("/gioi-thieu/thong-tin-phong-kham")
 	public String getAbout(Model model){
-		return "about";
+		return "/gioi-thieu/about";
 	}
 }

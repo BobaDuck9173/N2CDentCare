@@ -26,7 +26,7 @@ public class indexController {
 	@Autowired
 	GioLamViecRepository gioLamViecRepository;
 	
-	@GetMapping("/index.html")
+	@GetMapping("/trang-chu")
 	public String getDichvu(Model model){
 		List<Dichvu> list = dichvuRepository.findAll();
 		model.addAttribute("dichvus", list);

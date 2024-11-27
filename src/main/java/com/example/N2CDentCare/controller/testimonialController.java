@@ -18,7 +18,7 @@ import com.example.N2CDentCare.repositories.GioLamViecRepository;
 @Controller
 public class testimonialController {
 	
-	@GetMapping("/testimonial.html")
+	@GetMapping("/gioi-thieu/chung-nhan")
 	public String getCertification(Model model){
 		return "testimonial";
 	}

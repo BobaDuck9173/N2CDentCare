@@ -27,7 +27,7 @@ public class appointmentController {
 	@Autowired
 	GioLamViecRepository gioLamViecRepository;
 	
-	@GetMapping("/appointment.html")
+	@GetMapping("/dat-lich")
 	public String getDichvu(Model model){
 		List<Dichvu> list = dichvuRepository.findAll();
 		model.addAttribute("dichvus", list);

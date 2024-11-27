@@ -14,28 +14,12 @@ import com.example.N2CDentCare.repositories.DichvuRepository;
 import com.example.N2CDentCare.repositories.DoctorRepository;
 import com.example.N2CDentCare.repositories.GioLamViecRepository;
 
+
 @Controller
-public class appoitmentController {
+public class testimonialController {
 	
-	@Autowired
-	DichvuRepository dichvuRepository;	
-	
-	@Autowired
-	DoctorRepository doctorRepository;
-	
-	@Autowired
-	GioLamViecRepository gioLamViecRepository;
-	
-	@GetMapping("/appointment.html")
-	public String getDichvu(Model model){
-		List<Dichvu> list = dichvuRepository.findAll();
-		model.addAttribute("dichvus", list);
-		
-		List<Doctor> dList = doctorRepository.findAll();
-		model.addAttribute("doctors", dList);
-		
-		List<GioLamViec> glvList = gioLamViecRepository.findAll();
-		model.addAttribute("glvlist", glvList);
-		return "appointment";
+	@GetMapping("/testimonial.html")
+	public String getCertification(Model model){
+		return "testimonial";
 	}
 }

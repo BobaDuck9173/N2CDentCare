@@ -7,19 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.N2CDentCare.model.Dichvu;
 import com.example.N2CDentCare.model.Doctor;
+import com.example.N2CDentCare.model.GioLamViec;
+import com.example.N2CDentCare.repositories.DichvuRepository;
 import com.example.N2CDentCare.repositories.DoctorRepository;
+import com.example.N2CDentCare.repositories.GioLamViecRepository;
 
 
 @Controller
-public class doctorController {
+public class contactController {
 	
-	@Autowired
-	DoctorRepository doctorRepository;
-	@GetMapping("/team.html")
-	public String getDoctors(Model model){
-		List<Doctor> list = doctorRepository.findAll();
-		model.addAttribute("doctors", list);
-		return "team";
+	@GetMapping("/contact.html")
+	public String getContact(Model model){
+		return "contact";
 	}
 }

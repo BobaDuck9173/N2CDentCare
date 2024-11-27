@@ -3,7 +3,7 @@ package com.example.N2CDentCare.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "bacsi")
+@Table(name = "view_bacsi")
 public class Doctor {
 	
 	@Id

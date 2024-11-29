@@ -26,8 +26,11 @@ public class Doctor {
 	@Column(name = "DiaChi")
 	private String DiaChi;
 	
-	@Column(name = "ChuyenKhoa")
-	private int ChuyenKhoa;
+	@jakarta.persistence.Transient
+	private String MoTa;
+	
+	@Column(name = "HocVan")
+	private String HocVan;
 	
 	@Column(name = "Img")
 	private String Img;
@@ -42,6 +45,23 @@ public class Doctor {
 
 	public String getHoTen() {
 		return HoTen;
+	}
+
+	public String getMoTa() {
+		return MoTa;
+	}
+
+	public String getHocVan() {
+		String kq = HocVan.toUpperCase();
+		return kq;
+	}
+
+	public void setHocVan(String hocVan) {
+		HocVan = hocVan;
+	}
+
+	public void setMoTa(String moTa) {
+		MoTa = moTa;
 	}
 
 	public void setHoTen(String hoTen) {
@@ -80,25 +100,6 @@ public class Doctor {
 		DiaChi = diaChi;
 	}
 
-	public String getChuyenKhoa() {
-		switch (this.ChuyenKhoa) {
-			case 1: {
-				return "Răng";
-			}
-			case 2:{
-				return "Hàm";
-			}
-			case 3:{
-				return "Mặt";
-			}
-		}
-		
-		return this.ChuyenKhoa + "";
-	}
-
-	public void setChuyenKhoa(int chuyenKhoa) {
-		ChuyenKhoa = chuyenKhoa;
-	}
 
 	public String getImg() {
 		return Img;
@@ -108,8 +109,7 @@ public class Doctor {
 		Img = img;
 	}
 
-	public Doctor(String maBs, String hoTen, String gioiTinh, String ngaySinh, String sdt, String diaChi,
-			int chuyenKhoa, String img) {
+	public Doctor(String maBs, String hoTen, String gioiTinh, String ngaySinh, String sdt, String diaChi, String hocVan, String img) {
 		super();
 		MaBs = maBs;
 		HoTen = hoTen;
@@ -117,7 +117,7 @@ public class Doctor {
 		NgaySinh = ngaySinh;
 		this.sdt = sdt;
 		DiaChi = diaChi;
-		ChuyenKhoa = chuyenKhoa;
+		HocVan = hocVan;
 		Img = img;
 	}
 
@@ -129,7 +129,7 @@ public class Doctor {
 	@Override
 	public String toString() {
 		return "Doctor [MaBs=" + MaBs + ", HoTen=" + HoTen + ", GioiTinh=" + GioiTinh + ", NgaySinh=" + NgaySinh
-				+ ", sdt=" + sdt + ", DiaChi=" + DiaChi + ", ChuyenKhoa=" + ChuyenKhoa + ", Img=" + Img + "]";
+				+ ", sdt=" + sdt + ", DiaChi=" + DiaChi + ", Img=" + Img + ", Img=" + HocVan +"]";
 	}
 
 

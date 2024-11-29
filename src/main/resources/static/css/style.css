@@ -329,3 +329,14 @@ h6,
     width: 120px;
     height: 120px;
 }
+
+.doctor-name{
+	color: rgb(0, 88, 153);
+	font-weight: 700;
+	font-size: 32px;
+}
+
+.doctor-description{
+	color: black;
+	font-size: 18px;
+}

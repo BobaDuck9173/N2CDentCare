@@ -8,7 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.N2CDentCare.model.Doctor;
+import com.example.N2CDentCare.model.Khoa;
+import com.example.N2CDentCare.model.ChuyenKhoa;
+import com.example.N2CDentCare.repositories.ChuyenKhoaRepository;
 import com.example.N2CDentCare.repositories.DoctorRepository;
+import com.example.N2CDentCare.repositories.KhoaRepository;
 
 
 @Controller
@@ -16,10 +20,47 @@ public class teamController {
 	
 	@Autowired
 	DoctorRepository doctorRepository;
+	
+	@Autowired
+	KhoaRepository khoaRepository;
+	
+	@Autowired
+	ChuyenKhoaRepository chuyenKhoaRepository;
+	
 	@GetMapping("/gioi-thieu/bac-si")
 	public String getDoctors(Model model){
-		List<Doctor> list = doctorRepository.findAll();
-		model.addAttribute("doctors", list);
-		return "team";
+		List<Doctor> dList = doctorRepository.findAll();		
+		
+		List<Khoa> kList = khoaRepository.findAll();
+		
+		List<ChuyenKhoa> ckList = chuyenKhoaRepository.findAll();
+		
+		
+		for (int i = 0; i < dList.size(); i++) {
+			Doctor dSample = dList.get(i);
+			String moTa = "";
+			for (int j = 0; j < kList.size(); j++) {
+				Khoa kSample = kList.get(j);
+				if (kSample.getMaBs().equals(dSample.getMaBs())) {
+					for (int p = 0; p < ckList.size(); p++) {
+						ChuyenKhoa ckSample = ckList.get(p);
+						if (kSample.getMaChuyenKhoa().equals(ckSample.getMaKhoa())) {
+							moTa = moTa + ckSample.getTenKhoa() + ", ";
+						}
+					}
+				}
+				
+			}		
+			if (moTa != "") {
+				moTa = moTa.substring(0, moTa.length() - 2);
+				moTa = moTa + ".";
+			}
+			dSample.setMoTa(moTa);
+			dList.set(i, dSample);
+		}
+		
+		model.addAttribute("doctors", dList);
+		
+		return "/gioi-thieu/team";
 	}
 }

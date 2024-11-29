@@ -4,12 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.N2CDentCare.model.Doctor;
+import com.example.N2CDentCare.model.Khoa;
+
 import java.util.List;
 
-
-public interface DoctorRepository extends JpaRepository<Doctor, String>{
+public interface KhoaRepository extends JpaRepository<Khoa, String>{
 	
 	@Override
-	List<Doctor> findAll();
+	List<Khoa> findAll();
 	
 }

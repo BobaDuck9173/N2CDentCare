@@ -1,5 +1,6 @@
 package com.example.N2CDentCare.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,18 @@ public class indexController {
 	@GetMapping("/trang-chu")
 	public String getDichvu(Model model){
 		List<Dichvu> list = dichvuRepository.findAll();
+		
 		model.addAttribute("dichvus", list);
 		
 		List<Doctor> dList = doctorRepository.findAll();
-		model.addAttribute("doctors", dList);
+		List<Doctor> kq = new ArrayList<>();
+		for (int i = 0; i < dList.size(); i++) {
+			Doctor dSample = dList.get(i);
+			if (dSample.getHocVan().startsWith("THẠC SĨ") || dSample.getHocVan().startsWith("TIẾN SĨ"))
+				kq.add(dSample);
+		}
+		
+		model.addAttribute("doctors", kq);
 		
 		List<GioLamViec> glvList = gioLamViecRepository.findAll();
 		model.addAttribute("glvlist", glvList);

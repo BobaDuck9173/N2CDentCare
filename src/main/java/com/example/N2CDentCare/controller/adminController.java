@@ -13,6 +13,8 @@ import com.example.N2CDentCare.model.GioLamViec;
 import com.example.N2CDentCare.repositories.DichvuRepository;
 import com.example.N2CDentCare.repositories.DoctorRepository;
 import com.example.N2CDentCare.repositories.GioLamViecRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -27,4 +29,9 @@ public class adminController {
 	public String trangQuanLy(Model model){
 		return "/nhan-vien/admin";
 	}
+	@GetMapping("/nhan-vien/dang-ki")
+	public String dangKi(Model model) {
+		return "/nhan-vien/signup";
+	}
+	
 }

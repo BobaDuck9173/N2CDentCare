@@ -10,9 +10,9 @@ public class BangGiaRangSu {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
 	private int Id;
-
-	@Column(name = "MaDv")
-	private String MaDv;
+	
+	@Column(name = "Type")
+	private String Type;
 	
 	@Column(name = "TenRang")
 	private String TenRang;
@@ -37,12 +37,12 @@ public class BangGiaRangSu {
 		Id = id;
 	}
 
-	public String getMaDv() {
-		return MaDv;
+	public String getType() {
+		return Type;
 	}
 
-	public void setMaDv(String maDv) {
-		MaDv = maDv;
+	public void setType(String type) {
+		Type = type;
 	}
 
 	public String getTenRang() {
@@ -87,14 +87,14 @@ public class BangGiaRangSu {
 
 	@Override
 	public String toString() {
-		return "BangGiaRangSu [Id=" + Id + ", MaDv=" + MaDv + ", TenRang=" + TenRang + ", ChatLieu=" + ChatLieu
+		return "BangGiaRangSu [Id=" + Id + ",Type=" + Type + ", TenRang=" + TenRang + ", ChatLieu=" + ChatLieu
 				+ ", BaoHanh=" + BaoHanh + ", Img=" + Img + ", Gia=" + Gia + "]";
 	}
 
-	public BangGiaRangSu(int id, String maDv, String tenRang, String chatLieu, String baoHanh, String img, String gia) {
+	public BangGiaRangSu(int id,String type ,String tenRang, String chatLieu, String baoHanh, String img, String gia) {
 		super();
 		Id = id;
-		MaDv = maDv;
+		Type = type;
 		TenRang = tenRang;
 		ChatLieu = chatLieu;
 		BaoHanh = baoHanh;

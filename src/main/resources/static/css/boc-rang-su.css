@@ -7,10 +7,6 @@
     z-index: 1;
 }
 
-.text-dark-blue{
-	color: rgb(0, 88, 153);
-}
-
 .price-section{
 	width: 100%;
 	display: flex;

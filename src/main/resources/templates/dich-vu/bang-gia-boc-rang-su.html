@@ -118,6 +118,156 @@
         </div>
     </nav>
     <!-- Navbar End -->
+    
+     <div class="container-fluid py-3 wow fadeInUp mt-5 mb-4" data-wow-delay="0.1s">
+        <div class="container">
+      
+            <div class="row g-5 mb-5">
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">Bảng Giá Bọc Răng Sứ Trọn Gói Mới Nhất Hiện Nay</h4>
+                    </div>           
+                </div>
+            </div>
+            
+            <div class="row g-5 mb-2">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">1. Bảng giá bọc răng sứ mới nhất tại Phòng khám Công Cường</h4>
+                    </div>           
+                </div>
+            </div>
+            
+            <div class="row g-5 mb-3">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <p style="font-size: 18px;">Giá bọc răng sứ tại phòng khám Công Cường dao động từ 1.000.000 – 14.000.000 VNĐ/1 cái. 
+                        Mức giá trên là giá trọn gói, đã bao gồm chi phí khám, tư vấn và chụp phim CT, không phát sinh thêm bất kỳ chi phí nào khác.</p>
+                    </div>           
+                </div>
+            </div>
+            
+            <div class="row g-5 mb-2">
+            
+                <div class="col-lg-12">
+                    
+                    <div class="row g-2 bg-dark m-0">
+		                <div class="col-lg-12 pt-3 pb-3 m-0 mb-4">
+		                    <div class="section-title text-center">
+		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">BẢNG GIÁ BỌC RĂNG SỨ MỚI NHẤT 2024</p>
+		                    </div> 
+		                </div>
+		            </div>  
+		            
+		            <div class="row g-2 bg-primary m-0">
+		                <div class="col-lg-6 m-0 py-3">
+		                    <div class="section-title text-center">
+		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">LOẠI RĂNG</p>
+		                    </div>    
+		                </div>
+		                <div class="col-lg-6 m-0 py-3">
+		                    <div class="section-title text-center">
+		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">CHI PHÍ</p>
+		                    </div>        
+		                </div>
+		            </div>  
+                    
+                    <div class="row g-2 m-0" style="border: 1px solid rgb(6, 163, 218);">
+		                <div class="col-lg-12 m-0 py-3">
+		                    <div class="section-title text-center">
+		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">RĂNG CỐ ĐỊNH</p>
+		                    </div>        
+		                </div>
+		            </div>
+		            
+		            <div class="row g-2 m-0" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '1'}">
+		                <div class="col-lg-5 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title py-md-3 px-md-4" th:if="${bg.BaoHanh != '()'}">
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div>
+		                    <div class="section-title py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div>    
+		                </div>
+		                <div class="col-lg-7 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title text-center" th:if="${bg.BaoHanh != '()'}">
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
+		                    </div>  
+		                    <div class="section-title text-center py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                    </div>        
+		                </div>
+		            </div>  
+		            
+		            <div class="row g-2 m-0" style="border: 1px solid rgb(6, 163, 218);">
+		                <div class="col-lg-12 m-0 py-3">
+		                    <div class="section-title text-center">
+		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">RĂNG THÁO LẮP</p>
+		                    </div>        
+		                </div>
+		            </div>
+		            
+		            <div class="row g-2 m-0" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '2'}">
+		                <div class="col-lg-5 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title py-md-3 px-md-4" th:if="${bg.BaoHanh != '()'}">
+		                    <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div> 
+		                    <div class="section-title py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
+		                    <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div>   
+		                </div>
+		                <div class="col-lg-7 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title text-center" th:if="${bg.BaoHanh != '()'}">
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
+		                    </div>  
+		                    <div class="section-title text-center py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                    </div>        
+		                </div>
+		            </div> 
+		            
+		            <div class="row g-2 m-0" style="border: 1px solid rgb(6, 163, 218);">
+		                <div class="col-lg-12 m-0 py-3">
+		                    <div class="section-title text-center">
+		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">CÙI GIẢ</p>
+		                    </div>        
+		                </div>
+		            </div>
+                          
+                    <div class="row g-2 m-0" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '3'}">
+		                <div class="col-lg-5 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title py-md-3 px-md-4" th:if="${bg.BaoHanh != '()'}">
+		                    <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div> 
+		                    <div class="section-title py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
+		                    <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div>   
+		                </div>
+		                <div class="col-lg-7 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title text-center" th:if="${bg.BaoHanh != '()'}">
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
+		                    </div>  
+		                    <div class="section-title text-center py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                    </div>        
+		                </div>
+		            </div>      
+                            
+                </div>
+                
+            </div>
+            
+            
+        </div>
+    </div>
+    <!-- About End -->
 
 
     <!-- Full Screen Search Start -->

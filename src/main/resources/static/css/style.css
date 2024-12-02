@@ -344,3 +344,27 @@ h6,
 .text-dark-blue{
 	color: rgb(0, 88, 153);
 }
+
+.pic-box{
+	display: flex;
+	justify-content: center;
+}
+
+.payment-step{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.price-title{
+	display: flex;
+	align-items: center;
+}
+
+.price-price{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}

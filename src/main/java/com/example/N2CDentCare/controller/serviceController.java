@@ -49,8 +49,14 @@ public class serviceController {
 		for (int i = 0; i < list.size(); i++) {
 			BangGiaRangSu bgrs = list.get(i);
 			String formatGia = vndFormat(bgrs.getGia());
-			bgrs.setGia(formatGia);
-			list.set(i, bgrs);
+			if (formatGia != "") {
+				if (bgrs.getTenRang().toUpperCase().startsWith("HÀM"))
+					formatGia += "/Hàm";
+				else 
+					formatGia += "/Răng";
+				bgrs.setGia(formatGia);
+				list.set(i, bgrs);
+			}
 		}
 		model.addAttribute("banggia", list);
 		return "/dich-vu/bang-gia-boc-rang-su";
@@ -89,7 +95,7 @@ public class serviceController {
         char[] splitText = text.toCharArray();
         for (int i = 0; i < splitText.length; i++) {
         	if (splitText[i] < 48 || splitText[i] >57)
-        		return text;
+        		return "";
         }
         switch (text.length())
         {

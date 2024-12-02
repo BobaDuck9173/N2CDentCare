@@ -30,6 +30,7 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/boc-rang-su.css" rel="stylesheet">
 </head>
 <body>
 	<!-- Spinner Start -->
@@ -48,7 +49,7 @@
 
 
     <!-- Topbar Start -->
-    <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
+    <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block wow fadeInUp" data-wow-delay="0.1s">
         <div class="row gx-0">
             <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
@@ -71,7 +72,7 @@
 
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0 wow fadeInUp" data-wow-delay="0.1s">
         <a href="/trang-chu" class="navbar-brand p-0">
             <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>Phòng khám Công Cường</h1>
         </a>
@@ -119,158 +120,7 @@
     </nav>
     <!-- Navbar End -->
     
-     <div class="container-fluid py-3 wow fadeInUp mt-5 mb-4" data-wow-delay="0.1s">
-        <div class="container">
-      
-            <div class="row g-5 mb-5">
-                <div class="col-lg-12">
-                    <div class="section-title text-center">
-                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">Bảng Giá Bọc Răng Sứ Trọn Gói Mới Nhất Hiện Nay</h4>
-                    </div>           
-                </div>
-            </div>
-            
-            <div class="row g-5 mb-2">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">1. Bảng giá bọc răng sứ mới nhất tại Phòng khám Công Cường</h4>
-                    </div>           
-                </div>
-            </div>
-            
-            <div class="row g-5 mb-3">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <p style="font-size: 18px;">Giá bọc răng sứ tại phòng khám Công Cường dao động từ 1.000.000 – 14.000.000 VNĐ/1 cái. 
-                        Mức giá trên là giá trọn gói, đã bao gồm chi phí khám, tư vấn và chụp phim CT, không phát sinh thêm bất kỳ chi phí nào khác.</p>
-                    </div>           
-                </div>
-            </div>
-            
-            <div class="row g-5 mb-2">
-            
-                <div class="col-lg-12">
-                    
-                    <div class="row g-2 bg-dark m-0">
-		                <div class="col-lg-12 pt-3 pb-3 m-0 mb-4">
-		                    <div class="section-title text-center">
-		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">BẢNG GIÁ BỌC RĂNG SỨ MỚI NHẤT 2024</p>
-		                    </div> 
-		                </div>
-		            </div>  
-		            
-		            <div class="row g-2 bg-primary m-0">
-		                <div class="col-lg-6 m-0 py-3">
-		                    <div class="section-title text-center">
-		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">LOẠI RĂNG</p>
-		                    </div>    
-		                </div>
-		                <div class="col-lg-6 m-0 py-3">
-		                    <div class="section-title text-center">
-		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">CHI PHÍ</p>
-		                    </div>        
-		                </div>
-		            </div>  
-                    
-                    <div class="row g-2 m-0" style="border: 1px solid rgb(6, 163, 218);">
-		                <div class="col-lg-12 m-0 py-3">
-		                    <div class="section-title text-center">
-		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">RĂNG CỐ ĐỊNH</p>
-		                    </div>        
-		                </div>
-		            </div>
-		            
-		            <div class="row g-2 m-0" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '1'}">
-		                <div class="col-lg-5 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
-		                    <div class="section-title py-md-3 px-md-4" th:if="${bg.BaoHanh != '()'}">
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                    </div>
-		                    <div class="section-title py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                    </div>    
-		                </div>
-		                <div class="col-lg-7 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
-		                    <div class="section-title text-center" th:if="${bg.BaoHanh != '()'}">
-		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
-		                    </div>  
-		                    <div class="section-title text-center py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
-		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
-		                    </div>        
-		                </div>
-		            </div>  
-		            
-		            <div class="row g-2 m-0" style="border: 1px solid rgb(6, 163, 218);">
-		                <div class="col-lg-12 m-0 py-3">
-		                    <div class="section-title text-center">
-		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">RĂNG THÁO LẮP</p>
-		                    </div>        
-		                </div>
-		            </div>
-		            
-		            <div class="row g-2 m-0" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '2'}">
-		                <div class="col-lg-5 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
-		                    <div class="section-title py-md-3 px-md-4" th:if="${bg.BaoHanh != '()'}">
-		                    <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                    </div> 
-		                    <div class="section-title py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
-		                    <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                    </div>   
-		                </div>
-		                <div class="col-lg-7 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
-		                    <div class="section-title text-center" th:if="${bg.BaoHanh != '()'}">
-		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
-		                    </div>  
-		                    <div class="section-title text-center py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
-		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
-		                    </div>        
-		                </div>
-		            </div> 
-		            
-		            <div class="row g-2 m-0" style="border: 1px solid rgb(6, 163, 218);">
-		                <div class="col-lg-12 m-0 py-3">
-		                    <div class="section-title text-center">
-		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">CÙI GIẢ</p>
-		                    </div>        
-		                </div>
-		            </div>
-                          
-                    <div class="row g-2 m-0" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '3'}">
-		                <div class="col-lg-5 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
-		                    <div class="section-title py-md-3 px-md-4" th:if="${bg.BaoHanh != '()'}">
-		                    <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                    </div> 
-		                    <div class="section-title py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
-		                    <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
-		                    </div>   
-		                </div>
-		                <div class="col-lg-7 m-0 py-2" style="border: 1px solid rgb(6, 163, 218);">
-		                    <div class="section-title text-center" th:if="${bg.BaoHanh != '()'}">
-		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
-		                        <p class="text-dark m-0" style="font-size: 20px;" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
-		                    </div>  
-		                    <div class="section-title text-center py-md-2 px-md-4" th:if="${bg.BaoHanh == '()'}">
-		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
-		                    </div>        
-		                </div>
-		            </div>      
-                            
-                </div>
-                
-            </div>
-            
-            
-        </div>
-    </div>
-    <!-- About End -->
-
-
-    <!-- Full Screen Search Start -->
+      <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
@@ -288,8 +138,337 @@
     </div>
     <!-- Full Screen Search End -->
     
+     <div class="container-fluid py-3 mt-5 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+      
+            <div class="row g-5 mb-5 px-5">
+                <div class="col-lg-12 px-5">
+                    <div class="section-title text-center px-5">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">Bảng Giá Bọc Răng Sứ Trọn Gói Mới Nhất Hiện Nay</h4>
+                    </div>           
+                </div>
+            </div>
+            
+            <div class="row g-5 mb-2 px-5">
+                <div class="col-lg-12 px-5">
+                    <div class="section-title px-5">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7 mb-3">1. Bảng giá bọc răng sứ mới nhất tại Phòng khám Công Cường</h4>
+                         <p style="font-size: 18px;">Giá bọc răng sứ tại phòng khám Công Cường dao động từ 1.000.000 – 14.000.000 VNĐ/1 cái. 
+                        Mức giá trên là giá trọn gói, đã bao gồm chi phí khám, tư vấn và chụp phim CT, không phát sinh thêm bất kỳ chi phí nào khác.</p>
+                    </div>           
+                </div>
+            </div>
+            
+            <div class="row g-5 mb-5 px-5">
+            
+                <div class="col-lg-12 px-5">
+                    
+                    <div class="row g-2 m-0 px-5">
+		                <div class="col-lg-12 pt-3 pb-5 m-0 px-5 bg-dark">
+		                    <div class="section-title text-center ">
+		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">BẢNG GIÁ BỌC RĂNG SỨ MỚI NHẤT 2024</p>
+		                    </div> 
+		                </div>
+		            </div>  
+		            
+		            <div class="row g-2  m-0 px-5">
+		                <div class="col-lg-6 m-0 py-3 px-5 bg-primary">
+		                    <div class="section-title text-center">
+		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">LOẠI RĂNG</p>
+		                    </div>    
+		                </div>
+		                <div class="col-lg-6 m-0 py-3 px-5 bg-primary">
+		                    <div class="section-title text-center">
+		                        <p class="text-white m-0" style="font-size: 22px; font-weight: 700;">CHI PHÍ</p>
+		                    </div>        
+		                </div>
+		            </div>  
+                    
+                    <div class="row g-2 m-0 px-5" >
+		                <div class="col-lg-12 m-0 py-3 px-5" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title text-center " >
+		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">RĂNG CỐ ĐỊNH</p>
+		                    </div>        
+		                </div>
+		            </div>
+		            
+		            <div class="row g-2 m-0 px-5" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '1'}">
+		                <div class="col-lg-5 m-0 px-3 price-title" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title">
+		                        <p class="text-dark m-0" style="font-size: 20px;"  th:if="${bg.BaoHanh != '()'}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;"  th:if="${bg.BaoHanh == '()'}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div>   
+		                </div>
+		                <div class="col-lg-7 m-0 py-3" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title price-price" >
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.BaoHanh != '()'}" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
+		                    </div>      
+		                </div>
+		            </div>  
+		            
+		            <div class="row g-2 m-0 px-5">
+		                <div class="col-lg-12 m-0 py-3 "  style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title text-center">
+		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">RĂNG THÁO LẮP</p>
+		                    </div>        
+		                </div>
+		            </div>
+		            
+		            <div class="row g-2 m-0 px-5" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '2'}">
+		                <div class="col-lg-5 m-0 px-3 price-title" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title">
+		                        <p class="text-dark m-0" style="font-size: 20px;"  th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;"  th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div>   
+		                </div>
+		                <div class="col-lg-7 m-0 py-3" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title price-price" >
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.BaoHanh != '()'}" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
+		                    </div>      
+		                </div>
+		            </div> 
+		            
+		            <div class="row g-2 m-0 px-5">
+		                <div class="col-lg-12 m-0 py-3"  style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title text-center">
+		                        <p class="text-primary m-0" style="font-size: 22px; font-weight: 700;">CÙI GIẢ</p>
+		                    </div>        
+		                </div>
+		            </div>
+                          
+                    <div class="row g-2 m-0 px-5" th:each="bg, stat : ${banggia}" th:if="${bg.getType == '3'}">
+		                <div class="col-lg-5 m-0 px-3 price-title" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title">
+		                        <p class="text-dark m-0" style="font-size: 20px;"  th:if="${bg.ChatLieu != ''}" th:text="${bg.TenRang} + ' (' + ${bg.ChatLieu} + ')'">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;"  th:if="${bg.ChatLieu == ''}" th:text="${bg.TenRang}">Răng sứ kim loại (Ceramco 3 – Mỹ)</p>
+		                    </div>   
+		                </div>
+		                <div class="col-lg-7 m-0 py-3" style="border: 1px solid rgb(6, 163, 218);">
+		                    <div class="section-title price-price" >
+		                        <p class="text-primary m-0" style="font-size: 20px; font-weight: 700;" th:text="${bg.Gia}">1.000.000 VND</p>
+		                        <p class="text-dark m-0" style="font-size: 20px;" th:if="${bg.BaoHanh != '()'}" th:text="${bg.BaoHanh}">(Bảo hành 3 năm)</p>
+		                    </div>      
+		                </div>
+		            </div>      
+                            
+                </div>
+                
+            </div>
+            
+            <div class="row g-5 mb-3 px-5">
+                <div class="col-lg-12 px-5">
+                    <div class="section-title px-5 mb-3">
+                        <p style="font-size: 18px;">Trường hợp bệnh nhân lắp răng sứ từ 16 cái trở lên sẽ được giảm 30% (nha khoa I-Dent cam kết không phát sinh bất kỳ chi phí nào). 
+                        Ngoài ra, tất cả các dịch vụ thăm khám tổng quát, chụp phim CT và tư vấn là hoàn toàn miễn phí 100%.</p>
+                    </div>    
+                    
+                    <div class="section-title mb-3 px-5">
+                    	<div class="bg-light py-3 px-3">
+                    		<p class="m-0 ps-4" style="font-size: 18px;">Ví dụ: Trường hợp Bệnh nhân bọc 16 răng sứ và chọn loại răng sứ toàn sứ Multilayer CERCON HT <br>giá 6.500.000VNĐ/răng</p>
+						<p class="m-0 ps-4" style="font-size: 18px;">Chi phí trọn gói là: 16 x 6.500.000 = 104.000.000VNĐ, giảm 30% còn 72.800.000VNĐ.</p>
+                    	</div>
+			        </div>  
+			        
+			         <div class="section-title px-5 mb-3">
+                        <p class="mb-3" style="font-size: 18px;">Tại Nha khoa I-DENT, bảng giá răng sứ được áp dụng cho tất cả các phương án điều trị có sử dụng răng sứ như: 
+                        Bọc răng sứ, làm cầu răng sứ và phục hình răng sứ trên Implant. 
+                        Hàng tháng Nha khoa sẽ có nhiều chương trình khuyến mãi bọc răng sứ giảm giá lên đến 20% tùy loại răng sứ.</p>
+                        
+                        <p style="font-size: 18px;">Trước khi khách hàng quyết định trồng răng sứ, I-DENT sẽ thăm khám, chụp phim và tư vấn hoàn toàn miễn phí. 
+                        Dựa trên tư vấn của bác sĩ, khách hàng sẽ chọn loại răng sứ và số lượng răng cần bọc để có thể tính được tổng mức phí cần chi trả.</p>
+                    </div>      
+                    
+                    <div class="section-title px-5 mb-3">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">2. Các loại răng sứ chính hiện nay</h4>
+                    </div> 
+                    
+                     <div class="section-title px-5 mb-3">
+                        <p class="mb-3" tyle="font-size: 18px;">Hiện nay có 3 loại răng sứ chính đang được sử dụng rộng rãi trên thị trường. 
+                        Giá trồng răng sứ của từng loại sẽ có mức chênh lệch nhất định và có sự khác biệt giữa các nha khoa răng sứ.</p>
+                        
+                        <p style="font-size: 18px;">3 loại răng sứ chính hiện nay là:</p>
+                    </div> 
+                    
+                    <div class="section-title px-5 mb-3">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">2.1 Răng sứ kim loại</h4>
+                    </div>
+                    
+                    <div class="section-title px-5  mb-3">
+                        <p class="mb-3" style="font-size: 18px;">Răng sứ kim loại có phần khung sườn phía trong được làm bằng kim loại và phủ 1 lớp sứ mỏng bên ngoài.</p>
+	                    <ul class="mb-3">
+	                    	<li style="font-size: 18px;">Ưu điểm: Chi phí hợp lý, thời gian sử dụng lâu dài, tính thẩm mỹ khá cao và đảm bảo được khả năng ăn nhai tốt.</li>
+	                    	<li style="font-size: 18px;">Khuyết điểm: Sau một thời gian dài sử dụng, răng sứ kim loại dễ gây đen viền nướu và làm mất thẩm mỹ.</li>
+	                    </ul>  
+	                    <p class="mb-3" style="font-size: 18px;">Có các loại răng sứ kim loại phổ biến như: Răng sứ Ceramco 3 (Mỹ), 
+	                    răng sứ Titan,… Mức giá bọc răng sứ kim loại dao động từ 1.000.000 – 2.5000.000 VNĐ/răng.</p>
+	                    
+	                    <div class="position-relative px-5 pic-box">
+                    		<img class="position-absolut rounded" src="/img/banner-rang-su-1.png">
+                    	</div>
+                    </div>
+                    
+                    <div class="section-title px-5 mb-3">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">2.2 Răng sứ không kim loại (Răng toàn sứ)</h4>
+                    </div>
+                    
+                    <div class="section-title px-5 mb-3">
+                        <p class="mb-3" style="font-size: 18px;">Răng sứ toàn sứ được tạo thành từ sứ nguyên khối, với độ trong và cứng chắc hơn so với răng sứ kim loại.</p>
+	                    <ul class="mb-3">
+	                    	<li style="font-size: 18px;">Ưu điểm: Răng toàn sứ có độ bền và tính thẩm mỹ cao, không gây đen viền nướu sau một thời gian sử dụng và tuổi thọ 1 chiếc răng toàn sứ có thể lên đến 20 năm.</li>
+	                    	<li style="font-size: 18px;">Khuyết điểm: Chi phí cao hơn so với răng sứ kim loại.</li>
+	                    </ul>  
+	                    <p class="mb-3" style="font-size: 18px;">Có các loại răng sứ không kim loại phổ biến hiện nay như: Zirconia, DDBio HT, Cercon HT, Nacera PEARL, Nacera 9 MAX,....</p>
+	                    
+	                    <div class="position-relative px-5 py-3 pic-box">
+                    		<img class="position-absolut rounded" src="/img/banner-rang-su-2.png">
+                    	</div>
+                    </div>
+                    
+                    <div class="section-title px-5 mb-3">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">2.3 Mặt dán sứ</h4>
+                    </div>
+                    
+                    <div class="section-title px-5 mb-3">
+                        <p class="mb-3" style="font-size: 18px;">Mặt dán sứ được xem là phương pháp làm răng sứ thẩm mỹ hiện đại nhất hiện nay. 
+                        Với kỹ thuật này, bác sĩ sẽ sử dụng một lớp sứ mỏng (0,3mm – 0,6mm) dán ở mặt ngoài của răng, giúp phục hình thẩm mỹ cho răng thưa, răng xỉn màu ố vàng....</p>
+	                    <ul class="mb-3">
+	                    	<li style="font-size: 18px;">Ưu điểm: Bảo tồn răng thật tối đa do răng không bị mài quá nhiều. Bên cạnh đó, mặt dán sứ có màu sắc tự nhiên, không gây cộm, cấn khi sử dụng.</li>
+	                    	<li style="font-size: 18px;">Khuyết điểm: Không giải quyết được các tình trạng răng hô, vẩu, hoặc răng đã bị xô lệch nặng.</li>
+	                    </ul>  
+                    </div>
+                    
+                     <div class="section-title px-5 mb-3">
+                        <h4 class="position-relative d-inline-block text-dark-blue text-uppercase mt-3 display-7">3. Phương thức thanh toán khi bọc răng sứ tại Nha khoa I-Dent</h4>
+                    </div>          
+                     
+                     <div class="section-title px-5 mb-3">
+                        <p class="mb-3" style="font-size: 18px;">Khi bọc răng sứ tại Nha khoa I-DENT. Cô Chú, Anh Chị sẽ được chia làm 2 đợt thanh toán như sau:</p>
+                    </div> 
+                </div>
+            </div>
+            
+            
+             <div class="row g-5 ps-5 mb-5">
+             	<div class="col-lg-3 ps-5 me-5">
+                    <div class="position-relative ps-5">
+                    	<img class="position-absolut rounded" src="/img/banner-rang-su-3.png">
+                    </div>
+                </div>
+                <div class="col-lg-7 ps-5 ms-5 payment-step">
+                    <div class="row ps-5 g-5" style="width: 100%;">
+		                <div class="col-lg-12 ps-5" style="width: 90%;">
+		                    <div class="section-title text-center">
+		                        <h3 class="display-7 text-white py-3 m-0 px-5 bg-dark" style="width: 100%;">ĐỢT 1</h3>
+		                        <div class="col-lg-12 m-0 py-3 px-5" style="border: 1px solid rgb(9, 30, 62);">
+				                    <div class="section-title text-center " >
+				                        <p class="text-dark m-0" style="font-size: 18px; font-weight: 600;">Thanh toán vào ngày mài cùi lấy dấu.</p>
+				                    </div>        
+				                </div>
+		                    </div>                      
+		                </div>
+            		</div>                     
+                </div>
+            </div> 
+            
+            <div class="row g-5 ps-5 mb-5">
+             	<div class="col-lg-3 ps-5 me-5">
+                    <div class="position-relative ps-5">
+                    	<img class="position-absolut rounded"src="/img/banner-rang-su-4.png">
+                    </div>
+                </div>
+                <div class="col-lg-7 ps-5 ms-5 payment-step">
+                    <div class="row ps-5 g-5" style="width: 100%;">
+		                <div class="col-lg-12 ps-5" style="width: 90%;">
+		                    <div class="section-title text-center">
+		                        <h3 class="display-7 text-white py-3 m-0 px-5 bg-dark" style="width: 100%;">ĐỢT 2</h3>
+		                        <div class="col-lg-12 m-0 py-3 px-5"style="border: 1px solid rgb(9, 30, 62);">
+				                    <div class="section-title text-center " >
+				                        <p class="text-dark m-0" style="font-size: 18px; font-weight: 600;">Thanh toán sau khi thử sứ và hoàn tất quy trình bọc răng sứ.</p>
+				                    </div>        
+				                </div>
+		                    </div>                      
+		                </div>
+            		</div>                     
+                </div>
+            </div>
+            
+             <div class="row g-5 mb-5 px-5" >
+                <div class="col-lg-12 px-5">
+                    <div class="section-title px-5 mb-3" >
+                    	<div class="py-3 px-4" style="border: 2px dashed rgb(0, 88, 153);">
+	                    	<p class="mb-3" style="font-size: 18px;"><span style="color: red;">Đặc biệt</span>: Nhằm giúp Cô Chú, Anh Chị giảm thiểu gánh nặng tài chính, 
+	                        Nha khoa I-DENT có hỗ trợ thanh toán trả góp 0% lãi suất thông qua thẻ tín dụng của hơn 23 ngân hàng.</p>
+		                    <ul>
+		                    	<li class="text-dark-blue mb-2" style="font-size: 18px; font-weight: 600;">Điều kiện: Trả góp với chủ tài khoản sở hữu thẻ tín dụng của các ngân hàng sau: 
+		                    	Vietcombank, VP Bank, Sacombank, Techcombank, ACB, HSBC…</li>
+		                    	<li class="text-dark-blue" style="font-size: 18px; font-weight: 600;">Yêu cầu: Hạn mức thẻ tín dụng trên 20 triệu. 
+		                    	Quý khách sẽ linh hoạt chi trả trong vòng 3–6–12–24 tháng. Quy trình đơn giản và được hướng dẫn cụ thể khi khách hàng đến Nha khoa I-DENT.</li>
+		                    </ul>  
+                    	</div>   
+                    </div>
+                </div>
+            </div>
+            
+            <form>
+	            <div class="row g-5 mb-3 px-5" >
+	                <div class="col-lg-12 px-5">
+	                	<div class="px-5 mb-3">
+	                		<div class="px-2" style="background: url(../img/banner-rang-su-5.png) no-repeat left top / cover; border: 2px solid rgb(9, 30, 62); border-radius: 25px;">
+		                		<div class="row gx-3 text-center bg-dark py-3 mb-5" style="border-top-left-radius: 25px; border-top-right-radius: 25px; scale: 1.004;">
+			                    	<p class="text-center text-white m-0 mb-1"  style="font-size: 26px;">NHẬN TƯ VẤN MIỄN PHÍ TỪ CHUYÊN GIA</p>
+		     						<h4 class="text-center text-white m-0" >ĐẶT LỊCH HẸN THĂM KHÁM NGAY</h4>
+			                    </div>
+			                    <div class="row g-2 px-5 mb-4">
+			                    	<div class="col-lg-12 px-5 mb-3">
+			                    		<input type="text" class="form-control mb-0" placeholder="Họ và tên" style="height: 55px; border-radius: 15px;"/>
+			                    	</div>
+			                    	<div class="col-lg-12 px-5 mb-3">
+			                    		<input type="text" class="form-control mb-0" placeholder="Số điện thoại" style="height: 55px; border-radius: 15px;"/>
+			                    	</div>
+			                    	
+			                    	<p class="text-dark-blue ms-5 " style="font-size: 20px;">Vấn đề quan tâm</p>
+			                    	
+			                    	<div class="row g-1 px-2 mb-0">
+				                    	<div class="col-lg-6 px-5">
+				                    		<input type="checkbox" id="implant" name="implant" value="implant" style="scale: 1.5;">
+	  										<label class="text-dark-blue ms-2" for="implant" style="font-size: 18px;">Trồng răng Implant</label>
+				                    	</div>
+				                    	<div class="col-lg-6 px-5">
+				                    		<input type="checkbox" class="ms-2" id="nieng-rang" name="nieng-rang" value="nieng-rang" style="scale: 1.5;">
+	  										<label class="text-dark-blue ms-2" for="nieng-rang" style="font-size: 18px;">Niềng răng thẩm mỹ</label>
+				                    	</div>
+			                    	</div>
+			                    	<div class="row g-1 px-2 mb-2">
+				                    	<div class="col-lg-6 px-5">
+				                    		<input type="checkbox" id="boc-rang" name="boc-rang" value="boc-rang" style="scale: 1.5;">
+	  										<label class="text-dark-blue ms-2" for="boc-rang" style="font-size: 18px;">Bọc răng sứ thẩm mỹ</label>
+				                    	</div>
+				                    	<div class="col-lg-6 px-5">
+				                    		<input type="checkbox" class="ms-2" id="benh-ly" name="benh-ly" value="benh-ly" style="scale: 1.5;">
+	  										<label class="text-dark-blue ms-2" for="benh-ly" style="font-size: 18px;">Điều trị bệnh lý nha khoa</label>
+				                    	</div>
+			                    	</div>
+			                    </div>
+			                    <div class="row g-2 px-5 pb-3">
+			                    	<div class="col-lg-12 px-5 mb-3 mt-4">
+			                    		<button type="submit" value="submit" class="btn btn-dark py-3" style="width: 100%; border-radius: 25px;">ĐĂNG KÝ</button>
+			                    	</div>
+			                    </div>
+	                		</div>
+		                	
+	                	</div>
+	                    
+	                </div>
+	            </div>
+            </form>
+        </div>
+    </div>
+    <!-- About End -->
+  
     <!-- Newsletter Start -->
-    <div class="container-fluid position-relative py-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
+    <div class="container-fluid position-relative py-5" style="z-index: 1;">
         <div class="container">
         </div>
     </div>
@@ -297,7 +476,7 @@
     
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light py-5 wow fadeInUp  mt-5" data-wow-delay="0.3s" style="margin-top: -75px;">
+    <div class="container-fluid bg-dark text-light py-5 wow fadeInUp" data-wow-delay="0.3s" style="margin-top: -75px;">
         <div class="container pt-5">
             <div class="row g-5 pt-4">
                 <div class="col-lg-3 col-md-6">

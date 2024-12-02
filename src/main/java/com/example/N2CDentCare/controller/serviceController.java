@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.N2CDentCare.model.BangGiaRangSu;
 import com.example.N2CDentCare.model.Dichvu;
 import com.example.N2CDentCare.model.Doctor;
+import com.example.N2CDentCare.repositories.BangGIaRangSuRepository;
 import com.example.N2CDentCare.repositories.DichvuRepository;
 import com.example.N2CDentCare.repositories.DoctorRepository;
 
@@ -19,9 +21,13 @@ public class serviceController {
 	@Autowired
 	DichvuRepository dichvuRepository;
 	
+	@Autowired
+	BangGIaRangSuRepository bangGiaRangSuRepository;
+	
 	@GetMapping("/dich-vu/boc-rang-su")
 	public String bocRangSu(Model model) {
-
+		List<BangGiaRangSu> list = bangGiaRangSuRepository.findAll();
+		model.addAttribute("banggia", list);
 		return "/dich-vu/boc-rang-su";
 	}
 	
@@ -56,6 +62,26 @@ public class serviceController {
 		String dv = "Cạo vôi răng";
 		model.addAttribute("title", dv);
 		return "/dich-vu/dich-vu-khac";
+	}
+	
+	private String formatGia(String gia) {
+		
+		switch (Integer.parseInt(gia)) {
+			case 1000:
+				break;
+			case 10000:
+				break;
+			case 100000:
+				break;
+			case 1000000:
+				break;
+			case 10000000:
+				break;
+			case 100000000:
+				break;
+		}
+		
+		return null;
 	}
 	
 }

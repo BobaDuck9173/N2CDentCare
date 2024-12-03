@@ -16,7 +16,7 @@
 
 .price-container{
 	display: flex;	
-	height: 100vh;
+	height: auto;
 	width: 75%;	
 }
 
@@ -76,7 +76,7 @@
 }
 
 .mar-top{
-	margin-top: 130px;
+	margin-top: 50px;
 }
 
 .form-control:focus {

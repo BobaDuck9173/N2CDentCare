@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.N2CDentCare.model.BangGiaRangSu;
 import com.example.N2CDentCare.model.Dichvu;
 import com.example.N2CDentCare.model.Doctor;
+import com.example.N2CDentCare.model.Trang;
 import com.example.N2CDentCare.repositories.BangGIaRangSuRepository;
 import com.example.N2CDentCare.repositories.DichvuRepository;
 import com.example.N2CDentCare.repositories.DoctorRepository;
+import com.example.N2CDentCare.repositories.TrangRepository;
 
 
 @Controller
@@ -24,6 +26,9 @@ public class serviceController {
 	
 	@Autowired
 	BangGIaRangSuRepository bangGiaRangSuRepository;
+	
+	@Autowired
+	TrangRepository trangRepository;
 	
 	@GetMapping("/dich-vu/boc-rang-su")
 	public String bocRangSu(Model model) {
@@ -40,7 +45,20 @@ public class serviceController {
 			top8.set(i, bgrs);
 		}
 		model.addAttribute("banggia", top8);
-		return "/dich-vu/boc-rang-su";
+		
+		List<Trang> tList = trangRepository.findAll();
+		List<Trang> result = new ArrayList<>();
+		for (int i = 0; i < tList.size(); i++) {
+			Trang pg = tList.get(i);
+			if(pg.getTrang().toUpperCase().equals("RS1")) {
+				result.add(pg);
+			}
+		}
+		model.addAttribute("trang", result);
+		
+		model.addAttribute("page", "RS1");
+		
+		return "/dich-vu/rang-su";
 	}
 	
 	@GetMapping("/dich-vu/bang-gia-boc-rang-su")
@@ -64,8 +82,33 @@ public class serviceController {
 	
 	@GetMapping("/dich-vu/dan-su-venner")
 	public String danSuVenner(Model model) {
-
-		return "/dich-vu/dan-su-venner";
+		List<Trang> list = trangRepository.findAll();
+		List<Trang> result = new ArrayList<>();
+		for (int i = 0; i < list.size(); i++) {
+			Trang pg = list.get(i);
+			if(pg.getTrang().toUpperCase().equals("RS2")) {
+				result.add(pg);
+			}
+		}
+		model.addAttribute("trang", result);
+		model.addAttribute("page", "RS2");
+		
+		List<BangGiaRangSu> bgList = bangGiaRangSuRepository.findAll();
+		List<BangGiaRangSu> ketQua = new ArrayList<>();
+		for (int i = 0; i < bgList.size(); i++) {
+			if(bgList.get(i).getTenRang().toUpperCase().startsWith("VENEER")) {
+				ketQua.add(bgList.get(i));
+			}
+		}
+		for (int i = 0; i < ketQua.size(); i++) {
+			BangGiaRangSu bgrs = ketQua.get(i);
+			String formatGia = vndFormat(bgrs.getGia());
+			bgrs.setGia(formatGia);
+			ketQua.set(i, bgrs);
+		}
+		model.addAttribute("banggia", ketQua);
+		
+		return "/dich-vu/rang-su";
 	}
 	
 	@GetMapping("/dich-vu/nieng-rang-tham-my")

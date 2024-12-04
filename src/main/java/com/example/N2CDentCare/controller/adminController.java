@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 public class adminController {
 	
+	private Account user;
+	
 	@Autowired
 	AccountRepository accountRepository;
 	
@@ -37,6 +39,14 @@ public class adminController {
 		return "/nhan-vien/login";
 	}
 	
+	@GetMapping("/nhan-vien/quan-ly")
+	public String trangQuanLy(Model model){
+		if (user == null) {
+			return "redirect:/nhan-vien/dang-nhap";
+		}
+		return "/nhan-vien/admin";
+	}
+	
 	@PostMapping("/nhan-vien/dang-nhap")
 	public String formDangNhap(@ModelAttribute("account") Account account, Model model) {
 		//TODO: process POST request
@@ -45,7 +55,8 @@ public class adminController {
 			Account check = listNv.get(i);
 			if (account.getUsername().equals(check.getUsername())) {
 				if (account.getPassword().equals(check.getPassword()))
-					return "/nhan-vien/admin";
+					user = check;
+					return "redirect:/nhan-vien/quan-ly";
 			}
 		}
 		String noti = "";

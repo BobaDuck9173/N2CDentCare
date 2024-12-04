@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.N2CDentCare.model.Account;
+import com.example.N2CDentCare.model.BenhNhan;
 import com.example.N2CDentCare.model.Dichvu;
 import com.example.N2CDentCare.model.Doctor;
 import com.example.N2CDentCare.model.GioLamViec;
 import com.example.N2CDentCare.repositories.AccountRepository;
+import com.example.N2CDentCare.repositories.BenhNhanRepository;
 import com.example.N2CDentCare.repositories.DichvuRepository;
 import com.example.N2CDentCare.repositories.DoctorRepository;
 import com.example.N2CDentCare.repositories.GioLamViecRepository;
@@ -20,13 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
-
 @Controller
-public class adminController {
+public class dashboardController {
 	
 	private Account user;
+	
+	@Autowired
+	BenhNhanRepository benhNhanRepository;
 	
 	@Autowired
 	AccountRepository accountRepository;
@@ -36,15 +38,8 @@ public class adminController {
 		Account account = new Account();
 		model.addAttribute("account", account);
 		model.addAttribute("loginResult", "0");
+		user = null;
 		return "/nhan-vien/login";
-	}
-	
-	@GetMapping("/nhan-vien/quan-ly")
-	public String trangQuanLy(Model model){
-		if (user == null) {
-			return "redirect:/nhan-vien/dang-nhap";
-		}
-		return "/nhan-vien/admin";
 	}
 	
 	@PostMapping("/nhan-vien/dang-nhap")
@@ -73,4 +68,29 @@ public class adminController {
 		return "/nhan-vien/login";
 	}
 	
+	@GetMapping("/nhan-vien/quan-ly")
+	public String trangQuanLy(Model model){
+		if (user == null) {
+			
+			return "redirect:/nhan-vien/dang-nhap";
+		}
+		BenhNhan bn = new BenhNhan();
+		model.addAttribute("benhNhan", bn);
+		return "/nhan-vien/admin";
+	}
+	
+	@PostMapping("/tim-benh-nhan")
+	public String formDangNhap(@ModelAttribute("benhNhan") BenhNhan benhNhan, Model model) {
+		//TODO: process POST request
+		List<BenhNhan> list = benhNhanRepository.findBySdt(benhNhan.getSdt());
+		BenhNhan result = null;
+		if (list.size() > 0) {
+			result = list.get(0);
+			model.addAttribute("thongTinBenhNhan", result);
+		}else {
+			model.addAttribute("thongTinBenhNhan", "0");
+		}
+		
+		return "/nhan-vien/admin";
+	}
 }

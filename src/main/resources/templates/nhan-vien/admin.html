@@ -17,7 +17,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
        <!-- Libraries Stylesheet -->
@@ -49,7 +49,51 @@
     </div>
     <!-- Spinner End -->
     
-  	
+  	<!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+        <button type="button" class="btn text-dark mt-3 menu-toggle"><i class="fa-solid fa-bars" style="scale: 2;"></i></button>
+        <div class="collapse navbar-collapse mt-3" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                 <div class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-bs-toggle="dropdown"  style="font-size: 24px;">Bs.Cường</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="#" class="dropdown-item"><i class="fa-regular fa-user pe-2"></i>Tài khoản</a>
+                        <a href="/nhan-vien/dang-nhap" class="dropdown-item"><i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    
+    <form action="#" th:action="@{/tim-benh-nhan}" method="post" th:object="${benhNhan}">
+    	<input type="text" placeholder="Số điện thoại" style="height: 55px; border-radius: 15px;" th:field="*{sdt}"> <br>
+    	<button class="btn btn-dark px-5" type="submit" style="border-radius: 15px;">Tìm</button>
+    </form>
+    
+	<table>
+	   <th:block th:each="bn : ${thongTinBenhNhan}" th:if="${thongTinBenhNhan != null and thongTinBenhNhan != '0'}">
+	      <tr>
+	         <td>Mã: </td><td th:text="${bn.MaBn}">...</td>
+	      </tr>
+	      <tr>
+	         <td>Họ tên: </td><td th:text="${bn.HoTen}">...</td>
+	      </tr>
+	      <tr>
+	         <td>Giới tính: </td><td th:text="${bn.getGioiTinhAsView}">...</td>
+	      </tr>
+	      <tr>
+	         <td>Ngày sinh: </td><td th:text="${bn.getNgaySinhAsView}">...</td>
+	      </tr>
+	      <tr>
+	         <td>Số điện thoại: </td><td th:text="${bn.sdt}">...</td>
+	      </tr>
+	   </th:block>
+	</table>
+	
+	<div th:if="${thongTinBenhNhan == '0'}">
+		<h3 >Không tìm thấy</h3>
+	</div>
 	
 	
     <!-- JavaScript Libraries -->

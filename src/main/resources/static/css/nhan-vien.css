@@ -26,3 +26,9 @@
   border: 1px solid rgb(9, 30, 62); /* Custom border color */
   box-shadow: 0 0 0;
 }
+
+.menu-toggle:focus {
+  outline: none;
+  border: 0; /* Custom border color */
+  box-shadow: 0 0 0;
+}

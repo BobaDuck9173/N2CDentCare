@@ -34,7 +34,7 @@
     <link href="/css/nhan-vien.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary m-1" role="status">
@@ -51,25 +51,23 @@
     
     <div class="login-section">
     	<div class="container">
-    		<div class="bg-primary login-form p-5">
+    		<div class="login-form p-5" style="border: 2px solid rgb(9, 30, 62);">
 	    		<div class="row-gx-5">
-	    		<a href="" class="navbar-brand  p-0">
-           			<h1 class="m-0 text-dark"><i class="fa fa-tooth me-2"></i>Đăng nhập</h1>
-        		</a>
+           			<h1 class="m-0 text-dark"><i class="fa fa-tooth me-2 mb-3"></i>Đăng nhập</h1>
 	    			<div class="col-lg-12">
-	    				<input type="text" class="form-control bg-light border-0" placeholder="Tài khoản" style="height: 55px;">
-	    				<input type="password" class="form-control bg-light border-0 mt-3" placeholder="Mật khẩu" style="height: 55px;">
-	    				<div class="d-flex align-items-center justify-content-between mb-4">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1"  >
-                                <label class="form-check-label text-dark " for="exampleCheck1" >Check me out</label>
-                            </div>
-                            <a href="" class="m-0 text-dark">Forgot Password</a>
-                        </div>
-	    				<button class="btn btn-dark w-100 py-3 mt-4" type="submit">Đăng nhập</button>
-	    				<p class="text-center mb-0">Don't have an Account? <a href="/nhan-vien/dang-ki" class="m-0 text-dark" >Sign Up</a></p>
-	    				
-	    			</div>
+	    				<form action="#" th:action="@{/nhan-vien/dang-nhap}" method="post" th:object="${account}">
+		    				<input type="text" class="form-control" placeholder="Tài khoản" style="height: 55px; border-radius: 15px;" th:field="*{Username}">
+		    				<input type="password" class="form-control mt-3" placeholder="Mật khẩu" style="height: 55px; border-radius: 15px;" th:field="*{Password}">
+		    				<div class="d-flex justify-content-end mt-1">
+	                            <a href="" class="m-0 text-dark px-1" style="font-size:16px; font-style: italic;">Forgot Password</a>
+	                       </div>
+	                       <button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(30%);" th:if="${loginResult == '0'}">Đăng nhập</button>
+	                       <div  th:if="${loginResult != '0'}">
+	                       		<button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px;">Đăng nhập</button>
+		    					<p class="m-0 text-center" style="font-size: 22px; font-weight: 700; color: red; transform: translateY(80%);" th:text="${notification}"></p>
+	                       </div>
+	    				</form>
+	    			</div>	
 	    		</div>
     		</div>
     	</div>

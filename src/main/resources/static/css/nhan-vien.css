@@ -3,15 +3,26 @@
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	background-color: #42a5f5;
 }
 
 .container{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	
 }
 
 .login-form{
 	width: 550px;
 	border-radius: 15px;
+	background-color: #b3d6f9;
+	z-index: 5;
+	box-shadow: 25px 25px 10px #015798;
+}
+
+.form-control:focus {
+  outline: none;
+  border: 1px solid rgb(9, 30, 62); /* Custom border color */
+  box-shadow: 0 0 0;
 }

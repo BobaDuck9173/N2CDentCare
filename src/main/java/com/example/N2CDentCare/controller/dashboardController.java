@@ -1,5 +1,6 @@
 package com.example.N2CDentCare.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.N2CDentCare.model.Account;
+import com.example.N2CDentCare.model.BenhAn;
 import com.example.N2CDentCare.model.BenhNhan;
-import com.example.N2CDentCare.model.Dichvu;
-import com.example.N2CDentCare.model.Doctor;
-import com.example.N2CDentCare.model.GioLamViec;
+import com.example.N2CDentCare.model.ViewBenhAn;
 import com.example.N2CDentCare.repositories.AccountRepository;
+import com.example.N2CDentCare.repositories.BenhAnRepository;
 import com.example.N2CDentCare.repositories.BenhNhanRepository;
-import com.example.N2CDentCare.repositories.DichvuRepository;
-import com.example.N2CDentCare.repositories.DoctorRepository;
-import com.example.N2CDentCare.repositories.GioLamViecRepository;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.N2CDentCare.repositories.ViewBenhAnRepository;
+
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class dashboardController {
@@ -32,6 +30,12 @@ public class dashboardController {
 	
 	@Autowired
 	AccountRepository accountRepository;
+	
+	@Autowired
+	BenhAnRepository benhAnRepository;
+	
+	@Autowired
+	ViewBenhAnRepository viewBenhAnRepository;
 	
 	@GetMapping("/nhan-vien/dang-nhap")
 	public String dangNhapNv(Model model){
@@ -49,9 +53,10 @@ public class dashboardController {
 		for (int i = 0; i < listNv.size(); i++) {
 			Account check = listNv.get(i);
 			if (account.getUsername().equals(check.getUsername())) {
-				if (account.getPassword().equals(check.getPassword()))
+				if (account.getPassword().equals(check.getPassword())) {
 					user = check;
 					return "redirect:/nhan-vien/quan-ly";
+				}
 			}
 		}
 		String noti = "";
@@ -74,6 +79,8 @@ public class dashboardController {
 			return "redirect:/nhan-vien/dang-nhap";
 		}
 		model.addAttribute("benhNhan", new BenhNhan());
+		model.addAttribute("danhSachBenhAn", null);
+		model.addAttribute("benhAn", new BenhAn());
 		return "/nhan-vien/admin";
 	}
 	
@@ -85,9 +92,16 @@ public class dashboardController {
 		if (list.size() > 0) {
 			result = list.get(0);
 			model.addAttribute("thongTinBenhNhan", result);
+			
+			
+			List<ViewBenhAn> danhSachBenhAn = viewBenhAnRepository.findBySdt(benhNhan.getSdt());
+			if(danhSachBenhAn.size() > 0)
+				model.addAttribute("danhSachBenhAn", danhSachBenhAn);
+			else model.addAttribute("danhSachBenhAn", null);
 		}else {
 			model.addAttribute("thongTinBenhNhan", "0");
 		}
+		model.addAttribute("benhAn", new BenhAn(result.getSdt(), user.getId(), "",""));
 		return "/nhan-vien/admin";
 	}
 	
@@ -101,4 +115,5 @@ public class dashboardController {
 		benhNhanRepository.save(new BenhNhan(diaChi, gioiTinh, hoTen, sdt));
 		return "/nhan-vien/admin";
 	}
+	
 }

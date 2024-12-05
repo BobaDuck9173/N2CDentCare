@@ -36,3 +36,12 @@
 .new-benh-nhan{
 	display: none;
 }
+
+.custom-link{
+	text-decoration-line: underline;
+}
+
+.custom-link:hover{
+	cursor: pointer;
+	color: #42a5f5;
+}

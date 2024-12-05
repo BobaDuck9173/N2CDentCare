@@ -23,6 +23,7 @@ public class BenhNhan {
 	@Column(name = "DiaChi")
 	private String DiaChi;
 
+	
 	public int getMaBn() {
 		return MaBn;
 	}
@@ -69,7 +70,7 @@ public class BenhNhan {
 		DiaChi = diaChi;
 	}
 
-	public BenhNhan(String hoTen, boolean gioiTinh, String sdt, String diaChi) {
+	public BenhNhan(String diaChi, boolean gioiTinh,String hoTen,  String sdt) {
 		super();
 		HoTen = hoTen;
 		GioiTinh = gioiTinh;
@@ -84,7 +85,7 @@ public class BenhNhan {
 
 	@Override
 	public String toString() {
-		return "BenhNhan [MaBn=" + MaBn + ", HoTen=" + HoTen + ", GioiTinh=" + getGioiTinhAsView() + ", sdt=" + sdt + ", DiaChi=" + DiaChi + "]";
+		return "BenhNhan [MaBn=" + MaBn + ",HoTen=" + HoTen + ", GioiTinh=" + getGioiTinhAsView() + ", sdt=" + sdt + ", DiaChi=" + DiaChi + "]";
 	}
 	
 }

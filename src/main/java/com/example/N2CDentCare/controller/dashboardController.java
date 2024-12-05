@@ -71,11 +71,9 @@ public class dashboardController {
 	@GetMapping("/nhan-vien/quan-ly")
 	public String trangQuanLy(Model model){
 		if (user == null) {
-			
 			return "redirect:/nhan-vien/dang-nhap";
 		}
-		BenhNhan bn = new BenhNhan();
-		model.addAttribute("benhNhan", bn);
+		model.addAttribute("benhNhan", new BenhNhan());
 		return "/nhan-vien/admin";
 	}
 	
@@ -90,7 +88,17 @@ public class dashboardController {
 		}else {
 			model.addAttribute("thongTinBenhNhan", "0");
 		}
-		
+		return "/nhan-vien/admin";
+	}
+	
+	@PostMapping("/them-benh-nhan")
+	public String formThemBenhNhan(@ModelAttribute("benhNhan") BenhNhan benhNhan, Model model) {
+		//TODO: process POST request
+		String hoTen = benhNhan.getHoTen();
+		String sdt = benhNhan.getSdt();
+		boolean gioiTinh = benhNhan.getGioiTinh();
+		String diaChi = benhNhan.getDiaChi();
+		benhNhanRepository.save(new BenhNhan(diaChi, gioiTinh, hoTen, sdt));
 		return "/nhan-vien/admin";
 	}
 }

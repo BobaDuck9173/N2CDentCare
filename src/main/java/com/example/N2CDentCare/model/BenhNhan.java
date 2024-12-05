@@ -8,17 +8,14 @@ public class BenhNhan {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MaBn")
-	private String MaBn;
+	@Column(name = "MaBn", columnDefinition = "AUTO_INCREMENT")
+	private int MaBn;
 	
 	@Column(name = "HoTen")
 	private String HoTen;
 	
 	@Column(name = "GioiTinh")
-	private String GioiTinh;
-	
-	@Column(name = "NgaySinh")
-	private String NgaySinh;
+	private boolean GioiTinh;
 	
 	@Column(name = "sdt")
 	private String sdt;
@@ -26,11 +23,11 @@ public class BenhNhan {
 	@Column(name = "DiaChi")
 	private String DiaChi;
 
-	public String getMaBn() {
+	public int getMaBn() {
 		return MaBn;
 	}
 
-	public void setMaBn(String maBn) {
+	public void setMaBn(int maBn) {
 		MaBn = maBn;
 	}
 
@@ -42,37 +39,18 @@ public class BenhNhan {
 		HoTen = hoTen;
 	}
 
-	public String getGioiTinh() {
+	public boolean getGioiTinh() {
 		return GioiTinh;
 	}
 
 	public String getGioiTinhAsView() {
-		switch (GioiTinh) {
-			case "0":
-				return "Nam";
-			case "1":
-				return "Nữ";
-		}
+		if (GioiTinh)
+			return "Nữ";
 		return "Nam";
 	}
 
-	public void setGioiTinh(String gioiTinh) {
+	public void setGioiTinh(boolean gioiTinh) {
 		GioiTinh = gioiTinh;
-	}
-
-	public String getNgaySinh() {
-		return NgaySinh;
-	}
-	
-	public String getNgaySinhAsView() {
-		String date = NgaySinh.substring(0,2);
-		String month = NgaySinh.substring(2,4);
-		String year = NgaySinh.substring(4);
-		return date + "/" + month + "/" + year;	
-	}
-
-	public void setNgaySinh(String ngaySinh) {
-		NgaySinh = ngaySinh;
 	}
 
 	public String getSdt() {
@@ -91,12 +69,10 @@ public class BenhNhan {
 		DiaChi = diaChi;
 	}
 
-	public BenhNhan(String maBn, String hoTen, String gioiTinh, String ngaySinh, String sdt, String diaChi) {
+	public BenhNhan(String hoTen, boolean gioiTinh, String sdt, String diaChi) {
 		super();
-		MaBn = maBn;
 		HoTen = hoTen;
 		GioiTinh = gioiTinh;
-		NgaySinh = ngaySinh;
 		this.sdt = sdt;
 		DiaChi = diaChi;
 	}
@@ -108,10 +84,7 @@ public class BenhNhan {
 
 	@Override
 	public String toString() {
-		return "BenhNhan [MaBn=" + MaBn + ", HoTen=" + HoTen + ", GioiTinh=" + GioiTinh + ", NgaySinh=" + NgaySinh
-				+ ", sdt=" + sdt + ", DiaChi=" + DiaChi + "]";
+		return "BenhNhan [MaBn=" + MaBn + ", HoTen=" + HoTen + ", GioiTinh=" + getGioiTinhAsView() + ", sdt=" + sdt + ", DiaChi=" + DiaChi + "]";
 	}
-	
-	
 	
 }

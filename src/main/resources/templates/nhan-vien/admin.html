@@ -83,17 +83,27 @@
 	         <td>Giới tính: </td><td th:text="${bn.getGioiTinhAsView}">...</td>
 	      </tr>
 	      <tr>
-	         <td>Ngày sinh: </td><td th:text="${bn.getNgaySinhAsView}">...</td>
-	      </tr>
-	      <tr>
 	         <td>Số điện thoại: </td><td th:text="${bn.sdt}">...</td>
 	      </tr>
 	   </th:block>
 	</table>
 	
 	<div th:if="${thongTinBenhNhan == '0'}">
-		<h3 >Không tìm thấy</h3>
+		<h4 class="display-7 mt-2">Không tìm thấy</h4>
+		<button class="btn btn-dark px-5" type="button" onclick="displayAddForm()" style="border-radius: 15px;">Tạo hồ sơ mới</button>
 	</div>
+	
+		<form th:action="@{/them-benh-nhan}" method="post" th:object="${benhNhan}">
+				<div class="new-benh-nhan" id="add-benh-nhan-form">
+					<input type="text" placeholder="Họ và tên" style="height: 55px; border-radius: 15px;" th:field="*{HoTen}"> <br>
+					<input type="number" placeholder="Số điện thoại" style="height: 55px; border-radius: 15px;" th:field="*{sdt}"> <br>
+					<input type="radio" name="gioitinh" style="height: 55px; border-radius: 15px;" th:field="*{GioiTinh}" th:value="false"> Nam<br>
+					<input type="radio" name="gioitinh" style="height: 55px; border-radius: 15px;" th:field="*{GioiTinh}" th:value="true"> Nữ<br>
+					<input type="text" placeholder="Địa chỉ" style="height: 55px; border-radius: 15px;" th:field="*{DiaChi}"> <br>
+					<button class="btn btn-dark px-5" type="submit" style="border-radius: 15px;" >Tạo mới</button>
+				</div>
+			</form>
+			
 	
 	
     <!-- JavaScript Libraries -->
@@ -111,6 +121,7 @@
 
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
+    <script src="/js/nhan-vien.js"></script>
 </body>
 
 </html>

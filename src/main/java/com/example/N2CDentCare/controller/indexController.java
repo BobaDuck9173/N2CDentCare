@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.example.N2CDentCare.model.Account;
 import com.example.N2CDentCare.model.Dichvu;
 import com.example.N2CDentCare.model.Doctor;
 import com.example.N2CDentCare.model.GioLamViec;
@@ -17,6 +19,8 @@ import com.example.N2CDentCare.repositories.GioLamViecRepository;
 
 @Controller
 public class indexController {
+	
+	private Account user;
 	
 	@Autowired
 	DichvuRepository dichvuRepository;	
@@ -45,6 +49,9 @@ public class indexController {
 		
 		List<GioLamViec> glvList = gioLamViecRepository.findAll();
 		model.addAttribute("glvlist", glvList);
+		user = dashboardController.getUser();
+		model.addAttribute("user", user);
+		System.out.println(user);
 		return "index";
 	}
 }

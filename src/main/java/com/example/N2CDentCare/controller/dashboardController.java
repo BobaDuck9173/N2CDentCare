@@ -19,11 +19,14 @@ import com.example.N2CDentCare.repositories.BenhNhanRepository;
 import com.example.N2CDentCare.repositories.ViewBenhAnRepository;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class dashboardController {
 	
-	private Account user;
+	private static Account user;
+	private static boolean loginByCustomer;
 	
 	@Autowired
 	BenhNhanRepository benhNhanRepository;
@@ -38,48 +41,49 @@ public class dashboardController {
 	ViewBenhAnRepository viewBenhAnRepository;
 	
 	@GetMapping("/nhan-vien/dang-nhap")
-	public String dangNhapNv(Model model){
+	public String dangNhapNV(Model model){
 		Account account = new Account();
 		model.addAttribute("account", account);
 		model.addAttribute("loginResult", "0");
 		user = null;
+		loginByCustomer = false;
 		return "/nhan-vien/login";
 	}
 	
 	@GetMapping("/dang-nhap")
-	public String dangNhapKh(Model model){
+	public String dangNhapKH(Model model){
 		Account account = new Account();
 		model.addAttribute("account", account);
 		model.addAttribute("loginResult", "0");
 		user = null;
+		loginByCustomer = true;
+		model.addAttribute("loginByCustomer", loginByCustomer);
 		return "/nhan-vien/login";
 	}
 	
-	@PostMapping("/nhan-vien/dang-nhap")
-	public String formDangNhap(@ModelAttribute("account") Account account, Model model) {
+	@PostMapping("/dang-nhap")
+	public String xuLyDangNhapKH(@ModelAttribute("account") Account account, Model model) {
 		//TODO: process POST request
-		List<Account> listNv = accountRepository.findAll();
-		for (int i = 0; i < listNv.size(); i++) {
-			Account check = listNv.get(i);
-			if (account.getUsername().equals(check.getUsername())) {
-				if (account.getPassword().equals(check.getPassword())) {
-					user = check;
-					return "redirect:/nhan-vien/quan-ly";
-				}
-			}
-		}
-		String noti = "";
-		if (!(account.getUsername() != "")) {
-			noti = "Vui lòng nhập tài khoản";
-			model.addAttribute("notification", noti);
-		}else if (!(account.getPassword() != "")) {
-			noti = "Vui lòng nhập mật khẩu";
-			model.addAttribute("notification", noti);
-		}else {
-			noti = "Sai tài khoản hoặc mật khẩu";
-			model.addAttribute("notification", noti);
-		}
-		return "/nhan-vien/login";
+		String result = dangNhapByKH(account, model);
+		if (result != null)
+			return result;
+		result = thongBaoDangNhap(account, model);
+		loginByCustomer = true;
+		model.addAttribute("loginByCustomer", loginByCustomer);
+		return result;
+	}
+	
+	
+	@PostMapping("/nhan-vien/dang-nhap")
+	public String xuLyDangNhapNV(@ModelAttribute("account") Account account, Model model) {
+		//TODO: process POST request
+		String result = dangNhapByNV(account, model);
+		if (result != null)
+			return result;
+		result =  thongBaoDangNhap(account, model);
+		loginByCustomer = false;
+		model.addAttribute("loginByCustomer", loginByCustomer);
+		return result;
 	}
 	
 	@GetMapping("/nhan-vien/quan-ly")
@@ -94,7 +98,7 @@ public class dashboardController {
 	}
 	
 	@PostMapping("/tim-benh-nhan")
-	public String formDangNhap(@ModelAttribute("benhNhan") BenhNhan benhNhan, Model model) {
+	public String formTimBenhNhan(@ModelAttribute("benhNhan") BenhNhan benhNhan, Model model) {
 		//TODO: process POST request
 		List<BenhNhan> list = benhNhanRepository.findBySdt(benhNhan.getSdt());
 		BenhNhan result = null;
@@ -123,6 +127,53 @@ public class dashboardController {
 		String diaChi = benhNhan.getDiaChi();
 		benhNhanRepository.save(new BenhNhan(diaChi, gioiTinh, hoTen, sdt));
 		return "/nhan-vien/admin";
+	}
+	
+	private String thongBaoDangNhap(@ModelAttribute("account") Account account, Model model) {
+		String noti = "";
+		if (!(account.getUsername() != "")) {
+			noti = "Vui lòng nhập tài khoản";
+			model.addAttribute("notification", noti);
+		}else if (!(account.getPassword() != "")) {
+			noti = "Vui lòng nhập mật khẩu";
+			model.addAttribute("notification", noti);
+		}else {
+			noti = "Sai tài khoản hoặc mật khẩu";
+			model.addAttribute("notification", noti);
+		}
+		return "/nhan-vien/login";
+	}
+	
+	private String dangNhapByNV(@ModelAttribute("account") Account account, Model model) {
+		List<Account> listNv = accountRepository.findAll();
+		for (int i = 0; i < listNv.size(); i++) {
+			Account check = listNv.get(i);
+			if (account.getUsername().equals(check.getUsername())) {
+				if (account.getPassword().equals(check.getPassword())) {
+					user = check;
+					return "redirect:/nhan-vien/quan-ly";
+				}
+			}
+		}
+		return null;
+	}
+	
+	private String dangNhapByKH(@ModelAttribute("account") Account account, Model model) {
+		List<Account> listKh = accountRepository.findAll();
+		for (int i = 0; i < listKh.size(); i++) {
+			Account check = listKh.get(i);
+			if (account.getUsername().equals(check.getUsername())) {
+				if (account.getPassword().equals(check.getPassword())) {
+					user = check;
+					return "redirect:/trang-chu";
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static Account getUser() {
+		return user;
 	}
 	
 }

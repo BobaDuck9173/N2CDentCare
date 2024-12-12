@@ -55,15 +55,28 @@
 	    		<div class="row-gx-5">
            			<h1 class="m-0 text-dark"><i class="fa fa-tooth me-2 mb-3"></i>Đăng nhập</h1>
 	    			<div class="col-lg-12">
-	    				<form action="#" th:action="@{/nhan-vien/dang-nhap}" method="post" th:object="${account}">
+	    				<form action="#" th:action="@{/dang-nhap}" method="post" th:object="${account}"  th:if="${loginByCustomer}">
 		    				<input type="text" class="form-control" placeholder="Tài khoản" style="height: 55px; border-radius: 15px;" th:field="*{Username}">
 		    				<input type="password" class="form-control mt-3" placeholder="Mật khẩu" style="height: 55px; border-radius: 15px;" th:field="*{Password}">
-		    				<div class="d-flex justify-content-end mt-1">
-	                            <a href="" class="m-0 text-dark px-1" style="font-size:16px; font-style: italic;">Forgot Password</a>
+		    				<div class="d-flex justify-content-between mt-1"  style="font-size:16px; font-style: italic; transform: translateY(7%);">
+		    					<a href="/dang-ky" class="m-0 text-dark px-1" style="font-size:16px; font-style: italic;">Đăng ký</a>
+	                            <a href="" class="m-0 text-dark px-1" style="font-size:16px; font-style: italic;">Quên mật khẩu</a>
+	                       </div>
+	                       <button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(30%);" th:if="${loginResult == '0'}">Đăng nhập</button>
+	                       <div th:if="${loginResult != '0'}">
+	                       		<button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(20%);">Đăng nhập</button>
+		    					<p class="m-0 text-center" style="font-size: 22px; font-weight: 700; color: red; transform: translateY(80%);" th:text="${notification}"></p>
+	                       </div>
+	    				</form>
+	    				<form action="#" th:action="@{/nhan-vien/dang-nhap}" method="post" th:object="${account}"  th:unless="${loginByCustomer}">
+		    				<input type="text" class="form-control" placeholder="Tài khoản" style="height: 55px; border-radius: 15px;" th:field="*{Username}">
+		    				<input type="password" class="form-control mt-3" placeholder="Mật khẩu" style="height: 55px; border-radius: 15px;" th:field="*{Password}">
+		    				<div class="d-flex justify-content-end mt-1"  style="font-size:16px; font-style: italic; transform: translateY(7%);">
+	                            <a href="" class="m-0 text-dark px-1">Quên mật khẩu</a>
 	                       </div>
 	                       <button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(30%);" th:if="${loginResult == '0'}">Đăng nhập</button>
 	                       <div  th:if="${loginResult != '0'}">
-	                       		<button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px;">Đăng nhập</button>
+	                       		<button class="btn btn-dark w-100 py-3" type="submit" style="border-radius: 15px; transform: translateY(20%);">Đăng nhập</button>
 		    					<p class="m-0 text-center" style="font-size: 22px; font-weight: 700; color: red; transform: translateY(80%);" th:text="${notification}"></p>
 	                       </div>
 	    				</form>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.N2CDentCare.model.Account;
 import com.example.N2CDentCare.model.BangGiaRangSu;
 import com.example.N2CDentCare.model.Trang;
 import com.example.N2CDentCare.repositories.BangGIaRangSuRepository;
@@ -17,6 +18,7 @@ import com.example.N2CDentCare.repositories.TrangRepository;
 
 @Controller
 public class serviceController {
+	private Account user;
 	
 	@Autowired
 	DichvuRepository dichvuRepository;
@@ -55,6 +57,10 @@ public class serviceController {
 		
 		model.addAttribute("page", "RS1");
 		
+		user = dashboardController.getUser();
+		model.addAttribute("user", user);
+		System.out.println(user);
+		
 		return "/dich-vu/rang-su";
 	}
 	
@@ -74,6 +80,10 @@ public class serviceController {
 			}
 		}
 		model.addAttribute("banggia", list);
+		
+		user = dashboardController.getUser();
+		model.addAttribute("user", user);
+		System.out.println(user);
 		return "/dich-vu/bang-gia-boc-rang-su";
 	}
 	
@@ -105,6 +115,9 @@ public class serviceController {
 		}
 		model.addAttribute("banggia", ketQua);
 		
+		user = dashboardController.getUser();
+		model.addAttribute("user", user);
+		System.out.println(user);
 		return "/dich-vu/rang-su";
 	}
 	
@@ -112,6 +125,10 @@ public class serviceController {
 	public String niengRangThamMy(Model model) {
 		String dv = "Niềng răng thẩm mỹ";
 		model.addAttribute("title", dv);
+		
+		user = dashboardController.getUser();
+		model.addAttribute("user", user);
+		System.out.println(user);
 		return "/dich-vu/dich-vu-khac";
 	}
 	
@@ -119,6 +136,10 @@ public class serviceController {
 	public String tramRangThamMy(Model model) {
 		String dv = "Trám răng thẩm mỹ";
 		model.addAttribute("title", dv);
+		
+		user = dashboardController.getUser();
+		model.addAttribute("user", user);
+		System.out.println(user);
 		return "/dich-vu/dich-vu-khac";
 	}
 	
@@ -126,6 +147,10 @@ public class serviceController {
 	public String caoVoiRang(Model model) {
 		String dv = "Cạo vôi răng";
 		model.addAttribute("title", dv);
+		
+		user = dashboardController.getUser();
+		model.addAttribute("user", user);
+		System.out.println(user);
 		return "/dich-vu/dich-vu-khac";
 	}
 	

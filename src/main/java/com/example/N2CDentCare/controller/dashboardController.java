@@ -46,6 +46,15 @@ public class dashboardController {
 		return "/nhan-vien/login";
 	}
 	
+	@GetMapping("/dang-nhap")
+	public String dangNhapKh(Model model){
+		Account account = new Account();
+		model.addAttribute("account", account);
+		model.addAttribute("loginResult", "0");
+		user = null;
+		return "/nhan-vien/login";
+	}
+	
 	@PostMapping("/nhan-vien/dang-nhap")
 	public String formDangNhap(@ModelAttribute("account") Account account, Model model) {
 		//TODO: process POST request

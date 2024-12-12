@@ -45,6 +45,8 @@ public class dashboardController {
 		Account account = new Account();
 		model.addAttribute("account", account);
 		model.addAttribute("loginResult", "0");
+		model.addAttribute("isSignIn", true);
+		model.addAttribute("isSignUp", false);
 		user = null;
 		loginByCustomer = false;
 		return "/nhan-vien/login";
@@ -55,6 +57,21 @@ public class dashboardController {
 		Account account = new Account();
 		model.addAttribute("account", account);
 		model.addAttribute("loginResult", "0");
+		model.addAttribute("isSignIn", true);
+		model.addAttribute("isSignUp", false);
+		user = null;
+		loginByCustomer = true;
+		model.addAttribute("loginByCustomer", loginByCustomer);
+		return "/nhan-vien/login";
+	}
+	
+	@GetMapping("/dang-ky")
+	public String dangKyKH(Model model){
+		Account account = new Account();
+		model.addAttribute("account", account);
+		model.addAttribute("loginResult", "0");
+		model.addAttribute("isSignIn", false);
+		model.addAttribute("isSignUp", true);
 		user = null;
 		loginByCustomer = true;
 		model.addAttribute("loginByCustomer", loginByCustomer);

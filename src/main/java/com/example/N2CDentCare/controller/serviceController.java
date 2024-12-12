@@ -126,6 +126,8 @@ public class serviceController {
 		String dv = "Niềng răng thẩm mỹ";
 		model.addAttribute("title", dv);
 		
+		model.addAttribute("page", "DV1");
+		
 		user = dashboardController.getUser();
 		model.addAttribute("user", user);
 		System.out.println(user);
@@ -137,6 +139,8 @@ public class serviceController {
 		String dv = "Trám răng thẩm mỹ";
 		model.addAttribute("title", dv);
 		
+		model.addAttribute("page", "DV2");
+		
 		user = dashboardController.getUser();
 		model.addAttribute("user", user);
 		System.out.println(user);
@@ -147,6 +151,8 @@ public class serviceController {
 	public String caoVoiRang(Model model) {
 		String dv = "Cạo vôi răng";
 		model.addAttribute("title", dv);
+		
+		model.addAttribute("page", "DV3");
 		
 		user = dashboardController.getUser();
 		model.addAttribute("user", user);

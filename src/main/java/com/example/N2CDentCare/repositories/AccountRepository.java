@@ -9,4 +9,6 @@ public interface AccountRepository extends JpaRepository<Account, String>{
 	@Override
 	List<Account> findAll();
 	
+	List<Account> findByUsername(String username);
+	
 }

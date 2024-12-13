@@ -10,4 +10,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, String>{
 	@Override
 	List<Doctor> findAll();
 	
+	List<Doctor> findBySdt(String sdt);
+	
 }

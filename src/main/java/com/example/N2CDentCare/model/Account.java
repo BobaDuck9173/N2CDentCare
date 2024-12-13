@@ -9,48 +9,48 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Username")
-	private String Username;
+	private String username;
 	
 	@Column(name = "Password")
-	private String Password;
+	private String password;
 	
 	@Column(name = "Id")
-	private String Id;
+	private String id;
 
 	public String getUsername() {
-		return Username;
+		return username;
 	}
 
 	public void setUsername(String username) {
-		Username = username;
+		this.username = username;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [Username=" + Username + ", Password=" + Password + ", Id=" + Id + "]";
+		return "Account [Username=" + username + ", Password=" + password + ", Id=" + id + "]";
 	}
 
 	public Account(String username, String password, String id) {
 		super();
-		Username = username;
-		Password = password;
-		Id = id;
+		this.username = username;
+		this.password = password;
+		this.id = id;
 	}
 
 	public Account() {

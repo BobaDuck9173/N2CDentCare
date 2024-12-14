@@ -105,7 +105,9 @@ public class dashboardController {
 		model.addAttribute("benhNhan", new BenhNhan());
 		model.addAttribute("danhSachBenhAn", null);
 		model.addAttribute("benhAn", new BenhAn());
-		return "/nhan-vien/admin";
+		model.addAttribute("ketQuaTimKiem", null);
+		model.addAttribute("titlePanelInfo", "Lịch hẹn hôm nay");
+		return "/nhan-vien/index";
 	}
 	
 	@PostMapping("/tim-benh-nhan")
@@ -115,18 +117,21 @@ public class dashboardController {
 		BenhNhan result = null;
 		if (list.size() > 0) {
 			result = list.get(0);
-			model.addAttribute("thongTinBenhNhan", result);
-			
-			
+			model.addAttribute("ketQuaTimKiem", true);
+			model.addAttribute("titlePanelInfo", "Thông tin bệnh nhân");
+			model.addAttribute("columnTitle", result.getTableColumnTitle());
+			model.addAttribute("danhSachBenhNhan", result);
+
 			List<ViewBenhAn> danhSachBenhAn = viewBenhAnRepository.findBySdt(benhNhan.getSdt());
 			if(danhSachBenhAn.size() > 0)
 				model.addAttribute("danhSachBenhAn", danhSachBenhAn);
 			else model.addAttribute("danhSachBenhAn", null);
 		}else {
-			model.addAttribute("thongTinBenhNhan", "0");
+			model.addAttribute("ketQuaTimKiem", "0");
+			model.addAttribute("titlePanelInfo", "Không tìm thấy");
 		}
-		model.addAttribute("benhAn", new BenhAn(result.getSdt(), user.getId(), "",""));
-		return "/nhan-vien/admin";
+		model.addAttribute("benhAn", new BenhAn());
+		return "/nhan-vien/index";
 	}
 	
 	@PostMapping("/them-benh-nhan")
@@ -137,7 +142,10 @@ public class dashboardController {
 		boolean gioiTinh = benhNhan.getGioiTinh();
 		String diaChi = benhNhan.getDiaChi();
 		benhNhanRepository.save(new BenhNhan(diaChi, gioiTinh, hoTen, sdt));
-		return "/nhan-vien/admin";
+		model.addAttribute("titlePanelInfo", "Tạo hồ sơ thành công");
+		model.addAttribute("columnTitle", benhNhan.getTableColumnTitle());
+		model.addAttribute("danhSachBenhNhan", benhNhan);
+		return "/nhan-vien/index";
 	}
 	
 	

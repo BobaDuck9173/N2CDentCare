@@ -1,5 +1,8 @@
 package com.example.N2CDentCare.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -88,4 +91,11 @@ public class BenhNhan {
 		return "BenhNhan [MaBn=" + MaBn + ",HoTen=" + HoTen + ", GioiTinh=" + getGioiTinhAsView() + ", sdt=" + sdt + ", DiaChi=" + DiaChi + "]";
 	}
 	
+	public List<String> getTableColumnTitle(){
+		List<String> kq = new ArrayList<>();
+		kq.add("Họ và tên");
+		kq.add("Giới tính");
+		kq.add("Số điện thoại");
+		return kq;
+	}
 }

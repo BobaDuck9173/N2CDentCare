@@ -1,6 +1,8 @@
 package com.example.N2CDentCare.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class dashboardController {
 	
 	private static Account user;
+	private static String currentPage;
 	
 	@Autowired
 	BenhNhanRepository benhNhanRepository;
@@ -99,13 +102,14 @@ public class dashboardController {
 		if (user == null) {
 			return "redirect:/dang-nhap";
 		}
+		currentPage = "tongQuat";
 		model.addAttribute("page", "tongQuat");
 		model.addAttribute("pageTitle", "Tổng quát");
 		model.addAttribute("benhNhan", new BenhNhan());
 		model.addAttribute("danhSachBenhAn", null);
 		model.addAttribute("benhAn", new BenhAn());
-		model.addAttribute("ketQuaTimKiem", null);
 		model.addAttribute("titlePanelInfo", "Lịch hẹn hôm nay");
+		model.addAttribute("ketQuaTimKiem", null);
 		return "/nhan-vien/index";
 	}
 	
@@ -114,12 +118,12 @@ public class dashboardController {
 		if (user == null) {
 			return "redirect:/dang-nhap";
 		}
+		currentPage = "benhNhan";
 		model.addAttribute("page", "benhNhan");
 		model.addAttribute("pageTitle", "Quản lý bệnh nhân");
 		model.addAttribute("benhNhan", new BenhNhan());
 		model.addAttribute("danhSachBenhAn", null);
 		model.addAttribute("benhAn", new BenhAn());
-		model.addAttribute("ketQuaTimKiem", null);
 		model.addAttribute("titlePanelInfo", "Danh sách bệnh nhân");
 		return "/nhan-vien/index";
 	}
@@ -129,12 +133,12 @@ public class dashboardController {
 		if (user == null) {
 			return "redirect:/dang-nhap";
 		}
+		currentPage = "benhAn";
 		model.addAttribute("page", "benhAn");
 		model.addAttribute("pageTitle", "Quản lý bệnh án");
 		model.addAttribute("benhNhan", new BenhNhan());
 		model.addAttribute("danhSachBenhAn", null);
 		model.addAttribute("benhAn", new BenhAn());
-		model.addAttribute("ketQuaTimKiem", null);
 		model.addAttribute("titlePanelInfo", "Danh sách bệnh án");
 		return "/nhan-vien/index";
 	}
@@ -146,8 +150,7 @@ public class dashboardController {
 		BenhNhan result = null;
 		if (list.size() > 0) {
 			result = list.get(0);
-			model.addAttribute("ketQuaTimKiem", true);
-			model.addAttribute("titlePanelInfo", "Thông tin bệnh nhân");
+			model.addAttribute("ketQuaTimKiem", "1");
 			model.addAttribute("columnTitleFrst", result.getTableColumnTitle());
 			model.addAttribute("danhSachBenhNhan", result);
 
@@ -162,12 +165,21 @@ public class dashboardController {
 				
 				model.addAttribute("columnTitleScnd", columnBenhAn);
 			}
-			
-			else model.addAttribute("danhSachBenhAn", null);
+			else {
+				model.addAttribute("danhSachBenhAn", null);
+				model.addAttribute("benhAnResult", "Chưa có bệnh án");
+			}
 		}else {
 			model.addAttribute("ketQuaTimKiem", "0");
-			model.addAttribute("titlePanelInfo", "Không tìm thấy");
+			model.addAttribute("danhSachBenhNhan", null);
+			model.addAttribute("benhNhanResult", "Không tìm thấy");
+			model.addAttribute("danhSachBenhAn", null);
+			model.addAttribute("benhAnResult", "Không tìm thấy");
 		}
+		if(currentPage.equals("tongQuat") || currentPage.equals("benhNhan")) {
+			model.addAttribute("titlePanelInfo", "Danh sách bệnh nhân");
+		}
+		model.addAttribute("page", currentPage);
 		model.addAttribute("pageTitle", "Kết quả tìm kiếm");
 		model.addAttribute("benhAn", new BenhAn());
 		return "/nhan-vien/index";
@@ -181,12 +193,34 @@ public class dashboardController {
 		boolean gioiTinh = benhNhan.getGioiTinh();
 		String diaChi = benhNhan.getDiaChi();
 		benhNhanRepository.save(new BenhNhan(diaChi, gioiTinh, hoTen, sdt));
-		model.addAttribute("titlePanelInfo", "Tạo hồ sơ thành công");
-		model.addAttribute("columnTitle", benhNhan.getTableColumnTitle());
-		model.addAttribute("danhSachBenhNhan", benhNhan);
+		
+		if(currentPage.equals("tongQuat") || currentPage.equals("benhNhan")) {
+			model.addAttribute("titlePanelInfo", "Danh sách bệnh nhân");
+		}
+		model.addAttribute("page", currentPage);
+		model.addAttribute("titlePanelInfo", "Danh sách bệnh nhân");
+		model.addAttribute("columnTitleFrst", benhNhan.getTableColumnTitle());
+		List<BenhNhan> kq = new ArrayList<>();
+		kq.add(new BenhNhan(diaChi, gioiTinh, hoTen, sdt));
+		model.addAttribute("danhSachBenhNhan", kq);
 		return "/nhan-vien/index";
 	}
 	
+	@PostMapping("/them-benh-an")
+	public String formThemBenhAn(@ModelAttribute("benhAn") BenhAn benhAn, Model model, @ModelAttribute("benhNhan") BenhNhan benhNhan) {
+		//TODO: process POST request
+		String sdt = benhAn.getSdt();
+		String chuanDoan = benhAn.getChuanDoan();
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+		String ngayKham = format.format(date);
+		System.out.println(ngayKham);
+		String maBs = user.getId();
+		benhAnRepository.save(new BenhAn(chuanDoan, maBs, ngayKham, sdt));
+		
+		formTimBenhNhan(benhNhan, model);
+		return "/nhan-vien/index";
+	}
 	
 	public static Account getUser() {
 		return user;

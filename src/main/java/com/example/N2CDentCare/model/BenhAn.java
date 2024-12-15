@@ -11,7 +11,7 @@ public class BenhAn {
 	@Column(name = "MaBa", columnDefinition = "AUTO_INCREMENT")
 	private int MaBa;
 	
-	@Column(name = "SDT")
+	@Column(name = "sdtBenhNhan")
 	private String sdt;
 	
 	@Column(name = "MaBs")
@@ -68,7 +68,7 @@ public class BenhAn {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BenhAn(String sdt, String maBs, String ngayKham, String chuanDoan) {
+	public BenhAn(String chuanDoan, String maBs, String ngayKham, String sdt) {
 		super();
 		this.sdt = sdt;
 		MaBs = maBs;

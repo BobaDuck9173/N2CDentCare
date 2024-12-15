@@ -48,6 +48,19 @@ public class ViewBenhAn {
 	public String getNgayKham() {
 		return NgayKham;
 	}
+	
+	
+	public String getNgayKhamAsView() {
+		String day = NgayKham.substring(0,2);
+		String month = NgayKham.substring(2,4);
+		String year = NgayKham.substring(4);
+		
+		String kq =  day + "/" + month + "/" + year;
+		
+		System.out.println(kq);
+		return kq;
+
+	}
 
 	public void setNgayKham(String ngayKham) {
 		NgayKham = ngayKham;

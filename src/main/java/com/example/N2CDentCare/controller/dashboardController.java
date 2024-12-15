@@ -93,20 +93,49 @@ public class dashboardController {
 		
 		return "/nhan-vien/login";
 	}
-		
-	
-	
 	
 	@GetMapping("/nhan-vien/quan-ly")
 	public String trangQuanLy(Model model){
 		if (user == null) {
 			return "redirect:/dang-nhap";
 		}
+		model.addAttribute("page", "tongQuat");
+		model.addAttribute("pageTitle", "Tổng quát");
 		model.addAttribute("benhNhan", new BenhNhan());
 		model.addAttribute("danhSachBenhAn", null);
 		model.addAttribute("benhAn", new BenhAn());
 		model.addAttribute("ketQuaTimKiem", null);
 		model.addAttribute("titlePanelInfo", "Lịch hẹn hôm nay");
+		return "/nhan-vien/index";
+	}
+	
+	@GetMapping("/nhan-vien/quan-ly/benh-nhan")
+	public String trangQuanLyBenhNhan(Model model){
+		if (user == null) {
+			return "redirect:/dang-nhap";
+		}
+		model.addAttribute("page", "benhNhan");
+		model.addAttribute("pageTitle", "Quản lý bệnh nhân");
+		model.addAttribute("benhNhan", new BenhNhan());
+		model.addAttribute("danhSachBenhAn", null);
+		model.addAttribute("benhAn", new BenhAn());
+		model.addAttribute("ketQuaTimKiem", null);
+		model.addAttribute("titlePanelInfo", "Danh sách bệnh nhân");
+		return "/nhan-vien/index";
+	}
+	
+	@GetMapping("/nhan-vien/quan-ly/benh-an")
+	public String trangQuanLyBenhAn(Model model){
+		if (user == null) {
+			return "redirect:/dang-nhap";
+		}
+		model.addAttribute("page", "benhAn");
+		model.addAttribute("pageTitle", "Quản lý bệnh án");
+		model.addAttribute("benhNhan", new BenhNhan());
+		model.addAttribute("danhSachBenhAn", null);
+		model.addAttribute("benhAn", new BenhAn());
+		model.addAttribute("ketQuaTimKiem", null);
+		model.addAttribute("titlePanelInfo", "Danh sách bệnh án");
 		return "/nhan-vien/index";
 	}
 	
@@ -119,17 +148,27 @@ public class dashboardController {
 			result = list.get(0);
 			model.addAttribute("ketQuaTimKiem", true);
 			model.addAttribute("titlePanelInfo", "Thông tin bệnh nhân");
-			model.addAttribute("columnTitle", result.getTableColumnTitle());
+			model.addAttribute("columnTitleFrst", result.getTableColumnTitle());
 			model.addAttribute("danhSachBenhNhan", result);
 
 			List<ViewBenhAn> danhSachBenhAn = viewBenhAnRepository.findBySdt(benhNhan.getSdt());
-			if(danhSachBenhAn.size() > 0)
+			if(danhSachBenhAn.size() > 0) {
 				model.addAttribute("danhSachBenhAn", danhSachBenhAn);
+				List<String> columnBenhAn = new ArrayList<>();
+				columnBenhAn.add("Bệnh nhân");
+				columnBenhAn.add("Bác sĩ");
+				columnBenhAn.add("Ngày khám");
+				columnBenhAn.add("Chuẩn đoán");
+				
+				model.addAttribute("columnTitleScnd", columnBenhAn);
+			}
+			
 			else model.addAttribute("danhSachBenhAn", null);
 		}else {
 			model.addAttribute("ketQuaTimKiem", "0");
 			model.addAttribute("titlePanelInfo", "Không tìm thấy");
 		}
+		model.addAttribute("pageTitle", "Kết quả tìm kiếm");
 		model.addAttribute("benhAn", new BenhAn());
 		return "/nhan-vien/index";
 	}

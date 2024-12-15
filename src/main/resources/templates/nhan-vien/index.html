@@ -145,25 +145,44 @@ Bootstrap 5 Dashboard Admin Template
 				class="col-md-2 col-lg-2 d-md-block sidebar collapse">
 				<div class="position-sticky py-4 px-3 sidebar-sticky">
 					<ul class="nav flex-column h-100">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="index.html"> <i
-								class="bi-house-fill me-2"></i> Tổng quát
-						</a></li>
+						<li class="nav-item">
+							<a class="nav-link active"href="/nhan-vien/quan-ly" th:if="${page == 'tongQuat'}"> 
+								<i class="bi-house-fill me-2"></i> Tổng quát
+							</a>
+							<a class="nav-link" href="/nhan-vien/quan-ly" th:if="${page != 'tongQuat'}" > 
+								<i class="bi-house-fill me-2"></i> Tổng quát
+							</a>
+						</li>
 
-						<li class="nav-item"><a class="nav-link" href="wallet.html">
+						<li class="nav-item">
+							<a class="nav-link active" href="#" th:if="${page == 'lichHen'}">
 								<i class="bi-wallet me-2"></i> Quản lý lịch hẹn
-						</a></li>
+							</a>
+							<a class="nav-link" href="/nhan-vien/quan-ly/lich-hen" th:if="${page != 'lichHen'}">
+								<i class="bi-wallet me-2"></i> Quản lý lịch hẹn
+							</a>
+						</li>
 
-						<li class="nav-item"><a class="nav-link" href="profile.html">
-								<i class="bi-person me-2"></i> Quản lý bệnh nhân
-						</a></li>
+						<li class="nav-item">
+							<a class="nav-link active" href="/nhan-vien/quan-ly/benh-nhan" th:if="${page == 'benhNhan'}">
+									<i class="bi-person me-2"></i> Quản lý bệnh nhân
+							</a>
+							<a class="nav-link" href="/nhan-vien/quan-ly/benh-nhan" th:if="${page != 'benhNhan'}">
+									<i class="bi-person me-2"></i> Quản lý bệnh nhân
+							</a>
+						</li>
 
-						<li class="nav-item"><a class="nav-link" href="setting.html">
-								<i class="bi-gear me-2"></i> Quản lý bệnh án
-						</a></li>
+						<li class="nav-item">
+							<a class="nav-link active" href="/nhan-vien/quan-ly/benh-an" th:if="${page == 'benhAn'}">
+									<i class="bi-gear me-2"></i> Quản lý bệnh án
+							</a>
+							<a class="nav-link " href="/nhan-vien/quan-ly/benh-an" th:if="${page != 'benhAn'}">
+									<i class="bi-gear me-2"></i> Quản lý bệnh án
+							</a>
+						</li>
 
-						<li class="nav-item border-top mt-auto pt-2"><a
-							class="nav-link" href="/dang-nhap"> <i
+						<li class="nav-item border-top mt-auto pt-2">
+						<a class="nav-link" href="/dang-nhap"> <i
 								class="bi-box-arrow-left me-2"></i> Đăng xuất
 						</a></li>
 					</ul>
@@ -173,11 +192,9 @@ Bootstrap 5 Dashboard Admin Template
 			<main
 				class="main-wrapper col-md-10 ms-sm-auto py-4 col-lg-10 px-md-4 border-start">
 				<div class="title-group mb-3" >
-					<h1 class="h2 mb-0" th:if="${ketQuaTimKiem == null}">Hello Thomas</h1>
+					<h1 class="h2 mb-0" th:text="${pageTitle}"></h1>
 
-					<h5 class="display-7 text-muted" th:if="${ketQuaTimKiem == null}">welcome back!</h5>
-					
-					<h1 class="h2 mb-0" th:if="${ketQuaTimKiem != null}">Kết quả tìm kiếm</h1>
+<!-- 					<h5 class="display-7 text-muted" th:if="${ketQuaTimKiem == null && page != 'overeview'}">welcome back!</h5> -->
 				</div>
 
 				<div class="row my-4">
@@ -214,21 +231,16 @@ Bootstrap 5 Dashboard Admin Template
 								</div>
 							</form>
 
-							<div class="table-responsive">
+							<div class="table-responsive" th:if="${ketQuaTimKiem != null and ketQuaTimKiem != '0'}">
 								<table class="account-table table">
 									<thead>
 										<tr>
-											<th scope="col" th:each="ct : ${columnTitle}" th:text="${ct}"></th>
+											<th scope="col" th:each="ct : ${columnTitleFrst}" th:text="${ct}"></th>
 										</tr>
 									</thead>
 
 									<tbody>
-										<tr  th:each="benhNhan : ${danhSachBenhNhan}" th:if="${ketQuaTimKiem != null}">
-											<td scope="row" th:text="${benhNhan.HoTen}"></td>
-											<td scope="row" th:text="${benhNhan.getGioiTinhAsView}"></td>
-											<td scope="row" th:text="${benhNhan.Sdt}"></td>
-										</tr>
-										<tr  th:each="benhNhan : ${danhSachBenhNhan}" th:if="${ketQuaTimKiem == null}">
+										<tr  th:each="benhNhan : ${danhSachBenhNhan}" style="cursor: pointer;">
 											<td scope="row" th:text="${benhNhan.HoTen}"></td>
 											<td scope="row" th:text="${benhNhan.getGioiTinhAsView}"></td>
 											<td scope="row" th:text="${benhNhan.Sdt}"></td>
@@ -237,8 +249,34 @@ Bootstrap 5 Dashboard Admin Template
 									
 								</table>
 							</div>
-
 						</div>
+						
+						<div class="custom-block bg-white"  th:if="${ketQuaTimKiem != null}">
+							<h5 class="mb-1">Danh sách bệnh án</h5>
+							<small class="text-muted m-1" th:if="${ketQuaTimKiem == null or ketQuaTimKiem == '0'}">Không có bệnh án</small>
+
+
+							<div class="table-responsive" th:if="${ketQuaTimKiem != null and ketQuaTimKiem != '0'}">
+								<table class="account-table table">
+									<thead>
+										<tr>
+											<th scope="col" th:each="ct : ${columnTitleScnd}" th:text="${ct}"></th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr  th:each="ba : ${danhSachBenhAn}" style="cursor: pointer;">
+											<td scope="row" th:text="${ba.BenhNhan}"></td>
+											<td scope="row" th:text="${ba.BacSi}"></td>
+											<td scope="row" th:text="${ba.getNgayKhamAsView}"></td>
+											<td scope="row" th:text="${ba.ChuanDoan}"></td>
+										</tr>
+									</tbody>
+									
+								</table>
+							</div>
+						</div>
+						
 					</div>
 
 					<div class="col-lg-3 col-12">

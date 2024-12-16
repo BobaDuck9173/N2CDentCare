@@ -204,29 +204,29 @@ Bootstrap 5 Dashboard Admin Template
 						<div class="custom-block bg-white" th:if="${page != 'benhAn'}">
 							<h5 class="mb-1" th:text="${titlePanelInfo}">Lịch hẹn hôm
 								nay</h5>
-							<small class="text-muted m-1" th:if="${danhSachBenhNhan == null}" th:text="${benhNhanResult}">Không
+							<small class="text-muted m-1" th:if="${benhNhanResult != null}" th:text="${benhNhanResult}">Không
 								tìm thấy</small>
 
 							<div class="row mt-2 mb-4">
 								<div class="col-lg-3">
 									<button class="btn btn-dark px-5" type="button"
 										onclick="displayAddForm('benh-nhan')" style="border-radius: 15px;"
-										th:if="${ketQuaTimKiem == '0'}">Tạo hồ sơ</button>
+										th:if="${ketQuaTimKiem == '0'}" >Tạo hồ sơ</button>
 								</div>
 							</div>
 
-							<form class="custom-form" th:action="@{/them-benh-nhan}" method="post" th:object="${benhNhan}">
+							<form class="custom-form mb-4" th:action="@{/them-benh-nhan}" method="post" th:object="${benhNhan}">
 								<div class="new-benh-nhan" id="add-benh-nhan-form">
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<input class="form-control" type="text"
-												placeholder="Họ và tên" th:field="*{HoTen}">
+												placeholder="Họ và tên" th:field="*{HoTen}" id="input-benh-nhan-ten">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<input class="form-control" type="number"
-												placeholder="Số điện thoại" th:field="*{sdt}">
+												placeholder="Số điện thoại" th:field="*{sdt}"  id="input-benh-nhan-sdt">
 										</div>
 									</div>
 									<div class="row px-2 mb-4">
@@ -240,7 +240,43 @@ Bootstrap 5 Dashboard Admin Template
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<button class="btn btn-dark px-5" type="submit"
-												style="border-radius: 15px;">Tạo hồ sơ</button>
+												style="border-radius: 15px;" id="btn-add-benhnhan">Tạo hồ sơ</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<form class="custom-form mb-4" th:action="@{/sua-benh-nhan}" method="post" th:object="${benhNhanUpdate}">
+								<div class="update-benh-nhan" id="update-benh-nhan-form">
+									<div class="row">
+										<div class="col-md-6 col-lg-6">
+											<input class="form-control" type="text"
+												placeholder="Họ và tên" th:field="*{HoTen}" id="update-benh-nhan-ten">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 col-lg-6">
+											<input class="form-control" type="number"
+												placeholder="Số điện thoại" th:field="*{sdt}"  id="update-benh-nhan-sdt">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 col-lg-6">
+											<input class="form-control" type="number"
+												placeholder="Số điện thoại" th:field="*{sdtCu}"  id="update-benh-nhan-sdt-cu" style="position: absolute; z-index: -1; visibility: hidden;">
+										</div>
+									</div>
+									<div class="row px-2 mb-4">
+										<div class="col-md-6 col-lg-6">
+											<input type="radio" name="gioitinh" th:field="*{GioiTinh}"
+												th:value="false"> Nam <input class="ms-5"
+												type="radio" name="gioitinh" th:field="*{GioiTinh}"
+												th:value="true"> Nữ
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 col-lg-6">
+											<button class="btn btn-dark px-5" type="submit"
+												style="border-radius: 15px;" id="btn-update-benh-nhan">Sửa hồ sơ</button>
 										</div>
 									</div>
 								</div>
@@ -361,23 +397,40 @@ Bootstrap 5 Dashboard Admin Template
 						<div class="custom-block custom-block-bottom d-flex flex-wrap" th:if="${page == 'benhNhan' or page == 'benhAn'}">
                                 <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
                                     <button class="d-flex flex-column justify-content-center align-items-center" type="button"
-													onclick="displayAddForm('benh-an')" style="border: 0; background: none;">
+													onclick="displayAddForm('benh-nhan')" style="border: 0; background: none;">
                                         <i class="custom-block-icon fa-solid fa-plus"></i>
 
                                         <p>Thêm</p>
                                     </button>
                                 </div>
                                 <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
-                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button"
-													onclick="displayAddForm('benh-an')" style="border: 0; background: none;">
+                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" 
+                                    				onclick="xoaBenhNhan()" style="border: 0; background: none;">
                                         <i class="custom-block-icon fa-solid fa-xmark"></i>
 
                                         <p>Xóa</p>
                                     </button>
+                                    <form class="custom-form mb-4" th:action="@{/xoa-benh-nhan}" method="post" th:object="${benhNhanDelete}"
+                                     style="display: content; position: absolute; z-index: -1; visibility: hidden;">
+										<div class="delete-benh-nhan">
+											<div class="row">
+												<div class="col-md-6 col-lg-6">
+													<input class="form-control" type="number"
+														placeholder="Số điện thoại" th:field="*{sdt}" id="delete-benh-nhan-sdt">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6 col-lg-6">
+													<button class="btn btn-dark px-5" type="submit"
+														style="border-radius: 15px;" id="btn-delete-benh-nhan">Xóa</button>
+												</div>
+											</div>
+										</div>
+									</form>
                                 </div>
                                 <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
                                     <button class="d-flex flex-column justify-content-center align-items-center" type="button"
-													onclick="displayAddForm('benh-an')" style="border: 0; background: none;">
+													onclick="suaBenhNhan()" style="border: 0; background: none;">
                                         <i class="custom-block-icon fa-solid fa-pen-to-square"></i>
 
                                         <p>Sửa</p>

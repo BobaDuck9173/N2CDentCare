@@ -108,6 +108,8 @@ public class dashboardController {
 		model.addAttribute("page", "tongQuat");
 		model.addAttribute("pageTitle", "Tổng quát");
 		model.addAttribute("benhNhan", new BenhNhan());
+		model.addAttribute("benhNhanDelete", new BenhNhan());
+		model.addAttribute("benhNhanUpdate", new BenhNhan());
 		model.addAttribute("danhSachBenhAn", null);
 		model.addAttribute("benhAn", new BenhAn());
 		model.addAttribute("titlePanelInfo", "Lịch hẹn hôm nay");
@@ -127,6 +129,8 @@ public class dashboardController {
 		List<BenhNhan> danhSach = benhNhanRepository.findAll();
 		model.addAttribute("danhSachBenhNhan", danhSach);
 		model.addAttribute("benhNhan", new BenhNhan());
+		model.addAttribute("benhNhanDelete", new BenhNhan());
+		model.addAttribute("benhNhanUpdate", new BenhNhan());
 		model.addAttribute("danhSachBenhAn", null);
 		model.addAttribute("benhAn", new BenhAn());
 		model.addAttribute("titlePanelInfo", "Danh sách bệnh nhân");
@@ -142,6 +146,8 @@ public class dashboardController {
 		model.addAttribute("page", "benhAn");
 		model.addAttribute("pageTitle", "Quản lý bệnh án");
 		model.addAttribute("benhNhan", new BenhNhan());
+		model.addAttribute("benhNhanDelete", new BenhNhan());
+		model.addAttribute("benhNhanUpdate", new BenhNhan());
 		model.addAttribute("columnTitleScnd", ViewBenhAn.getTableColumnTitle());
 		List<ViewBenhAn> danhSach = viewBenhAnRepository.findAll();
 		model.addAttribute("danhSachBenhAn", danhSach);
@@ -200,50 +206,56 @@ public class dashboardController {
 		}
 		model.addAttribute("page", currentPage);
 		model.addAttribute("titlePanelInfo", "Danh sách bệnh nhân");
-		model.addAttribute("columnTitleFrst", benhNhan.getTableColumnTitle());
-		List<BenhNhan> kq = new ArrayList<>();
-		kq.add(new BenhNhan(diaChi, gioiTinh, hoTen, sdt));
-		model.addAttribute("danhSachBenhNhan", kq);
+		model.addAttribute("columnTitleFrst", BenhNhan.getTableColumnTitle());
+		if(currentPage.equals("tongQuat")) {
+			List<BenhNhan> kq = new ArrayList<>();
+			kq.add(new BenhNhan(diaChi, gioiTinh, hoTen, sdt));
+			model.addAttribute("danhSachBenhNhan", kq);
+		} else {
+			trangQuanLyBenhNhan(model);
+		}
+		model.addAttribute("benhNhanResult", "Thêm thành công");
 		return "/nhan-vien/index";
 	}
 	@PostMapping("/xoa-benh-nhan")
-	public String formXoaBenhNhan(@RequestParam("MaBn") int MaBn, Model model) {
+	public String formXoaBenhNhan(@ModelAttribute("benhNhanDelete") BenhNhan benhNhanDelete, Model model) {
 	    try {
-	        if (benhNhanRepository.existsById(MaBn)) {
-	            benhNhanRepository.deleteById(MaBn); 
+	    	List<BenhNhan> deleteData = benhNhanRepository.findBySdt(benhNhanDelete.getSdt());
+	        if (deleteData.size() > 0) {
+	        	BenhNhan delete = deleteData.get(0);
+	            benhNhanRepository.deleteById(delete.getMaBn()); 
 	        } else {
-	            model.addAttribute("message", "Không tìm thấy bệnh nhân với ID: " + MaBn);
+	            model.addAttribute("message", "Không tìm thấy bệnh nhân với SDT: " + benhNhanDelete.getSdt());
 	        }
 	    } catch (Exception e) {
 	        model.addAttribute("error", "Đã xảy ra lỗi khi xóa bệnh nhân: " + e.getMessage());
 	    }
 	    
-	    List<BenhNhan> danhSachBenhNhan = benhNhanRepository.findAll();
-	    model.addAttribute("danhSachBenhNhan", danhSachBenhNhan);
+	    trangQuanLyBenhNhan(model);
+	    model.addAttribute("benhNhanResult", "Xóa bệnh nhân thành công");
 	    return "/nhan-vien/index";
 	}
 	@PostMapping("/sua-benh-nhan")
-	public String formSuaBenhNhan(@RequestParam("MaBn") int MaBn, @ModelAttribute("benhNhan") BenhNhan benhNhan, Model model) {
+	public String formSuaBenhNhan(@ModelAttribute("benhNhan") BenhNhan benhNhanUpdate, Model model) {
 	    try {
-	        Optional<BenhNhan> optionalBenhNhan = benhNhanRepository.findById(MaBn);
-	        if (optionalBenhNhan.isPresent()) {
-	            BenhNhan existingBenhNhan = optionalBenhNhan.get();
+	    	List<BenhNhan> updateData = benhNhanRepository.findBySdt(benhNhanUpdate.getSdtCu());
+	        if (updateData.size() > 0) {
+	            BenhNhan update = updateData.get(0);
 
-	            existingBenhNhan.setHoTen(benhNhan.getHoTen());
-	            existingBenhNhan.setSdt(benhNhan.getSdt());
-	            existingBenhNhan.setGioiTinh(benhNhan.getGioiTinh());
-	            existingBenhNhan.setDiaChi(benhNhan.getDiaChi());
+	            update.setHoTen(benhNhanUpdate.getHoTen());
+	            update.setSdt(benhNhanUpdate.getSdt());
+	            update.setGioiTinh(benhNhanUpdate.getGioiTinh());
 
-	            benhNhanRepository.save(existingBenhNhan);
+	            benhNhanRepository.save(update);
 	        } else {
-	            model.addAttribute("message", "Không tìm thấy bệnh nhân với ID: " + MaBn);
+	            model.addAttribute("message", "Không tìm thấy bệnh nhân với SDT: " + benhNhanUpdate.getSdtCu());
 	        }
 	    } catch (Exception e) {
 	        model.addAttribute("error", "Đã xảy ra lỗi khi cập nhật bệnh nhân: " + e.getMessage());
 	    }
 
-	    List<BenhNhan> danhSachBenhNhan = benhNhanRepository.findAll();
-	    model.addAttribute("danhSachBenhNhan", danhSachBenhNhan);
+		trangQuanLyBenhNhan(model);
+	    model.addAttribute("benhNhanResult", "Cập nhập hồ sơ thành công");
 	    return "/nhan-vien/index";
 	}
 	@PostMapping("/them-benh-an")
@@ -308,4 +320,6 @@ public class dashboardController {
 	public static Account getUser() {
 		return user;
 	}
+	
+	
 }

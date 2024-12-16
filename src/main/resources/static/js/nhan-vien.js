@@ -4,6 +4,9 @@ if(window.location.pathname == "/tim-benh-nhan"){
 
 function displayAddForm(id){
 	document.getElementById("add-" + id + "-form").style.display = "block";
+	if(id == 'benh-nhan'){
+		document.getElementById("btn-add-benhnhan").innerHTML = "Tạo hồ sơ";
+	}
 }
 
 function getBenhNhanInfo(id){
@@ -14,10 +17,21 @@ function getBenhNhanInfo(id){
 	document.getElementById("mini-panel-ten").innerHTML = ten;
 	document.getElementById("mini-panel-gioi-tinh").innerHTML = gioiTinh;
 	document.getElementById("mini-panel-sdt").innerHTML = sdt;
-	
-	console.log(position);
-	console.log(ten);
-	console.log(gioiTinh);
-	console.log(sdt);
+}
 
+function suaBenhNhan(){
+	document.getElementById("update-benh-nhan-form").style.display = "block";
+	let ten = document.getElementById("mini-panel-ten").innerHTML;
+	let sdt = document.getElementById("mini-panel-sdt").innerHTML;
+	document.getElementById("update-benh-nhan-ten").value = ten;
+	document.getElementById("update-benh-nhan-sdt").value = sdt;
+	document.getElementById("update-benh-nhan-sdt-cu").value = sdt;
+	document.getElementById("btn-update-benh-nhan").innerHTML = "Sửa thông tin";
+}
+
+function xoaBenhNhan(){
+	let sdt = document.getElementById("mini-panel-sdt").innerHTML;
+	document.getElementById("delete-benh-nhan-sdt").value = sdt;
+	var btn = document.getElementById("btn-delete-benh-nhan");
+	btn.click();
 }

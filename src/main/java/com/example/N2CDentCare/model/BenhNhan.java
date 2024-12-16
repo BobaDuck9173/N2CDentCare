@@ -25,8 +25,18 @@ public class BenhNhan {
 	
 	@Column(name = "DiaChi")
 	private String DiaChi;
-
 	
+	@jakarta.persistence.Transient
+	private String sdtCu;
+	
+	public String getSdtCu() {
+		return sdtCu;
+	}
+
+	public void setSdtCu(String sdtCu) {
+		this.sdtCu = sdtCu;
+	}
+
 	public int getMaBn() {
 		return MaBn;
 	}

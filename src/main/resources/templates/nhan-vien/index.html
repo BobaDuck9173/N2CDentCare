@@ -274,7 +274,7 @@ Bootstrap 5 Dashboard Admin Template
 							<small class="text-muted m-1" th:if="${danhSachBenhAn == null}"
 								th:text="${benhAnResult}">Không có bệnh án</small>
 							<div class="row mt-2 mb-4">
-								<div class="col-lg-3">
+								<div class="col-lg-4">
 									<button class="btn btn-dark px-5" type="button"
 										onclick="displayAddForm('benh-an')" style="border-radius: 15px;"
 										th:if="${ketQuaTimKiem != null and ketQuaTimKiem != '0' and danhSachBenhAn == null}">Thêm
@@ -282,7 +282,7 @@ Bootstrap 5 Dashboard Admin Template
 								</div>
 							</div>
 
-							<form class="custom-form" th:action="@{/them-benh-an}" method="post" th:object="${benhAn}">
+							<form class="custom-form mb-4" th:action="@{/them-benh-an}" method="post" th:object="${benhAn}">
 								<div class="new-benh-an" id="add-benh-an-form">
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
@@ -321,9 +321,13 @@ Bootstrap 5 Dashboard Admin Template
 											<td scope="row" th:text="${ba.BacSi}"></td>
 											<td scope="row" th:text="${ba.getNgayKhamAsView}"></td>
 											<td scope="row" th:text="${ba.ChuanDoan}"></td>
-										</tr>
 									</tbody>
-								</table>
+								</table>	
+								<div class="d-flex justify-content-end" th:if="${page == 'tongQuat'}">
+									<button class="btn btn-dark px-5 " type="button"
+													onclick="displayAddForm('benh-an')" style="border-radius: 15px;"
+													th:if="${danhSachBenhAn != null}">Thêm bệnh án</button>
+								</div>
 							</div>
 						</div>
 
@@ -354,6 +358,33 @@ Bootstrap 5 Dashboard Admin Template
 							</div>
 							
 						</div>
+						<div class="custom-block custom-block-bottom d-flex flex-wrap" th:if="${page == 'benhNhan' or page == 'benhAn'}">
+                                <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
+                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button"
+													onclick="displayAddForm('benh-an')" style="border: 0; background: none;">
+                                        <i class="custom-block-icon fa-solid fa-plus"></i>
+
+                                        <p>Thêm</p>
+                                    </button>
+                                </div>
+                                <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
+                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button"
+													onclick="displayAddForm('benh-an')" style="border: 0; background: none;">
+                                        <i class="custom-block-icon fa-solid fa-xmark"></i>
+
+                                        <p>Xóa</p>
+                                    </button>
+                                </div>
+                                <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
+                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button"
+													onclick="displayAddForm('benh-an')" style="border: 0; background: none;">
+                                        <i class="custom-block-icon fa-solid fa-pen-to-square"></i>
+
+                                        <p>Sửa</p>
+                                    </button>
+                                </div>
+
+                        </div>
 
 					</div>
 				</div>

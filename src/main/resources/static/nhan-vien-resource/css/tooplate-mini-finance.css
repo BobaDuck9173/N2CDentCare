@@ -650,10 +650,10 @@ strong {
 .custom-block-icon {
   background: var(--secondary-color);
   border-radius: var(--border-radius-medium);
-  font-size: var(--h6-font-size);
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
+  font-size: 36px;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
   text-align: center;
   color: var(--dark-color);
   display: block;
@@ -670,6 +670,7 @@ strong {
 .custom-block p {
   color: var(--dark-color);
   margin-bottom: 0;
+  font-weight: 600;
 }
 
 .custom-block small {

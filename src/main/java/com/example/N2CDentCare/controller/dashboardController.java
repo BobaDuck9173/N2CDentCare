@@ -279,6 +279,8 @@ public class dashboardController {
 	    formTimBenhNhan(benhNhan, model);
 	    return "/nhan-vien/index";
 	}
+	
+	
 	@PostMapping("/sua-benh-an")
 	public String formSuaBenhAn(@ModelAttribute("benhAn") BenhAn benhAn, Model model, @RequestParam("MaBa") int MaBa, @ModelAttribute("benhNhan") BenhNhan benhNhan) {
 	    try {

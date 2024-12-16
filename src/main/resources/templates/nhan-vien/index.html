@@ -199,7 +199,7 @@ Bootstrap 5 Dashboard Admin Template
 				</div>
 
 				<div class="row my-4">
-					<div class="col-lg-9 col-12">
+					<div class="col-lg-8 col-12">
 
 						<div class="custom-block bg-white" th:if="${page != 'benhAn'}">
 							<h5 class="mb-1" th:text="${titlePanelInfo}">Lịch hẹn hôm
@@ -257,11 +257,10 @@ Bootstrap 5 Dashboard Admin Template
 									</thead>
 
 									<tbody>
-										<tr th:each="benhNhan : ${danhSachBenhNhan}"
-											style="cursor: pointer;">
-											<td scope="row" th:text="${benhNhan.HoTen}"></td>
-											<td scope="row" th:text="${benhNhan.getGioiTinhAsView}"></td>
-											<td scope="row" th:text="${benhNhan.Sdt}"></td>
+										<tr th:each="benhNhan : ${danhSachBenhNhan}" style="cursor: pointer;" th:id="${benhNhan.MaBn}" onclick="getBenhNhanInfo(this.id)">
+											<td scope="row" th:text="${benhNhan.HoTen}" th:id="'ten-benh-nhan-' + ${benhNhan.MaBn}"></td>
+											<td scope="row" th:text="${benhNhan.getGioiTinhAsView}" th:id="'gioi-tinh-benh-nhan-' + ${benhNhan.MaBn}"></td>
+											<td scope="row" th:text="${benhNhan.Sdt}" th:id="'sdt-benh-nhan-' + ${benhNhan.MaBn}"></td>
 										</tr>
 									</tbody>
 
@@ -317,23 +316,22 @@ Bootstrap 5 Dashboard Admin Template
 									</thead>
 
 									<tbody>
-										<tr th:each="ba : ${danhSachBenhAn}" style="cursor: pointer;">
+										<tr class="ps-3" th:each="ba : ${danhSachBenhAn}" style="cursor: pointer;">
 											<td scope="row" th:text="${ba.BenhNhan}"></td>
 											<td scope="row" th:text="${ba.BacSi}"></td>
 											<td scope="row" th:text="${ba.getNgayKhamAsView}"></td>
 											<td scope="row" th:text="${ba.ChuanDoan}"></td>
 										</tr>
 									</tbody>
-
 								</table>
 							</div>
 						</div>
 
 					</div>
 
-					<div class="col-lg-3 col-12">
+					<div class="col-lg-4 col-12">
 						<div
-							class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
+							class="custom-block custom-block-profile-front custom-block-profile bg-white">
 							<div class="custom-block-profile-image-wrap mb-4">
 								<img
 									src="/nhan-vien-resource/images/medium-shot-happy-man-smiling.jpg"
@@ -341,18 +339,20 @@ Bootstrap 5 Dashboard Admin Template
 									href="setting.html"
 									class="bi-pencil-square custom-block-edit-icon"></a>
 							</div>
-
-							<p class="d-flex flex-wrap mb-2">
-								<strong>Name:</strong> <span>Thomas Edison</span>
-							</p>
-
-							<p class="d-flex flex-wrap mb-2">
-								<strong>Email:</strong> <a href="#"> thomas@site.com </a>
-							</p>
-
-							<p class="d-flex flex-wrap mb-0">
-								<strong>Phone:</strong> <a href="#"> (60) 12 345 6789 </a>
-							</p>
+							<div class="d-flex flex-column justify-content-center">
+								<p class="d-flex flex-wrap mb-2">
+									<strong>Họ và tên:</strong> <span id="mini-panel-ten">Trần Văn Thử Nghiệm</span>
+								</p>
+	
+								<p class="d-flex flex-wrap mb-2">
+									<strong>Giới tính:</strong> <span id="mini-panel-gioi-tinh"> Nam </span>
+								</p>
+	
+								<p class="d-flex flex-wrap mb-0">
+									<strong>Số điện thoại:</strong> <span id="mini-panel-sdt"> 0888888888 </span>
+								</p>
+							</div>
+							
 						</div>
 
 					</div>

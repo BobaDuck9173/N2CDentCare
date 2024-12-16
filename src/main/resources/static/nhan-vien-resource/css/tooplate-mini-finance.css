@@ -825,14 +825,23 @@ strong {
   padding: 15px 10px;
 }
 
-.account-table thead {
+.account-table thead, .table-thead {
   background: var(--custom-btn-bg-color);
 }
 
 .account-table th,
-.account-table tr {
+.account-table tr{
   font-size: var(--btn-font-size);
   padding: 15px 10px;
+}
+
+.table-content{
+	padding: 12px 15px;
+}
+
+.table-content p{
+		font-size: 12px;
+	font-weight: bold;
 }
 
 .account-table th {
@@ -843,8 +852,12 @@ strong {
   font-weight: var(--font-weight-normal);
 }
 
-.account-table tbody tr:nth-child(odd) {
+.account-table tbody tr:nth-child(odd), .account-table a:nth-child(even) {
   background: var(--white-color);
+}
+
+.benh-nhan-info{
+	padding: 15px 10px;
 }
 
 .badge {

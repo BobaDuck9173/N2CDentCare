@@ -91,7 +91,7 @@ public class BenhNhan {
 		return "BenhNhan [MaBn=" + MaBn + ",HoTen=" + HoTen + ", GioiTinh=" + getGioiTinhAsView() + ", sdt=" + sdt + ", DiaChi=" + DiaChi + "]";
 	}
 	
-	public List<String> getTableColumnTitle(){
+	public static List<String> getTableColumnTitle(){
 		List<String> kq = new ArrayList<>();
 		kq.add("Họ và tên");
 		kq.add("Giới tính");

@@ -270,7 +270,7 @@ Bootstrap 5 Dashboard Admin Template
 						</div>
 
 						<div class="custom-block bg-white"
-							th:if="${page != 'benhNhan' and ketQuaTimKiem != null}">
+							th:if="${page != 'benhNhan' and ketQuaTimKiem != null or page =='benhAn'}">
 							<h5 class="mb-1">Danh sách bệnh án</h5>
 							<small class="text-muted m-1" th:if="${danhSachBenhAn == null}"
 								th:text="${benhAnResult}">Không có bệnh án</small>

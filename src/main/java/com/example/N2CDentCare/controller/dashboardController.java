@@ -121,6 +121,9 @@ public class dashboardController {
 		currentPage = "benhNhan";
 		model.addAttribute("page", "benhNhan");
 		model.addAttribute("pageTitle", "Quản lý bệnh nhân");
+		model.addAttribute("columnTitleFrst", BenhNhan.getTableColumnTitle());
+		List<BenhNhan> danhSach = benhNhanRepository.findAll();
+		model.addAttribute("danhSachBenhNhan", danhSach);
 		model.addAttribute("benhNhan", new BenhNhan());
 		model.addAttribute("danhSachBenhAn", null);
 		model.addAttribute("benhAn", new BenhAn());
@@ -137,7 +140,9 @@ public class dashboardController {
 		model.addAttribute("page", "benhAn");
 		model.addAttribute("pageTitle", "Quản lý bệnh án");
 		model.addAttribute("benhNhan", new BenhNhan());
-		model.addAttribute("danhSachBenhAn", null);
+		model.addAttribute("columnTitleScnd", ViewBenhAn.getTableColumnTitle());
+		List<ViewBenhAn> danhSach = viewBenhAnRepository.findAll();
+		model.addAttribute("danhSachBenhAn", danhSach);
 		model.addAttribute("benhAn", new BenhAn());
 		model.addAttribute("titlePanelInfo", "Danh sách bệnh án");
 		return "/nhan-vien/index";
@@ -151,19 +156,13 @@ public class dashboardController {
 		if (list.size() > 0) {
 			result = list.get(0);
 			model.addAttribute("ketQuaTimKiem", "1");
-			model.addAttribute("columnTitleFrst", result.getTableColumnTitle());
+			model.addAttribute("columnTitleFrst", BenhNhan.getTableColumnTitle());
 			model.addAttribute("danhSachBenhNhan", result);
 
 			List<ViewBenhAn> danhSachBenhAn = viewBenhAnRepository.findBySdt(benhNhan.getSdt());
 			if(danhSachBenhAn.size() > 0) {
 				model.addAttribute("danhSachBenhAn", danhSachBenhAn);
-				List<String> columnBenhAn = new ArrayList<>();
-				columnBenhAn.add("Bệnh nhân");
-				columnBenhAn.add("Bác sĩ");
-				columnBenhAn.add("Ngày khám");
-				columnBenhAn.add("Chuẩn đoán");
-				
-				model.addAttribute("columnTitleScnd", columnBenhAn);
+				model.addAttribute("columnTitleScnd", ViewBenhAn.getTableColumnTitle());
 			}
 			else {
 				model.addAttribute("danhSachBenhAn", null);

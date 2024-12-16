@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import com.example.N2CDentCare.repositories.ViewBenhAnRepository;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -204,7 +206,46 @@ public class dashboardController {
 		model.addAttribute("danhSachBenhNhan", kq);
 		return "/nhan-vien/index";
 	}
-	
+	@PostMapping("/xoa-benh-nhan")
+	public String formXoaBenhNhan(@RequestParam("MaBn") int MaBn, Model model) {
+	    try {
+	        if (benhNhanRepository.existsById(MaBn)) {
+	            benhNhanRepository.deleteById(MaBn); 
+	        } else {
+	            model.addAttribute("message", "Không tìm thấy bệnh nhân với ID: " + MaBn);
+	        }
+	    } catch (Exception e) {
+	        model.addAttribute("error", "Đã xảy ra lỗi khi xóa bệnh nhân: " + e.getMessage());
+	    }
+	    
+	    List<BenhNhan> danhSachBenhNhan = benhNhanRepository.findAll();
+	    model.addAttribute("danhSachBenhNhan", danhSachBenhNhan);
+	    return "/nhan-vien/index";
+	}
+	@PostMapping("/sua-benh-nhan")
+	public String formSuaBenhNhan(@RequestParam("MaBn") int MaBn, @ModelAttribute("benhNhan") BenhNhan benhNhan, Model model) {
+	    try {
+	        Optional<BenhNhan> optionalBenhNhan = benhNhanRepository.findById(MaBn);
+	        if (optionalBenhNhan.isPresent()) {
+	            BenhNhan existingBenhNhan = optionalBenhNhan.get();
+
+	            existingBenhNhan.setHoTen(benhNhan.getHoTen());
+	            existingBenhNhan.setSdt(benhNhan.getSdt());
+	            existingBenhNhan.setGioiTinh(benhNhan.getGioiTinh());
+	            existingBenhNhan.setDiaChi(benhNhan.getDiaChi());
+
+	            benhNhanRepository.save(existingBenhNhan);
+	        } else {
+	            model.addAttribute("message", "Không tìm thấy bệnh nhân với ID: " + MaBn);
+	        }
+	    } catch (Exception e) {
+	        model.addAttribute("error", "Đã xảy ra lỗi khi cập nhật bệnh nhân: " + e.getMessage());
+	    }
+
+	    List<BenhNhan> danhSachBenhNhan = benhNhanRepository.findAll();
+	    model.addAttribute("danhSachBenhNhan", danhSachBenhNhan);
+	    return "/nhan-vien/index";
+	}
 	@PostMapping("/them-benh-an")
 	public String formThemBenhAn(@ModelAttribute("benhAn") BenhAn benhAn, Model model, @ModelAttribute("benhNhan") BenhNhan benhNhan) {
 		//TODO: process POST request
@@ -221,8 +262,48 @@ public class dashboardController {
 		return "/nhan-vien/index";
 	}
 	
+	
+	@PostMapping("/xoa-benh-an")
+	public String FormxoaBenhAn( @ModelAttribute("MaBa") int MaBa, Model model, @ModelAttribute("benhNhan") BenhNhan benhNhan) {
+	    try {
+	        if (benhAnRepository.existsById(MaBa)) {
+	            benhAnRepository.deleteById(MaBa); 
+	            model.addAttribute("message", "Xóa bệnh án thành công!");
+	        } else { 
+	            model.addAttribute("message", "Không tìm thấy bệnh án với ID: " + MaBa);
+	        }
+	    } catch (Exception e) {
+	        model.addAttribute("error", "Đã xảy ra lỗi khi xóa bệnh án: " + e.getMessage());
+	    }
+
+	    formTimBenhNhan(benhNhan, model);
+	    return "/nhan-vien/index";
+	}
+	@PostMapping("/sua-benh-an")
+	public String formSuaBenhAn(@ModelAttribute("benhAn") BenhAn benhAn, Model model, @RequestParam("MaBa") int MaBa, @ModelAttribute("benhNhan") BenhNhan benhNhan) {
+	    try {
+	        Optional<BenhAn> optionalBenhAn = benhAnRepository.findById(MaBa);
+	        if (optionalBenhAn.isPresent()) {
+	            BenhAn existingBenhAn = optionalBenhAn.get();
+
+	            existingBenhAn.setSdt(benhAn.getSdt());
+	            existingBenhAn.setChuanDoan(benhAn.getChuanDoan());
+	            existingBenhAn.setNgayKham(benhAn.getNgayKham());
+	            existingBenhAn.setMaBs(user.getId()); 
+
+	            benhAnRepository.save(existingBenhAn);
+	            model.addAttribute("message", "Cập nhật bệnh án thành công!");
+	        } else {
+	            model.addAttribute("message", "Không tìm thấy bệnh án với ID: " + MaBa);
+	        }
+	    } catch (Exception e) {
+	        model.addAttribute("error", "Đã xảy ra lỗi khi cập nhật bệnh án: " + e.getMessage());
+	    }
+
+	    formTimBenhNhan(benhNhan, model);
+	    return "/nhan-vien/index"; 
+	}
 	public static Account getUser() {
 		return user;
 	}
-	
 }

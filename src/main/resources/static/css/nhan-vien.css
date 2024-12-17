@@ -33,7 +33,7 @@
   box-shadow: 0 0 0;
 }
 
-.new-benh-nhan, .new-benh-an, .update-benh-nhan, .update-benh-an{
+.benh-nhan, .benh-an, .update-benh-nhan, .update-benh-an{
 	display: none;
 }
 

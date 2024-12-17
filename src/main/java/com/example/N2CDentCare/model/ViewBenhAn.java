@@ -114,7 +114,6 @@ public class ViewBenhAn {
 		columnBenhAn.add("Bác sĩ");
 		columnBenhAn.add("Ngày khám");
 		columnBenhAn.add("Chuẩn đoán");
-		columnBenhAn.add("Thao tác");
 		
 		return columnBenhAn;
 	}

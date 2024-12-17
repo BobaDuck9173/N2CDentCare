@@ -194,8 +194,6 @@ Bootstrap 5 Dashboard Admin Template
 				class="main-wrapper col-md-10 ms-sm-auto py-4 col-lg-10 px-md-4 border-start">
 				<div class="title-group mb-3">
 					<h1 class="h2 mb-0" th:text="${pageTitle}"></h1>
-
-					<!-- 					<h5 class="display-7 text-muted" th:if="${ketQuaTimKiem == null && page != 'overeview'}">welcome back!</h5> -->
 				</div>
 
 				<div class="row my-4">
@@ -210,23 +208,29 @@ Bootstrap 5 Dashboard Admin Template
 							<div class="row mt-2 mb-4">
 								<div class="col-lg-3">
 									<button class="btn btn-dark px-5" type="button"
-										onclick="displayAddForm('benh-nhan')" style="border-radius: 15px;"
+										onclick="insertBenhNhan()" style="border-radius: 15px;"
 										th:if="${ketQuaTimKiem == '0'}" >Tạo hồ sơ</button>
 								</div>
 							</div>
 
-							<form class="custom-form mb-4" th:action="@{/them-benh-nhan}" method="post" th:object="${benhNhan}">
-								<div class="new-benh-nhan" id="add-benh-nhan-form">
+							<form class="custom-form mb-4" th:action="@{/xu-ly-benh-nhan}" method="post" th:object="${benhNhan}">
+								<div class="benh-nhan" id="benh-nhan-form">
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<input class="form-control" type="text"
 												placeholder="Họ và tên" th:field="*{HoTen}" id="input-benh-nhan-ten">
+											<input class="form-control" type="text"
+ 												th:field="*{maBn}"  id="input-benh-nhan-id" 
+ 												style="position: absolute; z-index: -1; visibility: hidden;">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<input class="form-control" type="number"
 												placeholder="Số điện thoại" th:field="*{sdt}"  id="input-benh-nhan-sdt">
+											<input class="form-control" type="number"
+ 												th:field="*{sdtCu}"  id="input-benh-nhan-sdt-cu" 
+ 												style="position: absolute; z-index: -1; visibility: hidden;">
 										</div>
 									</div>
 									<div class="row px-2 mb-4">
@@ -240,43 +244,7 @@ Bootstrap 5 Dashboard Admin Template
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<button class="btn btn-dark px-5" type="submit"
-												style="border-radius: 15px;" id="btn-add-benhnhan">Tạo hồ sơ</button>
-										</div>
-									</div>
-								</div>
-							</form>
-							<form class="custom-form mb-4" th:action="@{/sua-benh-nhan}" method="post" th:object="${benhNhanUpdate}">
-								<div class="update-benh-nhan" id="update-benh-nhan-form">
-									<div class="row">
-										<div class="col-md-6 col-lg-6">
-											<input class="form-control" type="text"
-												placeholder="Họ và tên" th:field="*{HoTen}" id="update-benh-nhan-ten">
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6 col-lg-6">
-											<input class="form-control" type="number"
-												placeholder="Số điện thoại" th:field="*{sdt}"  id="update-benh-nhan-sdt">
-										</div>
-									</div>
-									<div class="row" style="position: absolute; z-index: -1; visibility: hidden;">
-										<div class="col-md-6 col-lg-6">
-											<input class="form-control" type="number"
-												placeholder="Số điện thoại" th:field="*{sdtCu}"  id="update-benh-nhan-sdt-cu" >
-										</div>
-									</div>
-									<div class="row px-2 mb-4">
-										<div class="col-md-6 col-lg-6">
-											<input type="radio" name="gioitinh" th:field="*{GioiTinh}"
-												th:value="false"> Nam <input class="ms-5"
-												type="radio" name="gioitinh" th:field="*{GioiTinh}"
-												th:value="true"> Nữ
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6 col-lg-6">
-											<button class="btn btn-dark px-5" type="submit"
-												style="border-radius: 15px;" id="btn-update-benh-nhan">Sửa hồ sơ</button>
+												style="border-radius: 15px;" id="btn-benh-nhan">Tạo hồ sơ</button>
 										</div>
 									</div>
 								</div>
@@ -287,21 +255,24 @@ Bootstrap 5 Dashboard Admin Template
 								<table class="account-table table">
 									<thead>
 										<tr>
-											<th scope="col" th:each="ct : ${columnTitleFrst}"
-												th:text="${ct}"></th>
+											<th scope="col" th:each="ct, index : ${columnTitleFrst}" th:text="${ct}"></th>
+											<th scope="col" class="d-flex justify-content-center">Thao tác</th>
 										</tr>
 									</thead>
 
 									<tbody>
-										<tr th:each="benhNhan : ${danhSachBenhNhan}" style="cursor: pointer;" th:id="${benhNhan.MaBn}" onclick="getBenhNhanInfo(this.id)">
-											<td scope="row" th:text="${benhNhan.HoTen}" th:id="'ten-benh-nhan-' + ${benhNhan.MaBn}"></td>
-											<td scope="row" th:text="${benhNhan.getGioiTinhAsView}" th:id="'gioi-tinh-benh-nhan-' + ${benhNhan.MaBn}"></td>
-											<td scope="row" th:text="${benhNhan.Sdt}" th:id="'sdt-benh-nhan-' + ${benhNhan.MaBn}"></td>
-											<td scope="row" th:value="${benhNhan.MaBn}"> 
-												<form th:action="@{/xoa-benh-nhan}" method="post">
-												      <input type="hidden" name="MaBn" th:value="${benhNhan.MaBn}" />
-												      <button type="submit" class="btn btn-danger" style="border-radius: 15px;">Xóa</button>
+										<tr th:each="benhNhan : ${danhSachBenhNhan}" th:id="${benhNhan.maBn}">
+											<td scope="row" th:text="${benhNhan.HoTen}" th:id="'ten-benh-nhan-' + ${benhNhan.maBn}"></td>
+											<td scope="row" th:text="${benhNhan.getGioiTinhAsView}" th:id="'gioi-tinh-benh-nhan-' + ${benhNhan.maBn}"></td>
+											<td scope="row" th:text="${benhNhan.Sdt}" th:id="'sdt-benh-nhan-' + ${benhNhan.maBn}"></td>
+											<td scope="row" class="d-flex flex-row justify-content-center"> 
+												<form th:action="@{/xoa-benh-nhan}" method="post" class="pe-2">
+												      <input type="hidden" name="maBn" th:value="${benhNhan.maBn}" />
+												      <button type="submit" class="btn btn-danger" style="border-radius: 15px; font-size: 12px;">Xóa</button>
 												</form>
+
+												<button class="btn btn-dark" name="editBenhNhan" style="border-radius: 15px; font-size: 12px; background-color: rgb(30, 53, 150);" 
+												th:attr="onclick=|updateBenhNhan('${benhNhan.maBn}')|">Sửa</button>
 											</td>
 										</tr>
 									</tbody>
@@ -313,71 +284,46 @@ Bootstrap 5 Dashboard Admin Template
 						<div class="custom-block bg-white"
 							th:if="${page != 'benhNhan' and ketQuaTimKiem != null or page =='benhAn'}">
 							<h5 class="mb-1">Danh sách bệnh án</h5>
-							<small class="text-muted m-1" th:if="${danhSachBenhAn == null}"
+							<small class="text-muted m-1" th:if="${benhAnResult != null}"
 								th:text="${benhAnResult}">Không có bệnh án</small>
 							<div class="row mt-2 mb-4">
 								<div class="col-lg-4">
 									<button class="btn btn-dark px-5" type="button"
 										onclick="displayAddForm('benh-an')" style="border-radius: 15px;"
-										th:if="${ketQuaTimKiem != null and ketQuaTimKiem != '0' and danhSachBenhAn == null}">Thêm
-										bệnh án</button>
+										th:if="${ketQuaTimKiem != null and ketQuaTimKiem != '0' and danhSachBenhAn == null}">Thêm bệnh án</button>
 								</div>
 							</div>
 
-							<form class="custom-form mb-4" th:action="@{/them-benh-an}" method="post" th:object="${benhAn}">
-								<div class="new-benh-an" id="add-benh-an-form">
+							<form class="custom-form mb-4" th:action="@{/xu-ly-benh-an}" method="post" th:object="${benhAn}">
+								<div class="benh-an" id="benh-an-form">
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
-											<input class="form-control" type="number"
-												placeholder="Số điện thoại" th:field="*{sdt}">
+											<input class="form-control" type="number" placeholder="Số điện thoại" th:field="*{sdt}" id="input-benh-an-sdt">
+											<input class="form-control" type="number" th:field="*{sdtCu}" id="input-benh-an-sdt-cu"
+																		style="position: absolute; z-index: -1; visibility: hidden;">
+											<input class="form-control" type="text"
+ 												th:field="*{maBa}"  id="input-benh-an-id" 
+ 												style="position: absolute; z-index: -1; visibility: hidden;">
+										</div>
+									</div>
+									<div class="row" id="benh-an-input-date-row" style="display: none;">
+										<div class="col-md-6 col-lg-6">
+											<input class="form-control" type="date" id="input-benh-an-ngay" onchange="pickDate()" 
+																		style="z-index: -1; position: absolute;">
+											<input class="form-control" type="text" placeholder="bấm để chọn ngày" th:field="*{NgayKham}" onclick="showDatePicker()" id="input-benh-an-ngay-value" 
+																		style="z-index: 0; position: relative;"> 
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<input class="form-control" type="text"
-												placeholder="Chuẩn đoán" th:field="*{ChuanDoan}">
+												placeholder="Chuẩn đoán" th:field="*{ChuanDoan}" id="input-benh-an-chuan-doan">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<button class="btn btn-dark px-5" type="submit"
-												style="border-radius: 15px;">Thêm bệnh án</button>
-										</div>
-									</div>
-								</div>
-							</form>
-							<form class="custom-form mb-4" th:action="@{/sua-benh-an}" method="post" th:object="${benhAnUpdate}">
-								<div class="update-benh-an" id="update-benh-an-form">
-									<div class="row">
-										<div class="col-md-6 col-lg-6">
-											<input class="form-control" type="number"
-												placeholder="Số điện thoại" th:field="*{sdt}" id="update-benh-an-sdt">
-											<input class="form-control" type="number" th:field="*{maBa}" id="update-benh-an-id" style="z-index: -1; position: absolute;">
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6 col-lg-6">
-											<input class="form-control" type="date" id="update-benh-an-ngay" onchange="pickDate()" style="z-index: -1; position: absolute;">
-											<input class="form-control" type="text" placeholder="00/00/0000" th:field="*{NgayKham}" onclick="showDatePicker()" id="update-benh-an-ngay-value" style="z-index: 0; position: relative;"> 
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6 col-lg-6">
-											<input class="form-control" type="text"
-												placeholder="Chuẩn đoán" th:field="*{ChuanDoan}" id="update-benh-an-chuan-doan">
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-md-6 col-lg-6" style="position: absolute; z-index: -1; visibility: hidden;">
-											<input class="form-control" type="number"
-												placeholder="Số điện thoại" th:field="*{sdtCu}" id="update-benh-an-sdt-cu">
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6 col-lg-6">
-											<button class="btn btn-dark px-5" type="submit"
-												style="border-radius: 15px;" id="btn-update-benh-an" onclick="showDatePicker()">Sửa bệnh án</button>
+												style="border-radius: 15px;" id="btn-benh-an">Thêm bệnh án</button>
 										</div>
 									</div>
 								</div>
@@ -388,28 +334,33 @@ Bootstrap 5 Dashboard Admin Template
 								<table class="account-table table">
 									<thead>
 										<tr>
-											<th scope="col" th:each="ct : ${columnTitleScnd}"
-												th:text="${ct}"></th>
+											<th scope="col" th:each="ct : ${columnTitleScnd}" th:text="${ct}"></th>
+											<th scope="col" class="d-flex justify-content-center">Thao tác</th>
+												
 										</tr>
 									</thead>
 
 									<tbody>
-										<tr class="ps-3" th:each="ba, stat: ${danhSachBenhAn}" style="cursor: pointer;" th:id="${ba.sdt} + '/' + ${ba.id}" onclick="getBenhAnInfo(this.id)">
+										<tr class="ps-3" th:each="ba : ${danhSachBenhAn}">
 											<td scope="row" th:text="${ba.BenhNhan}" th:id="'benh-an-ten-' + ${ba.id}"></td>
 											<td scope="row" th:text="${ba.BacSi}" th:id="'benh-an-bac-si-' + ${ba.id}"></td>
 											<td scope="row" th:text="${ba.getNgayKhamAsView}" th:id="'benh-an-ngay-' + ${ba.id}"></td>
 											<td scope="row" th:text="${ba.ChuanDoan}" th:id="'benh-an-chuan-doan-' + ${ba.id}"></td>
-											<td scope="row" th:value="${ba.id}"> 
-												<form th:action="@{/xoa-benh-an}" method="post">
+											<td scope="row" class="d-flex flex-row justify-content-center"> 
+												<form th:action="@{/xoa-benh-an}" method="post" class="pe-2">
 												      <input type="hidden" name="MaBa" th:value="${ba.id}" />
-												      <button type="submit" class="btn btn-danger" style="border-radius: 15px;">Xóa</button>
+												      <button type="submit" class="btn btn-danger" style="border-radius: 15px; font-size: 12px;">Xóa</button>
 												</form>
+												
+												 <button th:id="${ba.sdt} + '/' + ${ba.id}" type="submit" class="btn btn-dark" style="border-radius: 15px; font-size: 12px; background-color: rgb(30, 53, 150);" 
+												      					onclick="updateBenhAn(this.id)">Sửa</button>
 											</td>
+										</tr>
 									</tbody>
 								</table>	
 								<div class="d-flex justify-content-end" th:if="${page == 'tongQuat'}">
 									<button class="btn btn-dark px-5 " type="button"
-													onclick="displayAddForm('benh-an')" style="border-radius: 15px;"
+													onclick="insertBenhAn()" style="border-radius: 15px;"
 													th:if="${danhSachBenhAn != null}">Thêm bệnh án</button>
 								</div>
 							</div>
@@ -418,77 +369,55 @@ Bootstrap 5 Dashboard Admin Template
 					</div>
 
 					<div class="col-lg-4 col-12">
-						<div
-							class="custom-block custom-block-profile-front custom-block-profile bg-white">
-							<div class="custom-block-profile-image-wrap mb-4">
-								<img
-									src="/nhan-vien-resource/images/medium-shot-happy-man-smiling.jpg"
-									class="custom-block-profile-image img-fluid" alt=""> <a
-									href="setting.html"
-									class="bi-pencil-square custom-block-edit-icon"></a>
-							</div>
-							<div class="d-flex flex-column justify-content-center" th:if="${page == 'benhNhan'}">
-								<p class="d-flex flex-wrap mb-2">
-									<strong>Họ và tên:</strong> <span id="mini-panel-ten">Trần Văn Thử Nghiệm</span>
-								</p>
+<!-- 						<div -->
+<!-- 							class="custom-block custom-block-profile-front custom-block-profile bg-white"> -->
+<!-- 							<div class="custom-block-profile-image-wrap mb-4"> -->
+<!-- 								<img -->
+<!-- 									src="/nhan-vien-resource/images/medium-shot-happy-man-smiling.jpg" -->
+<!-- 									class="custom-block-profile-image img-fluid" alt=""> <a -->
+<!-- 									href="setting.html" -->
+<!-- 									class="bi-pencil-square custom-block-edit-icon"></a> -->
+<!-- 							</div> -->
+<!-- 							<div class="d-flex flex-column justify-content-center" th:if="${page == 'benhNhan'}"> -->
+<!-- 								<p class="d-flex flex-wrap mb-2"> -->
+<!-- 									<strong>Họ và tên:</strong> <span id="mini-panel-ten">Trần Văn Thử Nghiệm</span> -->
+<!-- 								</p> -->
 	
-								<p class="d-flex flex-wrap mb-2">
-									<strong>Giới tính:</strong> <span id="mini-panel-gioi-tinh"> Nam </span>
-								</p>
+<!-- 								<p class="d-flex flex-wrap mb-2"> -->
+<!-- 									<strong>Giới tính:</strong> <span id="mini-panel-gioi-tinh"> Nam </span> -->
+<!-- 								</p> -->
 	
-								<p class="d-flex flex-wrap mb-0">
-									<strong>Số điện thoại:</strong> <span id="mini-panel-sdt"> 0888888888 </span>
-								</p>
-							</div>
-							<div class="d-flex flex-column justify-content-center" th:if="${page == 'benhAn'}">
-								<p class="d-flex flex-wrap mb-2"  style="position: absolute; z-index: -1; visibility: hidden;">
-									<strong>Số điện thoại:</strong> <span id="mini-panel-id-ba">Trần Văn Thử Nghiệm</span>
-								</p>
-								<p class="d-flex flex-wrap mb-2"  style="position: absolute; z-index: -1; visibility: hidden;">
-									<strong>Số điện thoại:</strong> <span id="mini-panel-sdt-ba">Trần Văn Thử Nghiệm</span>
-								</p>
-								<p class="d-flex flex-wrap mb-2">
-									<strong>Họ và tên:</strong> <span id="mini-panel-ten-bn">Trần Văn Thử Nghiệm</span>
-								</p>
-								<p class="d-flex flex-wrap mb-2">
-									<strong>Bác sĩ:</strong> <span id="mini-panel-bac-si"> Nam </span>
-								</p>
+<!-- 								<p class="d-flex flex-wrap mb-0"> -->
+<!-- 									<strong>Số điện thoại:</strong> <span id="mini-panel-sdt"> 0888888888 </span> -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 							<div class="d-flex flex-column justify-content-center" th:if="${page == 'benhAn'}"> -->
+<!-- 								<p class="d-flex flex-wrap mb-2"> -->
+<!-- 									<strong>Họ và tên:</strong> <span id="mini-panel-ten-bn">Trần Văn Thử Nghiệm</span> -->
+<!-- 								</p> -->
+<!-- 								<p class="d-flex flex-wrap mb-2"> -->
+<!-- 									<strong>Bác sĩ:</strong> <span id="mini-panel-bac-si"> Nam </span> -->
+<!-- 								</p> -->
 	
-								<p class="d-flex flex-wrap mb-2">
-									<strong>Ngày khám:</strong> <span id="mini-panel-ngay"> 00/00/0000 </span>
-								</p>
-								<p class="d-flex flex-wrap mb-0">
-									<strong>Chuẩn đoán: </strong> <span id="mini-panel-chuan-doan" style="word-wrap: break-word;"> 005675tyuutyu676868788uyutuádasadadaasdâaaaaaaaaaaaaaaaaaaaaaaa </span>
-								</p>
-							</div>
-							
-						</div>
+<!-- 								<p class="d-flex flex-wrap mb-2"> -->
+<!-- 									<strong>Ngày khám:</strong> <span id="mini-panel-ngay"> 00/00/0000 </span> -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+						
 						<div class="custom-block custom-block-bottom d-flex flex-wrap" th:if="${page == 'benhNhan' or page == 'benhAn'}">
                                 <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
-                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" onclick="displayAddForm('benh-nhan')" style="border: 0; background: none;" th:if="${page == 'benhNhan'}">
+                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" onclick="insertBenhNhan()" style="border: 0; background: none;" th:if="${page == 'benhNhan'}">
                                         <i class="custom-block-icon fa-solid fa-plus"></i>
 
-                                        <p>Thêm</p>
+                                        <p>Thêm bệnh nhân</p>
                                     </button>
-                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" onclick="displayAddForm('benh-an')" style="border: 0; background: none;" th:if="${page == 'benhAn'}">
+                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" onclick="insertBenhAn()" style="border: 0; background: none;" th:if="${page == 'benhAn'}">
                                         <i class="custom-block-icon fa-solid fa-plus"></i>
 
-                                        <p>Thêm</p>
+                                        <p>Thêm bệnh án</p>
                                     </button>
                                 </div>
-                                <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
-                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" 	onclick="suaBenhNhan()" style="border: 0; background: none;" th:if="${page == 'benhNhan'}">
-                                        <i class="custom-block-icon fa-solid fa-pen-to-square"></i>
-
-                                        <p>Sửa</p>
-                                    </button>
-                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" 	onclick="suaBenhAn()" style="border: 0; background: none;" th:if="${page == 'benhAn'}">
-                                        <i class="custom-block-icon fa-solid fa-pen-to-square"></i>
-
-                                        <p>Sửa</p>
-                                    </button>
-                                </div>
-
                         </div>
 
 					</div>

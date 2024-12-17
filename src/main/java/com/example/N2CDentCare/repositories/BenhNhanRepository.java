@@ -12,4 +12,7 @@ public interface BenhNhanRepository extends JpaRepository<BenhNhan, Integer>{
 	
 	List<BenhNhan> findBySdt(String sdt);
 	
+	boolean existsBySdt(String sdt);
+	
+	List<BenhNhan> findByMaBn(int maBn);
 }

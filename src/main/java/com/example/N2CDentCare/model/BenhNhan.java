@@ -12,7 +12,7 @@ public class BenhNhan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MaBn", columnDefinition = "AUTO_INCREMENT")
-	private int MaBn;
+	private int maBn;
 	
 	@Column(name = "HoTen")
 	private String HoTen;
@@ -38,11 +38,11 @@ public class BenhNhan {
 	}
 
 	public int getMaBn() {
-		return MaBn;
+		return maBn;
 	}
 
 	public void setMaBn(int maBn) {
-		MaBn = maBn;
+		this.maBn = maBn;
 	}
 
 	public String getHoTen() {
@@ -98,7 +98,7 @@ public class BenhNhan {
 
 	@Override
 	public String toString() {
-		return "BenhNhan [MaBn=" + MaBn + ",HoTen=" + HoTen + ", GioiTinh=" + getGioiTinhAsView() + ", sdt=" + sdt + ", DiaChi=" + DiaChi + "]";
+		return "BenhNhan [MaBn=" + maBn + ",HoTen=" + HoTen + ", GioiTinh=" + getGioiTinhAsView() + ", sdt=" + sdt + ", DiaChi=" + DiaChi + "]";
 	}
 	
 	public static List<String> getTableColumnTitle(){
@@ -106,7 +106,6 @@ public class BenhNhan {
 		kq.add("Họ và tên");
 		kq.add("Giới tính");
 		kq.add("Số điện thoại");
-		kq.add("Thao tác");
 
 		return kq;
 	}

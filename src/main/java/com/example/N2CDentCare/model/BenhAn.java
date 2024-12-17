@@ -9,7 +9,7 @@ public class BenhAn {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MaBa", columnDefinition = "AUTO_INCREMENT")
-	private int MaBa;
+	private int maBa;
 	
 	@Column(name = "sdtBenhNhan")
 	private String sdt;
@@ -22,13 +22,24 @@ public class BenhAn {
 	
 	@Column(name = "ChuanDoan")
 	private String ChuanDoan;
+	
+	@jakarta.persistence.Transient
+	private String sdtCu;
+	
+	public String getSdtCu() {
+		return sdtCu;
+	}
+
+	public void setSdtCu(String sdtCu) {
+		this.sdtCu = sdtCu;
+	}
 
 	public int getMaBa() {
-		return MaBa;
+		return maBa;
 	}
 
 	public void setMaBa(int maBa) {
-		MaBa = maBa;
+		this.maBa = maBa;
 	}
 
 	public String getSdt() {
@@ -78,7 +89,7 @@ public class BenhAn {
 
 	@Override
 	public String toString() {
-		return "BenhAn [MaBa=" + MaBa + ", Sdt=" + sdt + ", MaBs=" + MaBs + ", NgayKham=" + NgayKham + ", ChuanDoan="
+		return "BenhAn [MaBa=" + this.maBa + ", Sdt=" + sdt + ", MaBs=" + MaBs + ", NgayKham=" + NgayKham + ", ChuanDoan="
 				+ ChuanDoan + "]";
 	}
 

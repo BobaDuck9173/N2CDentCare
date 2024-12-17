@@ -9,6 +9,17 @@ import jakarta.persistence.*;
 @Table(name = "view_benh_an")
 public class ViewBenhAn {
 	@Id
+	@Column(name = "Id")
+	private String id;
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Column(name = "SDT")
 	private String sdt;
 	

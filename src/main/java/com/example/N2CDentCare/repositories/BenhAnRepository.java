@@ -14,4 +14,6 @@ public interface BenhAnRepository extends JpaRepository<BenhAn, Integer>{
 	List<BenhAn> findAll();
 	
 	List<BenhAn> findBySdt(String sdt);
+	
+	List<BenhAn> findByMaBa(int maBa);
 }

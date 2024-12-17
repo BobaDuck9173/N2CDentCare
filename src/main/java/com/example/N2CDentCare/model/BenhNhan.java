@@ -106,6 +106,8 @@ public class BenhNhan {
 		kq.add("Họ và tên");
 		kq.add("Giới tính");
 		kq.add("Số điện thoại");
+		kq.add("Thao tác");
+
 		return kq;
 	}
 }

@@ -226,15 +226,15 @@ public class dashboardController {
 	    try {
 	        if (benhNhanRepository.existsById(MaBn)) {
 	            benhNhanRepository.deleteById(MaBn); 
+	    	    model.addAttribute("benhNhanResult", "Xóa bệnh nhân thành công");
 	        } else {
-	            model.addAttribute("message", "Không tìm thấy bệnh nhân với ID: " + MaBn);
+	            model.addAttribute("benhNhanResult", "Không tìm thấy bệnh nhân với ID: " + MaBn);
 	        }
 	    } catch (Exception e) {
-	        model.addAttribute("error", "Đã xảy ra lỗi khi xóa bệnh nhân: " + e.getMessage());
+	        model.addAttribute("benhNhanResult", "Bệnh nhân có bệnh án, không thể xóa");
 	    }
 	    
 	    trangQuanLyBenhNhan(model);
-	    model.addAttribute("benhNhanResult", "Xóa bệnh nhân thành công");
 	    return "/nhan-vien/index";
 	}
 	

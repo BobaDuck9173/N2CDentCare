@@ -297,7 +297,7 @@ Bootstrap 5 Dashboard Admin Template
 											<td scope="row" th:text="${benhNhan.HoTen}" th:id="'ten-benh-nhan-' + ${benhNhan.MaBn}"></td>
 											<td scope="row" th:text="${benhNhan.getGioiTinhAsView}" th:id="'gioi-tinh-benh-nhan-' + ${benhNhan.MaBn}"></td>
 											<td scope="row" th:text="${benhNhan.Sdt}" th:id="'sdt-benh-nhan-' + ${benhNhan.MaBn}"></td>
-											<td scope="row"  name="MaBn" th:value="${benhNhan.MaBn}"> 
+											<td scope="row" th:value="${benhNhan.MaBn}"> 
 												<form th:action="@{/xoa-benh-nhan}" method="post">
 												      <input type="hidden" name="MaBn" th:value="${benhNhan.MaBn}" />
 												      <button type="submit" class="btn btn-danger" style="border-radius: 15px;">Xóa</button>
@@ -399,6 +399,12 @@ Bootstrap 5 Dashboard Admin Template
 											<td scope="row" th:text="${ba.BacSi}" th:id="'benh-an-bac-si-' + ${ba.id}"></td>
 											<td scope="row" th:text="${ba.getNgayKhamAsView}" th:id="'benh-an-ngay-' + ${ba.id}"></td>
 											<td scope="row" th:text="${ba.ChuanDoan}" th:id="'benh-an-chuan-doan-' + ${ba.id}"></td>
+											<td scope="row" th:value="${ba.id}"> 
+												<form th:action="@{/xoa-benh-an}" method="post">
+												      <input type="hidden" name="MaBa" th:value="${ba.id}" />
+												      <button type="submit" class="btn btn-danger" style="border-radius: 15px;">Xóa</button>
+												</form>
+											</td>
 									</tbody>
 								</table>	
 								<div class="d-flex justify-content-end" th:if="${page == 'tongQuat'}">
@@ -469,35 +475,6 @@ Bootstrap 5 Dashboard Admin Template
 
                                         <p>Thêm</p>
                                     </button>
-                                </div>
-                                <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
-                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" onclick="xoaBenhNhan()" style="border: 0; background: none;" th:if="${page == 'benhNhan'}">
-                                        <i class="custom-block-icon fa-solid fa-xmark"></i>
-
-                                        <p>Xóa</p>
-                                    </button>
-                                    <button class="d-flex flex-column justify-content-center align-items-center" type="button" onclick="xoaBenhAn()" style="border: 0; background: none;" th:if="${page == 'benhAn'}">
-                                        <i class="custom-block-icon fa-solid fa-xmark"></i>
-
-                                        <p>Xóa</p>
-                                    </button>
-<!--                                     <form class="custom-form mb-4" th:action="@{/xoa-benh-nhan}" method="post" th:object="${benhNhanDelete}" -->
-<!--                                      style="display: content; position: absolute; z-index: -1; visibility: hidden;"> -->
-<!-- 										<div class="delete-benh-nhan"> -->
-<!-- 											<div class="row"> -->
-<!-- 												<div class="col-md-6 col-lg-6"> -->
-<!-- 													<input class="form-control" type="number" -->
-<!-- 														placeholder="Số điện thoại" th:field="*{sdt}" id="delete-benh-nhan-sdt"> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
-<!-- 											<div class="row"> -->
-<!-- 												<div class="col-md-6 col-lg-6"> -->
-<!-- 													<button class="btn btn-dark px-5" type="submit" -->
-<!-- 														style="border-radius: 15px;" id="btn-delete-benh-nhan">Xóa</button> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
-<!-- 										</div> -->
-<!-- 									</form> -->
                                 </div>
                                 <div class="custom-block-bottom-item d-flex flex-column justify-content-center">
                                     <button class="d-flex flex-column justify-content-center align-items-center" type="button" 	onclick="suaBenhNhan()" style="border: 0; background: none;" th:if="${page == 'benhNhan'}">

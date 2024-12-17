@@ -222,23 +222,22 @@ public class dashboardController {
 		return "/nhan-vien/index";
 	}
 	@PostMapping("/xoa-benh-nhan")
-	public String formXoaBenhNhan(@ModelAttribute("benhNhanDelete") BenhNhan benhNhanDelete, Model model) {
+	public String formXoaBenhNhan(@RequestParam("MaBn") int MaBn, Model model) {
 	    try {
-	    	List<BenhNhan> deleteData = benhNhanRepository.findBySdt(benhNhanDelete.getSdt());
-	        if (deleteData.size() > 0) {
-	        	BenhNhan delete = deleteData.get(0);
-	            benhNhanRepository.deleteById(delete.getMaBn()); 
+	        if (benhNhanRepository.existsById(MaBn)) {
+	            benhNhanRepository.deleteById(MaBn); 
 	        } else {
-	            model.addAttribute("benhNhanResult", "Không tìm thấy bệnh nhân với SDT: " + benhNhanDelete.getSdt());
+	            model.addAttribute("message", "Không tìm thấy bệnh nhân với ID: " + MaBn);
 	        }
 	    } catch (Exception e) {
-	        model.addAttribute("benhNhanResult", "Đã xảy ra lỗi khi xóa bệnh nhân: " + e.getMessage());
+	        model.addAttribute("error", "Đã xảy ra lỗi khi xóa bệnh nhân: " + e.getMessage());
 	    }
 	    
 	    trangQuanLyBenhNhan(model);
 	    model.addAttribute("benhNhanResult", "Xóa bệnh nhân thành công");
 	    return "/nhan-vien/index";
 	}
+	
 	@PostMapping("/sua-benh-nhan")
 	public String formSuaBenhNhan(@ModelAttribute("benhNhan") BenhNhan benhNhanUpdate, Model model) {
 	    try {

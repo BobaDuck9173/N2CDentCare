@@ -297,6 +297,14 @@ Bootstrap 5 Dashboard Admin Template
 											<td scope="row" th:text="${benhNhan.HoTen}" th:id="'ten-benh-nhan-' + ${benhNhan.MaBn}"></td>
 											<td scope="row" th:text="${benhNhan.getGioiTinhAsView}" th:id="'gioi-tinh-benh-nhan-' + ${benhNhan.MaBn}"></td>
 											<td scope="row" th:text="${benhNhan.Sdt}" th:id="'sdt-benh-nhan-' + ${benhNhan.MaBn}"></td>
+											<td scope="row"  name="MaBn" th:value="${benhNhan.MaBn}"> 
+											<form th:action="@{/xoa-benh-nhan}" method="post">
+               									 <input type="hidden" name="MaBn" th:value="${benhNhan.MaBn}" />
+                								<button type="submit" class="btn btn-danger" style="border-radius: 15px;">
+                    											Xóa
+                								</button>
+            									</form>
+											</td>
 										</tr>
 									</tbody>
 

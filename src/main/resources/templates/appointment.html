@@ -250,8 +250,8 @@
 								</div>
 								<div class="col-12 col-sm-6">
 									<select class="form-select bg-light border-0"
-										 style="height: 55px;">
-										<option selected disabled>Chọn khung giờ</option>
+										th:field="*{GioKham}" style="height: 55px;">
+										<!-- 										<option selected disabled>Chọn khung giờ</option> -->
 										<option th:each="giolamviec : ${glvlist}"
 											th:value="${giolamviec.MaGio}"
 											th:text="${giolamviec.KhungGio}"></option>

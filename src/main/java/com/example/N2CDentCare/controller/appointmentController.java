@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.N2CDentCare.model.Account;
+import com.example.N2CDentCare.model.DatLich;
 import com.example.N2CDentCare.model.Dichvu;
 import com.example.N2CDentCare.model.Doctor;
 import com.example.N2CDentCare.model.GioLamViec;
+import com.example.N2CDentCare.repositories.DatLichRepository;
 import com.example.N2CDentCare.repositories.DichvuRepository;
 import com.example.N2CDentCare.repositories.DoctorRepository;
 import com.example.N2CDentCare.repositories.GioLamViecRepository;
@@ -29,6 +33,9 @@ public class appointmentController {
 	@Autowired
 	GioLamViecRepository gioLamViecRepository;
 	
+	@Autowired
+	DatLichRepository datLichRepository;
+	
 	@GetMapping("/dat-lich")
 	public String getDichvu(Model model){
 		List<Dichvu> list = dichvuRepository.findAll();
@@ -44,5 +51,15 @@ public class appointmentController {
 		model.addAttribute("user", user);
 		System.out.println(user);
 		return "appointment";
+	}
+	@PostMapping("/dat-lich")
+	public String datLichKham(@ModelAttribute("datLich") DatLich datLich, Model model) {
+	    try {
+	        datLichRepository.save(datLich);
+	        model.addAttribute("message", "Đặt lịch khám thành công!");
+	    } catch (Exception e) {
+	        model.addAttribute("error", "Đã xảy ra lỗi khi đặt lịch khám: " + e.getMessage());
+	    }
+	    return "appointment";
 	}
 }

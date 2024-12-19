@@ -13,7 +13,7 @@ public class DatLich {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="MaDl")
-	private String MaDl;
+	private int  MaDl;
 	
 	@Column(name="MaBn")
 	private String MaBn;
@@ -27,7 +27,7 @@ public class DatLich {
 	@Column(name="GhiChu")
 	private String GhiChu;
 
-	public DatLich(String maDl, String maBn, String ngayKham, String gioKham, String ghiChu) {
+	public DatLich(int maDl, String maBn, String ngayKham, String gioKham, String ghiChu) {
 		super();
 		MaDl = maDl;
 		MaBn = maBn;
@@ -40,11 +40,11 @@ public class DatLich {
 		super();
 	}
 
-	public String getMaDl() {
+	public int getMaDl() {
 		return MaDl;
 	}
 
-	public void setMaDl(String maDl) {
+	public void setMaDl(int maDl) {
 		MaDl = maDl;
 	}
 
@@ -78,6 +78,12 @@ public class DatLich {
 
 	public void setGhiChu(String ghiChu) {
 		GhiChu = ghiChu;
+	}
+
+	@Override
+	public String toString() {
+		return "DatLich [MaDl=" + MaDl + ", MaBn=" + MaBn + ", NgayKham=" + NgayKham + ", GioKham=" + GioKham
+				+ ", GhiChu=" + GhiChu + "]";
 	}
 	
 }

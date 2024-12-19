@@ -46,7 +46,8 @@ public class appointmentController {
 		
 		List<GioLamViec> glvList = gioLamViecRepository.findAll();
 		model.addAttribute("glvlist", glvList);
-		
+	
+		model.addAttribute("datLich", new DatLich());
 		user = dashboardController.getUser();
 		model.addAttribute("user", user);
 		System.out.println(user);
@@ -55,11 +56,20 @@ public class appointmentController {
 	@PostMapping("/dat-lich")
 	public String datLichKham(@ModelAttribute("datLich") DatLich datLich, Model model) {
 	    try {
+	    	 
 	        datLichRepository.save(datLich);
+	        model.addAttribute("notification", "success");
 	        model.addAttribute("message", "Đặt lịch khám thành công!");
 	    } catch (Exception e) {
-	        model.addAttribute("error", "Đã xảy ra lỗi khi đặt lịch khám: " + e.getMessage());
+	        model.addAttribute("notification", "error");
+	        model.addAttribute("message", "Đã xảy ra lỗi khi đặt lịch: " + e.getMessage());
 	    }
+
+	    // Load lại dữ liệu cần thiết để hiển thị form
+	    model.addAttribute("dichvus", dichvuRepository.findAll());
+	    model.addAttribute("doctors", doctorRepository.findAll());
+	    model.addAttribute("glvlist", gioLamViecRepository.findAll());
+
 	    return "appointment";
 	}
 }

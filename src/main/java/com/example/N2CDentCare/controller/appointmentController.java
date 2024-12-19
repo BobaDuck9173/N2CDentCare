@@ -50,26 +50,39 @@ public class appointmentController {
 		model.addAttribute("datLich", new DatLich());
 		user = dashboardController.getUser();
 		model.addAttribute("user", user);
+		model.addAttribute("message", null);
 		System.out.println(user);
 		return "appointment";
 	}
 	@PostMapping("/dat-lich")
 	public String datLichKham(@ModelAttribute("datLich") DatLich datLich, Model model) {
 	    try {
-	    	 
+	    	String str = datLich.getNgayKham();
+	    	String day = str.substring(3,5);
+	    	String month = str.substring(0,2);
+	    	String year = str.substring(6);
+	    	
+	    	if(day.length() < 2) {
+	    		day = "0" + day;
+	    	}
+	    	if (month.length() < 2) {
+	    		month = "0" + month;
+	    	}
+	    	str = day+ month + year;
+	    	datLich.setNgayKham(str);
+	    	System.out.println(datLich.getNgayKham());
+
 	        datLichRepository.save(datLich);
-	        model.addAttribute("notification", "success");
-	        model.addAttribute("message", "Đặt lịch khám thành công!");
+	        model.addAttribute("message", "1");
 	    } catch (Exception e) {
-	        model.addAttribute("notification", "error");
-	        model.addAttribute("message", "Đã xảy ra lỗi khi đặt lịch: " + e.getMessage());
+	        model.addAttribute("message", "0");
 	    }
 
 	    // Load lại dữ liệu cần thiết để hiển thị form
 	    model.addAttribute("dichvus", dichvuRepository.findAll());
 	    model.addAttribute("doctors", doctorRepository.findAll());
 	    model.addAttribute("glvlist", gioLamViecRepository.findAll());
-
+	    
 	    return "appointment";
 	}
 }

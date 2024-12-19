@@ -177,15 +177,11 @@
 	<div class="container-fluid bg-primary py-5 hero-header mb-5">
 		<div class="row py-3">
 			<div class="col-12 text-center">
-				<h1 class="display-3 text-white animated zoomIn">Đặt hẹn</h1>
-				<a href="" class="h4 text-white">Trang chủ</a> <i
-					class="far fa-circle text-white px-2"></i> <a href=""
-					class="h4 text-white">Đặt hẹn</a>
+				<h1 class="display-3 text-white animated zoomIn">Đặt lịch khám</h1>
 			</div>
 		</div>
 	</div>
 	<!-- Hero End -->
-
 
 	<!-- Appointment Start -->
 	<div
@@ -227,8 +223,7 @@
 										style="height: 55px;">
 										<option selected>Chọn Bác sĩ</option>
 										<option th:each="doctor, stat : ${doctors}"
-											th:value="${doctor.MaBs}" th:text="${doctor.HoTen}">Doctor
-											1</option>
+											th:value="${doctor.MaBs}" th:text="${doctor.HoTen}">Doctor1</option>
 									</select>
 								</div>
 								<div class="col-12 col-sm-6">
@@ -262,9 +257,14 @@
 										th:field="*{GhiChu}" placeholder="Ghi chú"></textarea>
 								</div>
 								<div class="col-12">
-									<button class="btn btn-dark w-100 py-3" type="submit">Nhận
-										tư vấn</button>
+									<button class="btn btn-dark w-100 py-3" type="submit" >Nhận tư vấn</button>
 								</div>
+									<script th:if="${message == '1'}">
+										alert("Đặt lịch khám thành công!");
+									</script>
+									<script th:if="${message =='0'}">
+										alert("Quá trình đặt lịch khám xảy ra lỗi!");
+									</script>
 							</div>
 						</form>
 					</div>

@@ -39,6 +39,13 @@
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<meta name="notification" th:content="${notification}">
+<meta name="message" th:content="${message}">
 </head>
 
 <body>
@@ -390,6 +397,7 @@
 	<!-- Template Javascript -->
 	<script src="/js/main.js"></script>
 	<script src="/js/dat-lich.js"></script>
+	
 </body>
 
 </html>

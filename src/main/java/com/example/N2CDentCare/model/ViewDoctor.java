@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "view_bacsi")
-public class Doctor {
+public class ViewDoctor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -109,7 +109,7 @@ public class Doctor {
 		Img = img;
 	}
 
-	public Doctor(String maBs, String hoTen, String gioiTinh, String ngaySinh, String sdt, String diaChi, String hocVan, String img) {
+	public ViewDoctor(String maBs, String hoTen, String gioiTinh, String ngaySinh, String sdt, String diaChi, String hocVan, String img) {
 		super();
 		MaBs = maBs;
 		HoTen = hoTen;
@@ -121,7 +121,7 @@ public class Doctor {
 		Img = img;
 	}
 
-	public Doctor() {
+	public ViewDoctor() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

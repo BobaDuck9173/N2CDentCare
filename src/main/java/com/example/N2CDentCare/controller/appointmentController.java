@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.N2CDentCare.model.Account;
 import com.example.N2CDentCare.model.DatLich;
 import com.example.N2CDentCare.model.Dichvu;
-import com.example.N2CDentCare.model.Doctor;
+import com.example.N2CDentCare.model.ViewDoctor;
 import com.example.N2CDentCare.model.GioLamViec;
 import com.example.N2CDentCare.repositories.DatLichRepository;
 import com.example.N2CDentCare.repositories.DichvuRepository;
-import com.example.N2CDentCare.repositories.DoctorRepository;
+import com.example.N2CDentCare.repositories.ViewDoctorRepository;
 import com.example.N2CDentCare.repositories.GioLamViecRepository;
 
 
@@ -28,7 +28,7 @@ public class appointmentController {
 	DichvuRepository dichvuRepository;	
 	
 	@Autowired
-	DoctorRepository doctorRepository;
+	ViewDoctorRepository viewDoctorRepository;
 	
 	@Autowired
 	GioLamViecRepository gioLamViecRepository;
@@ -41,7 +41,7 @@ public class appointmentController {
 		List<Dichvu> list = dichvuRepository.findAll();
 		model.addAttribute("dichvus", list);
 		
-		List<Doctor> dList = doctorRepository.findAll();
+		List<ViewDoctor> dList = viewDoctorRepository.findAll();
 		model.addAttribute("doctors", dList);
 		
 		List<GioLamViec> glvList = gioLamViecRepository.findAll();
@@ -80,7 +80,7 @@ public class appointmentController {
 
 	    // Load lại dữ liệu cần thiết để hiển thị form
 	    model.addAttribute("dichvus", dichvuRepository.findAll());
-	    model.addAttribute("doctors", doctorRepository.findAll());
+	    model.addAttribute("doctors", viewDoctorRepository.findAll());
 	    model.addAttribute("glvlist", gioLamViecRepository.findAll());
 	    
 	    return "appointment";

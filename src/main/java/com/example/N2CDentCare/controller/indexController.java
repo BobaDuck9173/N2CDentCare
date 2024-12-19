@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.N2CDentCare.model.Account;
 import com.example.N2CDentCare.model.Dichvu;
-import com.example.N2CDentCare.model.Doctor;
+import com.example.N2CDentCare.model.ViewDoctor;
 import com.example.N2CDentCare.model.GioLamViec;
 import com.example.N2CDentCare.repositories.DichvuRepository;
-import com.example.N2CDentCare.repositories.DoctorRepository;
+import com.example.N2CDentCare.repositories.ViewDoctorRepository;
 import com.example.N2CDentCare.repositories.GioLamViecRepository;
 
 @Controller
@@ -26,7 +26,7 @@ public class indexController {
 	DichvuRepository dichvuRepository;	
 	
 	@Autowired
-	DoctorRepository doctorRepository;
+	ViewDoctorRepository viewDoctorRepository;
 	
 	@Autowired
 	GioLamViecRepository gioLamViecRepository;
@@ -37,10 +37,10 @@ public class indexController {
 		
 		model.addAttribute("dichvus", list);
 		
-		List<Doctor> dList = doctorRepository.findAll();
-		List<Doctor> kq = new ArrayList<>();
+		List<ViewDoctor> dList = viewDoctorRepository.findAll();
+		List<ViewDoctor> kq = new ArrayList<>();
 		for (int i = 0; i < dList.size(); i++) {
-			Doctor dSample = dList.get(i);
+			ViewDoctor dSample = dList.get(i);
 			if (dSample.getHocVan().startsWith("THẠC SĨ") || dSample.getHocVan().startsWith("TIẾN SĨ"))
 				kq.add(dSample);
 		}

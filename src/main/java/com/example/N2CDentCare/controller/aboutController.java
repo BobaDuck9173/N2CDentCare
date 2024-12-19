@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.N2CDentCare.model.Account;
 import com.example.N2CDentCare.model.ChuyenKhoa;
-import com.example.N2CDentCare.model.Doctor;
+import com.example.N2CDentCare.model.ViewDoctor;
 import com.example.N2CDentCare.model.Khoa;
 import com.example.N2CDentCare.repositories.ChuyenKhoaRepository;
-import com.example.N2CDentCare.repositories.DoctorRepository;
+import com.example.N2CDentCare.repositories.ViewDoctorRepository;
 import com.example.N2CDentCare.repositories.KhoaRepository;
 
 
@@ -21,7 +21,7 @@ public class aboutController {
 	private Account user;
 	
 	@Autowired
-	DoctorRepository doctorRepository;
+	ViewDoctorRepository viewDoctorRepository;
 	
 	@Autowired
 	KhoaRepository khoaRepository;
@@ -39,7 +39,7 @@ public class aboutController {
 	
 	@GetMapping("/gioi-thieu/bac-si")
 	public String getDoctors(Model model){
-		List<Doctor> dList = doctorRepository.findAll();		
+		List<ViewDoctor> dList = viewDoctorRepository.findAll();		
 		
 		List<Khoa> kList = khoaRepository.findAll();
 		
@@ -47,7 +47,7 @@ public class aboutController {
 		
 		
 		for (int i = 0; i < dList.size(); i++) {
-			Doctor dSample = dList.get(i);
+			ViewDoctor dSample = dList.get(i);
 			String moTa = "";
 			for (int j = 0; j < kList.size(); j++) {
 				Khoa kSample = kList.get(j);

@@ -24,3 +24,23 @@ function showNotification(type, message) {
         notification.classList.add('d-none');
     }, 3000);
 }
+document.addEventListener("DOMContentLoaded", function () {
+    // Lấy thông tin từ server thông qua các thẻ đã được gán giá trị từ model
+    const notification = document.querySelector("meta[name='notification']").content;
+    const message = document.querySelector("meta[name='message']").content;
+
+    // Kiểm tra trạng thái và hiển thị thông báo
+    if (notification === "success") {
+        toastr.success(message, "Thành công");
+    } else if (notification === "error") {
+        toastr.error(message, "Lỗi");
+    }
+});
+
+// Cấu hình Toastr
+toastr.options = {
+    "closeButton": true,
+    "progressBar": true,
+    "timeOut": "5000",
+    "positionClass": "toast-top-right",
+};

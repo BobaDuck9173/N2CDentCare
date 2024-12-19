@@ -73,9 +73,11 @@ public class appointmentController {
 	    	System.out.println(datLich.getNgayKham());
 
 	        datLichRepository.save(datLich);
-	        model.addAttribute("message", "1");
+	        model.addAttribute("notification", "success");
+	        model.addAttribute("message", "Đặt lịch thành công!");
 	    } catch (Exception e) {
-	        model.addAttribute("message", "0");
+	    	model.addAttribute("notification", "success");
+	        model.addAttribute("message", "Đặt lịch không thành công!");
 	    }
 
 	    // Load lại dữ liệu cần thiết để hiển thị form
